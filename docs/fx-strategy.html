@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 FX Strategy | EPFR Notebooks</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 FX Strategy | EPFR Notebooks" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 FX Strategy | EPFR Notebooks" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Olivia Blaszkowski" />
+
+
+<meta name="date" content="2022-10-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multi-asset-strategy.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.23/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EPFR Quantitative Strategies</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="epfr-library.html"><a href="epfr-library.html"><i class="fa fa-check"></i><b>2</b> EPFR Library</a></li>
+<li class="chapter" data-level="3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html"><i class="fa fa-check"></i><b>3</b> Flow Percentage Country Strategy</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#daily-percentage-flow"><i class="fa fa-check"></i><b>3.2</b> Daily Percentage Flow</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#aggregations"><i class="fa fa-check"></i><b>3.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#calculation"><i class="fa fa-check"></i><b>3.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#flow-file"><i class="fa fa-check"></i><b>3.2.3</b> Flow File</a></li>
+<li class="chapter" data-level="3.2.4" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#return-file"><i class="fa fa-check"></i><b>3.2.4</b> Return File</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#strategy-implementation"><i class="fa fa-check"></i><b>3.3</b> Strategy Implementation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#compounding-flows"><i class="fa fa-check"></i><b>3.3.1</b> Compounding Flows</a></li>
+<li class="chapter" data-level="3.3.2" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#ranking-countries"><i class="fa fa-check"></i><b>3.3.2</b> Ranking Countries</a></li>
+<li class="chapter" data-level="3.3.3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#model"><i class="fa fa-check"></i><b>3.3.3</b> Model</a></li>
+<li class="chapter" data-level="3.3.4" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#preformance"><i class="fa fa-check"></i><b>3.3.4</b> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html"><i class="fa fa-check"></i><b>4</b> Multi Asset Strategy</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#downloading-data"><i class="fa fa-check"></i><b>4.1.1</b> Downloading Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#methodology"><i class="fa fa-check"></i><b>4.2</b> Methodology</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#calculation-of-daily-percentage-flow"><i class="fa fa-check"></i><b>4.2.1</b> Calculation of Daily Percentage Flow</a></li>
+<li class="chapter" data-level="4.2.2" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#strategy-implementation-1"><i class="fa fa-check"></i><b>4.2.2</b> Strategy Implementation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#preformance-1"><i class="fa fa-check"></i><b>4.2.3</b> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fx-strategy.html"><a href="fx-strategy.html"><i class="fa fa-check"></i><b>5</b> FX Strategy</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="fx-strategy.html"><a href="fx-strategy.html#overview-2"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="fx-strategy.html"><a href="fx-strategy.html#daily-percentage-flow-1"><i class="fa fa-check"></i><b>5.2</b> Daily Percentage Flow</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="fx-strategy.html"><a href="fx-strategy.html#aggregations-1"><i class="fa fa-check"></i><b>5.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="fx-strategy.html"><a href="fx-strategy.html#calculation-1"><i class="fa fa-check"></i><b>5.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="fx-strategy.html"><a href="fx-strategy.html#flow-file-1"><i class="fa fa-check"></i><b>5.2.3</b> Flow File</a></li>
+<li class="chapter" data-level="5.2.4" data-path="fx-strategy.html"><a href="fx-strategy.html#return-file-2"><i class="fa fa-check"></i><b>5.2.4</b> Return File</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EPFR Notebooks</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fx-strategy" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> FX Strategy<a href="fx-strategy.html#fx-strategy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The main focus of this proof of concept is to understand the methodology behind the <em>FX Strategy</em>. In this section you will be shown how to use EPFR data to construct a signal and extract value. <span style="color: red;">(add more to intro?)</span></p>
+<div id="overview-2" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Overview<a href="fx-strategy.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>EPFR have developed a new currency trading strategy.</li>
+<li>This approach uses the stated allocations of equity funds with a cross border focus.</li>
+<li>The strategy developed by EPFR Global is based on percentage flow into currencies.</li>
+<li>Daily percentage flow is compounded over a trailing twenty day period.</li>
+<li>The top fifth of ACWI currencies, in terms of twenty day percentage flows, outperforms the bottom fifth by over 5% per year.</li>
+<li>The strategy does well, particularly when picking amongst G10 currencies.</li>
+</ul>
+</div>
+<div id="daily-percentage-flow-1" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Daily Percentage Flow<a href="fx-strategy.html#daily-percentage-flow-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <em>FX Strategy</em> developed by EPFR Global is based on percentage flow into countries. In this section the reader will understand what types of aggregations can be used to create a signal for this strategy as well as the methodology behind daily percentage flow calculations. Understanding both of these fundamentals will further supplement a users experience working with these data sets, as they continue exploring for value and underlying meaning.</p>
+<div id="aggregations-1" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Aggregations<a href="fx-strategy.html#aggregations-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- section needs to be cleaned up, not sure if this is right -->
+<p>The first step will be defining a subset of data to capture in the calculation of our signal. For this strategy we will only take <strong>equity funds</strong> which have a <strong>cross-boarder focus</strong>.</p>
+<ul>
+<li>Cross-boarder focus: includes global funds, regional funds, Europe regional investing in different countries in Europe, essentially any fund that has a mandate that spans more than one country.</li>
+</ul>
+<p>The next requirement is that the subset of <strong>funds must all be reporting daily flows and country allocations</strong> since these values are needed to calculate Daily Percentage Flow.</p>
+<p>As you see in the figure below of EPFR’s coverage over time, which is reported at the end of July each year, there is a much greater corss-boarder coverage of equity funds with flows and allocations available to be back testing with.</p>
+<p>If a user is looking for higher granularity they can customize this aggregation even further. Some options can include filtering based on different fund level taggings – such as <span style="color: red;">equity or bond</span>, asset classes, geographic focuses, etf or mutual funds, ect. Any of these tags can be used to different degrees in creating aggregated signals to back test.</p>
+</div>
+<div id="calculation-1" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Calculation<a href="fx-strategy.html#calculation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To begin the calculation of Daily Percentage flow, we will start with our subset of equity funds. In this subset every fund will have a reported dollar inflow or outflow for each day. To calculate the fund’s impact on a currency we will scale their flow by multiplying it by its total allocation to countries using that currency. The next step will be to calculate the total impact on a currency by taking the sum across funds.</p>
+<p><span class="math display">\[\text{Total Impact}_{c,t} = \sum^{N}_{i=m}{\text{Flow}_i \times \text{Allocation}_i}\]</span>
+Where:</p>
+<ul>
+<li><span class="math inline">\(\text{Total Impact}\)</span> = the impact on a currency <span class="math inline">\(c\)</span>, across all funds <span class="math inline">\(i\)</span>, for day <span class="math inline">\(t\)</span></li>
+</ul>
+<p>Additionally, we repeat the process across fund’s Assets held under Management (AuM), to get total AuM held in a currency.</p>
+<p><span class="math display">\[\text{Total AuM}_{c,t} = \sum^{N}_{i=m}{\text{AuM}_i \times \text{Allocation}_i}\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\text{Total AuM}\)</span> = the assets held in a currency <span class="math inline">\(c\)</span>, across all funds <span class="math inline">\(i\)</span>, for day <span class="math inline">\(t\)</span></li>
+</ul>
+<p>Finally, to find the daily percentage flow into a currency you will divide the Total Impact by Total AuM. Then we repeat this across all different countries every single day that we are back testing the data.</p>
+<p><span class="math display">\[\text{Percentage Flow}_{c,t} = \frac{\text{Total Impact}_{c,t}}{\text{Total AuM}_{c,t}}\]</span>
+Where:</p>
+<ul>
+<li><span class="math inline">\(\text{Percentage Flow}\)</span> = the scaled flow as a percentage into a currency <span class="math inline">\(c\)</span>, across all funds <span class="math inline">\(i\)</span>, for day <span class="math inline">\(t\)</span></li>
+</ul>
+</div>
+<div id="flow-file-1" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Flow File<a href="fx-strategy.html#flow-file-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we have discussed how daily percentage flow is calculated, the user may request or create their own flow file for their desired aggregations.</p>
+<p><em>Note: equity funds with cross border mandates that report both daily flows and country allocations only</em></p>
+<p>For this EPFR has available is their Daily Flow Percentage Country file (<span style="color: red;">FloPctCtry-daily.csv can be found on ftp..</span>). This file contains daily flow data for 52 countries and is updated daily at 5:00 PM est. with a T+1 day lag.</p>
+<p>For this demonstration we will be using the second option as our flow file. We will store this file location to be used in the next section, Strategy Implementation.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="fx-strategy.html#cb29-1" aria-hidden="true" tabindex="-1"></a>flow.file <span class="ot">&lt;-</span> <span class="st">&quot;.csv&quot;</span> <span class="co"># PATH TO FLOW PERCENTAGE .csv FILE</span></span></code></pre></div>
+</div>
+<div id="return-file-2" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Return File<a href="fx-strategy.html#return-file-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to see the strategies performance, the user also needs a return file with corresponding aggregations to their flow file. This file can be independently imported or the user has the option to create one.</p>
+<p>To create your own return file using EPFR daily flow data, the following equation can be used:</p>
+<p><span class="math display">\[\text{Fund Return}_{c,t} = \frac{\sum^{N}_{i=m} \text{Portfolio Change}_i}{\sum^{N}_{i=m} \text{Assets Start}_i}\]</span>
+Where:</p>
+<ul>
+<li><span class="math inline">\(\text{Fund Return}\)</span> = the return value of country <span class="math inline">\(c\)</span>, across all funds <span class="math inline">\(i\)</span>, for day <span class="math inline">\(t\)</span></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multi-asset-strategy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-FX.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

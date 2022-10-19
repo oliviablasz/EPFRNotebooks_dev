@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Multi Asset Strategy | EPFR Notebooks</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Multi Asset Strategy | EPFR Notebooks" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Multi Asset Strategy | EPFR Notebooks" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Olivia Blaszkowski" />
+
+
+<meta name="date" content="2022-10-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="flow-percentage-country-strategy.html"/>
+<link rel="next" href="fx-strategy.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.23/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EPFR Quantitative Strategies</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="epfr-library.html"><a href="epfr-library.html"><i class="fa fa-check"></i><b>2</b> EPFR Library</a></li>
+<li class="chapter" data-level="3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html"><i class="fa fa-check"></i><b>3</b> Flow Percentage Country Strategy</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#daily-percentage-flow"><i class="fa fa-check"></i><b>3.2</b> Daily Percentage Flow</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#aggregations"><i class="fa fa-check"></i><b>3.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#calculation"><i class="fa fa-check"></i><b>3.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#flow-file"><i class="fa fa-check"></i><b>3.2.3</b> Flow File</a></li>
+<li class="chapter" data-level="3.2.4" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#return-file"><i class="fa fa-check"></i><b>3.2.4</b> Return File</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#strategy-implementation"><i class="fa fa-check"></i><b>3.3</b> Strategy Implementation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#compounding-flows"><i class="fa fa-check"></i><b>3.3.1</b> Compounding Flows</a></li>
+<li class="chapter" data-level="3.3.2" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#ranking-countries"><i class="fa fa-check"></i><b>3.3.2</b> Ranking Countries</a></li>
+<li class="chapter" data-level="3.3.3" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#model"><i class="fa fa-check"></i><b>3.3.3</b> Model</a></li>
+<li class="chapter" data-level="3.3.4" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html#preformance"><i class="fa fa-check"></i><b>3.3.4</b> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html"><i class="fa fa-check"></i><b>4</b> Multi Asset Strategy</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#downloading-data"><i class="fa fa-check"></i><b>4.1.1</b> Downloading Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#methodology"><i class="fa fa-check"></i><b>4.2</b> Methodology</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#calculation-of-daily-percentage-flow"><i class="fa fa-check"></i><b>4.2.1</b> Calculation of Daily Percentage Flow</a></li>
+<li class="chapter" data-level="4.2.2" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#strategy-implementation-1"><i class="fa fa-check"></i><b>4.2.2</b> Strategy Implementation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="multi-asset-strategy.html"><a href="multi-asset-strategy.html#preformance-1"><i class="fa fa-check"></i><b>4.2.3</b> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fx-strategy.html"><a href="fx-strategy.html"><i class="fa fa-check"></i><b>5</b> FX Strategy</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="fx-strategy.html"><a href="fx-strategy.html#overview-2"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="fx-strategy.html"><a href="fx-strategy.html#daily-percentage-flow-1"><i class="fa fa-check"></i><b>5.2</b> Daily Percentage Flow</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="fx-strategy.html"><a href="fx-strategy.html#aggregations-1"><i class="fa fa-check"></i><b>5.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="fx-strategy.html"><a href="fx-strategy.html#calculation-1"><i class="fa fa-check"></i><b>5.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="fx-strategy.html"><a href="fx-strategy.html#flow-file-1"><i class="fa fa-check"></i><b>5.2.3</b> Flow File</a></li>
+<li class="chapter" data-level="5.2.4" data-path="fx-strategy.html"><a href="fx-strategy.html#return-file-2"><i class="fa fa-check"></i><b>5.2.4</b> Return File</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EPFR Notebooks</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multi-asset-strategy" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Multi Asset Strategy<a href="multi-asset-strategy.html#multi-asset-strategy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The main focus of this proof of concept is to understand the methodology behind the <em>Multi Asset Strategy</em>. In this section you will be shown how to use EPFR data to construct a signal and extract value. <span style="color: red;">(add more to intro)</span></p>
+<div id="overview-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Overview<a href="multi-asset-strategy.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>EPFR’s Multi Asset Strategy is based on percentage flow into asset classes.</li>
+<li>Daily percentage flow is compounded over a trailing twenty day period.</li>
+<li>The top fifth of asset classes, in terms of twenty day percentage flows, outperforms the bottom fifth by 10% per year.</li>
+<li>The strategy works well whether you consider only equity or fixed income asset classes.</li>
+</ul>
+<div id="downloading-data" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Downloading Data<a href="multi-asset-strategy.html#downloading-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Multi Asset strategy uses data from EPFR’s Daily Multi Asset files (<span style="color: red;">MultiAsset-Rgn-daily.csv and MultiAsset-FI-daily.csv can be found on ftp..</span>). These files contain daily flow data for different asset classes listed below and are updated daily at 5:00 PM est. with a T+1 day lag.</p>
+<div align="center">
+Asset Classes
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>7 Global Equity Regions:
+<ul>
+<li>Asia ex Japan</li>
+<li>Europe ex UK</li>
+<li>Japan</li>
+<li>Latin America</li>
+<li>Pacific ex Japan</li>
+<li>United Kingdom</li>
+<li>United States</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>10 Fixed Income:
+<ul>
+<li>Global Emerging Markets</li>
+<li>Western Europe Bond</li>
+<li>High Yield Bond</li>
+<li>Floating Rate Funds</li>
+<li>USA Treasuries -</li>
+<li>USA Treasuries - Long</li>
+<li>USA Treasuries - Short</li>
+<li>Cash</li>
+<li>USA Muni’s</li>
+<li>Global Fixed Income</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="methodology" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Methodology<a href="multi-asset-strategy.html#methodology" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>We calculate the flow into an asset class as the sum of flows into funds that invest in that asset class.</li>
+<li>We calculate the assets held in an asset class as the sum of the assets of funds that invest in that asset class.</li>
+<li>For equity funds, these sums are computed only across active funds.</li>
+<li>Divide flow into by assets held in an asset class to get daily percentage flow into that asset class.</li>
+<li>When using both equity and fixed income assets classes (i.e. Multi asset), regress twenty day beta versus MSCI ACWI out of twenty day flow percentage.</li>
+</ul>
+<p>As you see in the figure below of EPFR’s coverage over time, which is reported at the end of July each year, there is good coverage available to be back testing with.</p>
+<p><img src="../png/coverage.png" width="300" /></p>
+<div id="calculation-of-daily-percentage-flow" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Calculation of Daily Percentage Flow<a href="multi-asset-strategy.html#calculation-of-daily-percentage-flow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="strategy-implementation-1" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Strategy Implementation<a href="multi-asset-strategy.html#strategy-implementation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>For each asset class, compound daily percentage flow over the trailing twenty days (<em>lookback</em>).</li>
+<li>Rank asset classes into five equal baskets based on twenty day percentage flow.</li>
+<li>Go long the top fifth and short the bottom fifth.</li>
+<li>Re-balance weekly.</li>
+</ul>
+<hr />
+<div id="defining-variables" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Defining Variables<a href="multi-asset-strategy.html#defining-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="multi-asset-strategy.html#cb21-1" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="st">&quot;Multi&quot;</span> <span class="co"># Multi/Rgn/FI</span></span>
+<span id="cb21-2"><a href="multi-asset-strategy.html#cb21-2" aria-hidden="true" tabindex="-1"></a>strats <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rgn&quot;</span>, <span class="st">&quot;FI&quot;</span>)</span>
+<span id="cb21-3"><a href="multi-asset-strategy.html#cb21-3" aria-hidden="true" tabindex="-1"></a>fldrs <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">fcn.dir</span>(), <span class="st">&quot;New Model Concept&quot;</span>, strats, <span class="st">&quot;FloMo</span><span class="sc">\\</span><span class="st">csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>)</span>
+<span id="cb21-4"><a href="multi-asset-strategy.html#cb21-4" aria-hidden="true" tabindex="-1"></a>lookback <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># FLOW WINDOW (IN WEEKDAYS) - 20 day look back period</span></span>
+<span id="cb21-5"><a href="multi-asset-strategy.html#cb21-5" aria-hidden="true" tabindex="-1"></a>delay <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># DELAY IN KNOWING DATA (IN WEEKDAYS) - data takes time to have</span></span>
+<span id="cb21-6"><a href="multi-asset-strategy.html#cb21-6" aria-hidden="true" tabindex="-1"></a>doW <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># TRADE ON FRIDAYS</span></span>
+<span id="cb21-7"><a href="multi-asset-strategy.html#cb21-7" aria-hidden="true" tabindex="-1"></a>hz <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">45</span>, <span class="dv">65</span>, <span class="dv">130</span>) <span class="co"># RETURN HORIZON (IN WEEKDAYS)</span></span></code></pre></div>
+<hr />
+</div>
+<div id="compounding-daily-percentage-flow" class="section level4 hasAnchor" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Compounding Daily Percentage Flow<a href="multi-asset-strategy.html#compounding-daily-percentage-flow" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Import the multi asset files for equity and fixed income asset classes, and then use function from EPFR library to compound flows.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="multi-asset-strategy.html#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">multi.asset</span>(<span class="fu">strat.path</span>(<span class="fu">paste</span>(<span class="st">&quot;MultiAsset&quot;</span>, strats, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>), <span class="st">&quot;daily&quot;</span>)) <span class="co"># GET FLOW PERCENTAGE</span></span>
+<span id="cb22-2"><a href="multi-asset-strategy.html#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">compound.flows</span>(x, lookback, <span class="dv">1</span>, F) <span class="co"># COMPOUND FLOWS</span></span></code></pre></div>
+<hr />
+</div>
+<div id="return-file-1" class="section level4 hasAnchor" number="4.2.2.3">
+<h4><span class="header-section-number">4.2.2.3</span> Return File<a href="multi-asset-strategy.html#return-file-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For this demonstration we will use files that have calculated returns using EPFR daily flow data for both equity and fixed income asset classes. To do this we use the following equation for each weekday <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[\text{Fund Return}_t = \frac{\sum \text{Portfolio Change}}{\sum \text{Assets Start}}\]</span></p>
+<p>We will then import this file and use functions from the EPFR library which will easily translate these returns to a total return index.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="multi-asset-strategy.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#RGN RETURNS</span></span>
+<span id="cb23-2"><a href="multi-asset-strategy.html#cb23-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">mat.read</span>(<span class="fu">paste</span>(<span class="fu">fcn.dir</span>(), <span class="st">&quot;New Model Concept</span><span class="sc">\\</span><span class="st">Strategy Notebooks</span><span class="sc">\\</span><span class="st">csv&quot;</span>, <span class="st">&quot;sql.1dFloMo.Rgn.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>))</span>
+<span id="cb23-3"><a href="multi-asset-strategy.html#cb23-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ret.to.idx</span>(<span class="fu">map.rname</span>(y, <span class="fu">dimnames</span>(x)[[<span class="dv">1</span>]])) <span class="co"># CONVERT TO A TOTAL-RETURN INDEX           </span></span>
+<span id="cb23-4"><a href="multi-asset-strategy.html#cb23-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ret.idx.gaps.fix</span>(y)</span>
+<span id="cb23-5"><a href="multi-asset-strategy.html#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="multi-asset-strategy.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#F.I. RETURNS</span></span>
+<span id="cb23-7"><a href="multi-asset-strategy.html#cb23-7" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">mat.read</span>(<span class="fu">paste</span>(<span class="fu">fcn.dir</span>(), <span class="st">&quot;New Model Concept</span><span class="sc">\\</span><span class="st">Strategy Notebooks</span><span class="sc">\\</span><span class="st">csv&quot;</span>, <span class="st">&quot;sql.1dFloMo.FI.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>))</span>
+<span id="cb23-8"><a href="multi-asset-strategy.html#cb23-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">ret.to.idx</span>(<span class="fu">map.rname</span>(z, <span class="fu">dimnames</span>(y)[[<span class="dv">1</span>]])) <span class="co"># CONVERT TO A TOTAL-RETURN INDEX           </span></span>
+<span id="cb23-9"><a href="multi-asset-strategy.html#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="multi-asset-strategy.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#COMBINE RETURN FILES</span></span>
+<span id="cb23-11"><a href="multi-asset-strategy.html#cb23-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y, z)[, <span class="fu">dimnames</span>(x)[[<span class="dv">2</span>]]] <span class="co"># FINAL TOTAL-RETURN INDEX TABLE          </span></span>
+<span id="cb23-12"><a href="multi-asset-strategy.html#cb23-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> y[<span class="fu">max</span>(<span class="fu">simplify2array</span>(<span class="fu">lapply</span>(y, <span class="cf">function</span>(x) {<span class="fu">find.data</span>(<span class="sc">!</span><span class="fu">is.na</span>(x), T)})))<span class="sc">:</span><span class="fu">min</span>(<span class="fu">simplify2array</span>(<span class="fu">lapply</span>(y, <span class="cf">function</span>(x) {<span class="fu">find.data</span>(<span class="sc">!</span><span class="fu">is.na</span>(x), F)}))), ] <span class="co"># ENSURE ALL PIECES HAVE RETURN OVER THE SAME HORIZON         </span></span></code></pre></div>
+<p>Below shows the next steps to filter the return file that will be used in the strategy implementation.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="multi-asset-strategy.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (idx <span class="sc">==</span> <span class="st">&quot;Rgn&quot;</span>) { </span>
+<span id="cb24-2"><a href="multi-asset-strategy.html#cb24-2" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb24-3"><a href="multi-asset-strategy.html#cb24-3" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> y[, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb24-4"><a href="multi-asset-strategy.html#cb24-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (idx <span class="sc">==</span> <span class="st">&quot;FI&quot;</span>) {   </span>
+<span id="cb24-5"><a href="multi-asset-strategy.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[, <span class="dv">8</span><span class="sc">:</span><span class="fu">dim</span>(x)[<span class="dv">2</span>]]</span>
+<span id="cb24-6"><a href="multi-asset-strategy.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> y[, <span class="dv">8</span><span class="sc">:</span><span class="fu">dim</span>(y)[<span class="dv">2</span>]]</span>
+<span id="cb24-7"><a href="multi-asset-strategy.html#cb24-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {    </span>
+<span id="cb24-8"><a href="multi-asset-strategy.html#cb24-8" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">map.rname</span>(<span class="fu">portfolio.beta.wrapper</span>(y, <span class="st">&quot;ACWorld&quot;</span>, lookback), <span class="fu">dimnames</span>(x)[[<span class="dv">1</span>]])</span>
+<span id="cb24-9"><a href="multi-asset-strategy.html#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(x)[<span class="dv">1</span>]) x[j, ] <span class="ot">&lt;-</span> <span class="fu">portfolio.residual</span>(<span class="fu">unlist</span>(x[j, ]), <span class="fu">unlist</span>(z[j, ]))</span>
+<span id="cb24-10"><a href="multi-asset-strategy.html#cb24-10" aria-hidden="true" tabindex="-1"></a>}   </span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="preformance-1" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Preformance<a href="multi-asset-strategy.html#preformance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Next, the bbk() function from EPFR’s library is used to show the performance of this strategy.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="multi-asset-strategy.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], <span class="dv">5</span>, doW, T, <span class="dv">0</span>, delay)<span class="sc">$</span>annSumm <span class="co"># DISPLAY CALENDAR-YEAR RETURNS    </span></span></code></pre></div>
+<div id="htmlwidget-e595759f18e314c32d44" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e595759f18e314c32d44">{"x":{"filter":"none","vertical":false,"data":[["2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"],[5.52624278164374,19.4053703836432,0.634103881557641,4.20894496266271,4.75837669814696,0.644360305213232,-3.21943078458476,1.52776516629702,0.0838904073729031,-2.03580297125577,3.00460599656146,-6.57525638823802,0.0207033202542373,-2.82063261278039,0.931415816793705,-24.5647689127733],[1.16212607686975,-13.4654215461797,3.87732761076768,6.63235755435535,-1.79373268912336,6.25626353744421,7.68631182639402,2.57819995462713,0.770815430114367,2.74967866496021,-0.59718095134074,-4.70464188927624,-0.260860606724453,8.42167934049993,10.306753142091,-10.9224314396712],[1.33071992346722,7.3922947858224,16.8464067516465,2.98633703459871,-15.6605055269856,-7.01809025605886,5.51492187006221,1.60698740620705,1.02776504109424,4.47553257984937,-3.96758758977007,-1.07891231002299,1.27742721401412,-0.126511846316319,-7.26398331414015,-29.3401241262502],[2.94396894920767,-8.38786563876433,-5.92572910551435,-8.64603491994674,6.28914537359336,0.0584412672004558,-3.54820527511147,-3.16739597054196,-0.180827631862869,-0.966601343665543,4.32963699440091,8.41387968033673,2.31676283725988,0.16836516794483,0.110800539438068,47.5835662447675],[-12.3929012205458,2.34005107712647,-14.7493086402086,-4.51037884313958,4.90824524954534,-2.04587645534727,-7.81296648718752,-2.34915788461762,-1.89830584613581,-4.81716603698649,-4.01362646420494,2.70851831018035,-4.0393335083156,-8.50624821882963,-7.55750407802562,5.02337996556178],[17.9191440021895,17.0653193065167,15.3834125217663,8.71932380580229,-0.149868551398383,2.6902367605605,4.59353570260276,3.87692305091465,1.98219625350872,2.78136306573072,7.0182324607664,-9.28377469841837,4.06003682856984,5.68561560604924,8.48891989481933,-29.5881488783351],[4.0833568912966,-27.4174182305794,24.1417400348717,9.96487587563877,-2.53711176658607,9.88381642500216,4.56983217494186,4.05144568606401,-1.96819121826119,5.9413415626538,8.45759702110396,-6.12020563146314,11.6068581862169,5.32783341109308,3.66043724756096,-32.9537005496151],[29,52,52,53,52,52,52,52,52,53,52,52,52,52,53,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Q1<\/th>\n      <th>Q2<\/th>\n      <th>Q3<\/th>\n      <th>Q4<\/th>\n      <th>Q5<\/th>\n      <th>TxB<\/th>\n      <th>uRet<\/th>\n      <th>nPrds<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="multi-asset-strategy.html#cb26-1" aria-hidden="true" tabindex="-1"></a>fcn <span class="ot">&lt;-</span> <span class="cf">function</span>(retW) {<span class="fu">as.matrix</span>(<span class="fu">bbk</span>(x, y, <span class="dv">1</span>, retW, <span class="dv">5</span>, doW, T, <span class="dv">0</span>, delay)<span class="sc">$</span>summ)} <span class="co"># DEFINE SUMMARY FUNCTION</span></span>
+<span id="cb26-2"><a href="multi-asset-strategy.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.ex.array3d</span>(<span class="fu">sapply</span>(<span class="fu">split</span>(hz, hz), fcn, <span class="at">simplify =</span> <span class="st">&quot;array&quot;</span>)) <span class="co"># WRITE SUMMARIES</span></span></code></pre></div>
+<div id="htmlwidget-4251651822655796eab9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4251651822655796eab9">{"x":{"filter":"none","vertical":false,"data":[["AnnMn","AnnSd","Sharpe","HitRate","Beta","Alpha","DrawDn","DDnBeg","DDnN","AnnTo"],[1.55353490563755,5.40988302142897,28.7166080945536,1.83727034120735,-0.266719984632243,2.48087508418281,-14.6752675607343,20121116,458,1432.67630310994],[1.98338339947372,5.05803088871805,39.2125600477779,3.1496062992126,0.100871605814905,1.63266992340811,-17.0308054498079,20070921,72,2217.3455978975],[0.384168991480825,5.88602930260233,6.52679373021429,0.656167979002625,0.242494869125488,-0.45894456651221,-31.0699471184724,20100716,112,3027.06964520368],[-0.398966221810674,4.95801079312475,-8.0469010346633,0.78740157480315,0.140336814989569,-0.886893540974022,-28.2155876583993,20080425,415,2260.05256241787],[-4.05258718029196,5.13227295862101,-78.9628145846096,-7.61154855643045,-0.297380044872158,-3.0186471690559,-59.5791959868,20070608,760,1485.06351292159],[5.60612208592952,6.7162510434441,83.4710026421926,6.56167979002625,0.0306600602399145,5.49952225323871,-12.7937621143228,20180202,38,2917.73981603154],[3.47683050381051,8.03994219980304,43.2444713830864,7.8740157480315,1,0,-35.8270004978881,20071026,56,0],[1.44238048844826,5.40105836711426,26.7767284823854,0.5249343832021,-0.323868520741458,2.55177792688039,-19.8460217925575,20116120.5,214.5,1059.38596491228],[1.57300624585293,4.89520883613277,32.7761273704687,6.43044619422572,0.137666308100915,1.09945096941553,-17.0229366133635,20080553,17.5,1450.52631578947],[0.393539467070713,5.84429787641269,6.56706481284782,0.918635170603675,0.227924856306937,-0.38493751453998,-19.1438270348501,20105419,52.5,1760.70175438596],[-0.220881122618662,4.73294455848739,-4.51956808859941,0.5249343832021,0.111372650311941,-0.605643160242509,-27.6177215748786,20080470.5,220,1445.39473684211],[-3.63875345316467,5.19420927297027,-70.1869308082841,-8.53018372703412,-0.236108280115954,-2.82525082457111,-54.1465693283406,20070611.5,378.5,1069.64912280702],[5.08113394161293,7.1063148805994,71.5303097368911,5.7742782152231,-0.0877602406255046,5.3770287514515,-11.6755806360774,20170165.5,49.5,2129.0350877193],[3.42694279285307,8.32095772847907,41.1983018254379,12.3359580052493,1,0,-35.7691706330534,20071064,31.5,0],[0.903065188748983,5.66491937438293,16.4870565672032,-0.786718104160926,-0.326739192453256,2.02737012463466,-17.4742781194833,20145720.5,63,759.739162721619],[1.09646703520887,4.97041839305659,22.6204308408399,2.4937999448884,0.162339911289925,0.538778934208139,-15.136338102006,20108186.25,25.75,873.791597048176],[1.5929914349715,5.57834375312777,30.0705630241485,4.59768531275834,0.221979235432523,0.825783912436101,-15.5610742678232,20125416.5,26.25,972.423651721897],[-0.532735239819148,4.59605852590858,-11.4952704958444,1.31165610360981,0.0764524365317627,-0.798580692162232,-26.6426093175012,20077939.5,116,865.236702868282],[-3.24769901757344,5.21619299078129,-63.3882591135714,-11.6891705704051,-0.213629840074851,-2.50675169313197,-52.9253757065623,20075892.5,168.75,784.332126612828],[4.15076420632243,7.52009021925074,55.4875952739979,7.08597409754753,-0.113109352378405,4.53412181776663,-15.3868197287221,20162960,23.5,1544.07128933445],[3.44315990774643,8.80356918998806,39.1489932522259,11.9468173050427,1,0,-33.8993408900722,20071039.75,16.75,0],[0.76359697865345,5.70304913760157,14.1926621347496,-0.138499844382197,-0.317464472499823,1.84045233988578,-20.0157875125513,20133981.4444444,40.8888888888889,365.234719005357],[0.739782553409042,4.85425491881808,15.4440609109224,1.05820105820106,0.103053405170631,0.407432823314612,-15.2302562328834,20118404.6666667,21.4444444444444,401.531522917065],[0.712245313690099,5.45306084982018,13.5471917009653,3.01898537192655,0.192683023699682,0.0456119459231831,-20.0467237238608,20092926.8888889,25.6666666666667,447.099154997415],[-0.194303090541963,4.87243658201189,-4.9406138756085,-0.541549953314659,0.145552069305134,-0.69326037175042,-21.1005032168399,20077328,38,405.937506640318],[-2.20314824283299,5.26795675861576,-42.3681878932253,-9.58138811079988,-0.206692517167547,-1.50496088789455,-35.9159436531641,20081905.2222222,76.8888888888889,374.433418565502],[2.96674522148644,7.48847197712975,40.1883419967918,7.22222222222222,-0.110771955332276,3.34541322778033,-18.1940403236401,20142882.2222222,22.4444444444444,739.668137570859],[3.4140695000387,9.17885060413479,37.3495600752179,15.0980392156863,1,0,-31.0194510860654,20070959.3333333,7.66666666666667,0],[0.705816535631995,5.99307102025561,11.9588433026849,-0.660882075259632,-0.322545725487111,1.79548810949143,-22.8204676103547,20121568.9230769,27.6153846153846,264.116524733585],[0.651975820323769,4.86062621276105,11.7399569168855,1.69491525423729,0.0904528036395572,0.355244425476362,-18.82604624038,20113692.9230769,19.2307692307692,282.332821443529],[0.794264475818326,5.30670621387439,14.1423947811764,3.26394820842512,0.16875210789453,0.214089760850556,-16.0856511443894,20107603.5384615,20.2307692307692,313.440985310314],[-0.185194336775761,5.05537393600645,-2.81195223235107,1.05426426291418,0.186649673736136,-0.824916930816713,-21.5257382948132,20082307.8461538,24.3076923076923,279.40806924473],[-2.12245632284767,5.28402036352221,-39.763933732451,-11.118104572225,-0.215676352241677,-1.38334786322152,-36.4810975890436,20083886.5384615,48.7692307692308,272.390525385081],[2.82827285847966,7.85795910601704,35.0546002888473,5.59501865755519,-0.106869373245434,3.17883597271296,-19.8772007782493,20139202.0769231,19.2307692307692,536.507050118665],[3.4516099020352,9.1794325078545,37.6712127870315,17.4616733354314,1,0,-28.5540072047998,20071070.1538462,4.69230769230769,0],[0.0141949876084154,5.75757595451538,0.278145962420037,-2.86030061892131,-0.223717740256972,0.734207288771629,-24.4144109165957,20112912.2692308,16.5,137.978400909435],[-0.127282244283642,5.18093068055562,-2.3820688932613,-4.61538461538462,0.0733225847745441,-0.358474405571496,-19.6332737156021,20112191.8461538,14.1153846153846,146.449886320576],[1.14401189151012,5.46795331054342,20.6779869888634,4.9867374005305,0.168839389317313,0.593429825297668,-13.2494891318569,20114445.2307692,7.07692307692308,156.337627889352],[0.476995847392793,5.49489329115499,9.14940949554635,2.19717064544651,0.20746751356923,-0.191954764577959,-17.9111256614837,20091836.0384615,8.38461538461539,144.42260325881],[-1.62449168326407,5.943081880349,-30.1312239290553,-11.5428824049514,-0.31950844685204,-0.593731553870024,-32.9217905395868,20083492.9230769,24.4230769230769,138.502589364658],[1.63868667087249,8.16831606321454,20.5219415607563,6.4367816091954,0.0957907065950672,1.32793884264165,-24.0270051798536,20116734.8076923,8.5,276.480990274094],[3.26450353283433,9.88726234082637,33.1056558172464,17.9885057471264,1,0,-25.756780574147,20071328.1153846,2.5,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>5 Q1<\/th>\n      <th>5 Q2<\/th>\n      <th>5 Q3<\/th>\n      <th>5 Q4<\/th>\n      <th>5 Q5<\/th>\n      <th>5 TxB<\/th>\n      <th>5 uRet<\/th>\n      <th>10 Q1<\/th>\n      <th>10 Q2<\/th>\n      <th>10 Q3<\/th>\n      <th>10 Q4<\/th>\n      <th>10 Q5<\/th>\n      <th>10 TxB<\/th>\n      <th>10 uRet<\/th>\n      <th>20 Q1<\/th>\n      <th>20 Q2<\/th>\n      <th>20 Q3<\/th>\n      <th>20 Q4<\/th>\n      <th>20 Q5<\/th>\n      <th>20 TxB<\/th>\n      <th>20 uRet<\/th>\n      <th>45 Q1<\/th>\n      <th>45 Q2<\/th>\n      <th>45 Q3<\/th>\n      <th>45 Q4<\/th>\n      <th>45 Q5<\/th>\n      <th>45 TxB<\/th>\n      <th>45 uRet<\/th>\n      <th>65 Q1<\/th>\n      <th>65 Q2<\/th>\n      <th>65 Q3<\/th>\n      <th>65 Q4<\/th>\n      <th>65 Q5<\/th>\n      <th>65 TxB<\/th>\n      <th>65 uRet<\/th>\n      <th>130 Q1<\/th>\n      <th>130 Q2<\/th>\n      <th>130 Q3<\/th>\n      <th>130 Q4<\/th>\n      <th>130 Q5<\/th>\n      <th>130 TxB<\/th>\n      <th>130 uRet<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<div id="excel-models" class="section level4 hasAnchor" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> Excel Models<a href="multi-asset-strategy.html#excel-models" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span style="color: red;">add to this section, use embedded tables or take format from presentation</span></p>
+<p><span style="color: red;">Flow percentage</span></p>
+<p>Flow percentage compounded over trailing 20 days</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="multi-asset-strategy.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EXCEL MODEL</span></span>
+<span id="cb27-2"><a href="multi-asset-strategy.html#cb27-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], <span class="dv">5</span>, doW, T, <span class="dv">0</span>, delay)</span>
+<span id="cb27-3"><a href="multi-asset-strategy.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.to.xlModel</span>(z[[<span class="st">&quot;raw&quot;</span>]]) <span class="co"># FOR MULTI-ASSET, DO TWICE. ONCE WITH AND ONCE WITHOUT BETA NEUTRALIZATION. MAKE SURE LAST TRADE DATE IS THE SAME AS ORTH!!</span></span></code></pre></div>
+<div id="htmlwidget-f7e4bd1e11d130f5ef8e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f7e4bd1e11d130f5ef8e">{"x":{"filter":"none","vertical":false,"data":[["20220105","20211229","20211222","20211215","20211208","20211201"],["20220107","20211231","20211224","20211217","20211210","20211203"],["20220114","20220107","20211231","20211224","20211217","20211210"],["0.945787208765092","1.59663728824269","2.05916785394251","1.74224377509136","2.27304608330798","1.85377117088579"],["1.75657418779162","2.1189377410964","2.33824159616968","1.92161203393657","1.86064649683095","1.05122645011959"],["1.91619807740034","1.962476288712","2.37767993267849","1.74180446784388","1.77623418295425","1.6068639038676"],["1.22735113038615","1.39760331678043","2.51779797039303","2.22970980793067","1.41173254182309","1.5535567286682"],["1.99383339156076","2.23438581461106","2.38049820478145","1.92458368151599","2.11156530458689","0.463230135485113"],["1.1532840265794","1.34109881608138","2.02152618850136","1.70432370748002","1.60833772647576","1.15604572802441"],["2.44990642276196","3.69075892518263","4.31850994041937","4.23225666853829","4.08162694513769","2.75428155657813"],["-0.415820182699886","-0.383438043930337","-0.424324963482702","-0.41911403792362","-0.527287618212045","-0.465096517951294"],["0.206610393554034","0.104481405456585","-0.0595674894476765","0.0893937197257727","-0.00694542272864339","0.217538616331675"],["1.92641005016152","1.39129344569379","0.278243330659899","-0.604210776169183","-0.770875399702312","-0.489190150570602"],["2.70139993134071","2.50210613768962","1.67164343038728","1.22838701293997","1.95835530404034","2.34043045848649"],["2.1911888838363","1.52584466237994","0.975300658321198","-1.12738834910117","-0.958828798353384","0.192772688495863"],["4.05296433968319","7.47784336965099","9.41585278655772","8.73622691326319","8.2764952221358","5.74647520895119"],["1.87152706942432","2.44480258936049","2.15529004662518","1.84281292380993","0.292779771121444","-0.395275554506802"],["1.636357170101","0.671225066977134","0.375740119015366","0.497005567918348","1.20651101554497","0.949923406737113"],["0.439137935850333","0.566275894280479","0.204985630432679","0.171548770552284","0.182520078322924","0.334873909616419"],["0.0559087437535111","0.0365762295920633","-0.104828866537139","-0.0137316880798174","0.126305309073739","0.552130701897944"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Open<\/th>\n      <th>Close<\/th>\n      <th>AsiaXJP<\/th>\n      <th>EurXGB<\/th>\n      <th>Japan<\/th>\n      <th>LatAm<\/th>\n      <th>PacXJP<\/th>\n      <th>UK<\/th>\n      <th>USA<\/th>\n      <th>GLOBEM<\/th>\n      <th>WESEUR<\/th>\n      <th>HYIELD<\/th>\n      <th>FLOATS<\/th>\n      <th>USTRIN<\/th>\n      <th>USTRLT<\/th>\n      <th>USTRST<\/th>\n      <th>CASH<\/th>\n      <th>USMUNI<\/th>\n      <th>GLOFIX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<p><span style="color: red;">Returns</span></p>
+<p>One-week ahead return (Friday to Friday)</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="multi-asset-strategy.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.to.xlModel</span>(z[[<span class="st">&quot;raw.fwd.rets&quot;</span>]])</span></code></pre></div>
+<div id="htmlwidget-99f527b2d1adb5857e28" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-99f527b2d1adb5857e28">{"x":{"filter":"none","vertical":false,"data":[["20220105","20211229","20211222","20211215","20211208","20211201"],["20220107","20211231","20211224","20211217","20211210","20211203"],["20220114","20220107","20211231","20211224","20211217","20211210"],["0.801418207503929","-1.00311761371361","0.873686935970909","0.449443889068334","-2.73770417383099","1.35727099277125"],["-1.67981023825901","-1.37252281573492","1.09924246391901","1.52769326099252","-1.25871646936628","1.95640305135858"],["-1.30765653796966","-2.11679075448406","0.0840077643368033","-0.220776045320193","-0.777752700354867","1.01605404922439"],["4.04641090223146","-3.13599684250775","2.45813104501866","-0.600260491281574","-1.13774791814139","3.09900715769837"],["-0.140561069374911","-1.49170741197295","1.29902918084157","0.745012077146939","-0.817456886317203","1.54816916406831"],["-0.369070472750238","-0.449204686981673","0.734010900827116","2.02342932717447","-1.12432055566323","1.50436400414389"],["-0.725641303841982","-2.82248228128145","0.716846386648783","2.38835031640428","-1.89679500676311","3.00559745929047"],["-0.884581105397189","-1.05739275929217","0.138276915559572","-0.0425596817305944","-0.326742371190562","0.636691257806106"],["0.00697645393111657","-0.410309801739643","-0.200412528426867","-0.451821919926275","-0.0453203306002337","0.101430133513745"],["0.0395950255090867","-0.810166819899422","0.257376980406519","0.438539023010847","-0.0272082700079892","0.62581434946209"],["0.173752064406315","0.158827969148177","0.103586958913766","0.028155112307104","-0.0273585259363358","0.243789442393449"],["-0.195311865184905","-1.27611748915197","-0.0411712922571326","-0.398719881405711","0.404895838359252","-0.740992012299287"],["-0.198572235466955","-3.22263068939354","-0.108270048603927","-1.20751481867033","1.02525267298117","-2.44306433873987"],["-0.0917428209475872","-0.165218722985571","0.00160940007900479","-0.0455015542407153","0.0484074517246853","-0.0817069605475353"],["-0.000963996481459617","-0.0062249482672172","-0.00120199632480933","-0.000663999235342771","-0.00083399754878144","-0.000490001578000943"],["-0.412083923924257","-0.550329689427599","0.181159815432807","-0.0212146270155387","0.00258972784074274","-0.0389043214656226"],["-0.186375737506438","-0.69104634815568","0.00506660228992928","-0.131177625199712","0.0142354948939243","0.115703084027416"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Open<\/th>\n      <th>Close<\/th>\n      <th>AsiaXJP<\/th>\n      <th>EurXGB<\/th>\n      <th>Japan<\/th>\n      <th>LatAm<\/th>\n      <th>PacXJP<\/th>\n      <th>UK<\/th>\n      <th>USA<\/th>\n      <th>GLOBEM<\/th>\n      <th>WESEUR<\/th>\n      <th>HYIELD<\/th>\n      <th>FLOATS<\/th>\n      <th>USTRIN<\/th>\n      <th>USTRLT<\/th>\n      <th>USTRST<\/th>\n      <th>CASH<\/th>\n      <th>USMUNI<\/th>\n      <th>GLOFIX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="flow-percentage-country-strategy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fx-strategy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-MultiAsset.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
