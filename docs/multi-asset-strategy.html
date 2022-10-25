@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Olivia Blaszkowski" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,6 +201,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.3" data-path="fx-strategy.html"><a href="fx-strategy.html#flow-file-2"><i class="fa fa-check"></i><b>5.2.3</b> Flow File</a></li>
 <li class="chapter" data-level="5.2.4" data-path="fx-strategy.html"><a href="fx-strategy.html#return-file-3"><i class="fa fa-check"></i><b>5.2.4</b> Return File</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="fx-strategy.html"><a href="fx-strategy.html#strategy-implementation-2"><i class="fa fa-check"></i><b>5.3</b> Strategy Implementation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="fx-strategy.html"><a href="fx-strategy.html#compounding-flows-2"><i class="fa fa-check"></i><b>5.3.1</b> Compounding Flows</a></li>
+<li class="chapter" data-level="5.3.2" data-path="fx-strategy.html"><a href="fx-strategy.html#ranking-currencies"><i class="fa fa-check"></i><b>5.3.2</b> Ranking Currencies</a></li>
+<li class="chapter" data-level="5.3.3" data-path="fx-strategy.html"><a href="fx-strategy.html#model-2"><i class="fa fa-check"></i><b>5.3.3</b> Model</a></li>
+<li class="chapter" data-level="5.3.4" data-path="fx-strategy.html"><a href="fx-strategy.html#preformance-2"><i class="fa fa-check"></i><b>5.3.4</b> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html"><i class="fa fa-check"></i><b>6</b> Active/Passive Country Strategy</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#overview-3"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#activepassive-indicator"><i class="fa fa-check"></i><b>6.2</b> Active/Passive Indicator</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#aggregations-3"><i class="fa fa-check"></i><b>6.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="6.2.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#calculation-3"><i class="fa fa-check"></i><b>6.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="6.2.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#flow-file-3"><i class="fa fa-check"></i><b>6.2.3</b> Flow File</a></li>
+<li class="chapter" data-level="6.2.4" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#return-file-4"><i class="fa fa-check"></i><b>6.2.4</b> Return File</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -306,12 +324,13 @@ Asset Classes
 <span id="cb21-2"><a href="multi-asset-strategy.html#cb21-2" aria-hidden="true" tabindex="-1"></a>flow.file.FI <span class="ot">&lt;-</span> <span class="st">&quot;MultiAsset-FI-daily.csv&quot;</span> <span class="co"># PATH TO FLOW PERCENTAGE .csv FILE</span></span>
 <span id="cb21-3"><a href="multi-asset-strategy.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="multi-asset-strategy.html#cb21-4" aria-hidden="true" tabindex="-1"></a>flow.file <span class="ot">&lt;-</span> <span class="fu">c</span>(flow.file.Rgn, flow.file.FI)</span></code></pre></div>
+<p><span style="color: red;">Example? Clean up/filter files here?</span></p>
 <hr />
 </div>
 <div id="return-file-1" class="section level3 hasAnchor" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Return File<a href="multi-asset-strategy.html#return-file-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The return files can be imported by the users using their own resources. EPFR also provides Fund Return data, that can be used as a proxy to returns.</p>
-<p>To create a return file using EPFR daily flow data, the following equation can be used:</p>
+<p>The return file for this strategy should contain daily fund returns for each of the asset classes in the flow file, which the user can find using their own resources.</p>
+<p>EPFR also provides Fund Return data, that can be used as a proxy to returns. To create a return file using EPFR daily flow data, the following equation can be used:</p>
 <p><span class="math display">\[\text{Fund Return}_{c,t} = \frac{\sum^{N}_{i=m} \text{Portfolio Change}_i}{\sum^{N}_{i=m} \text{Assets Start}_i}\]</span>
 Where:</p>
 <ul>
@@ -321,6 +340,7 @@ Where:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="multi-asset-strategy.html#cb22-1" aria-hidden="true" tabindex="-1"></a>ret.file.Rgn <span class="ot">&lt;-</span> <span class="st">&quot;PsuedoReturns-Rgn.csv&quot;</span> </span>
 <span id="cb22-2"><a href="multi-asset-strategy.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="multi-asset-strategy.html#cb22-3" aria-hidden="true" tabindex="-1"></a>ret.file.FI <span class="ot">&lt;-</span> <span class="st">&quot;PsuedoReturns-FI.csv&quot;</span></span></code></pre></div>
+<p><span style="color: red;">Example? Clean up return file here?</span></p>
 <hr />
 </div>
 </div>

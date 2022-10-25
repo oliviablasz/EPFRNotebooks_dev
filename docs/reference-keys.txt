@@ -32,3 +32,15 @@ aggregations-2
 calculation-2
 flow-file-2
 return-file-3
+strategy-implementation-2
+compounding-flows-2
+ranking-currencies
+model-2
+preformance-2
+activepassive-country-strategy
+overview-3
+activepassive-indicator
+aggregations-3
+calculation-3
+flow-file-3
+return-file-4

@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Olivia Blaszkowski" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,6 +201,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.3" data-path="fx-strategy.html"><a href="fx-strategy.html#flow-file-2"><i class="fa fa-check"></i><b>5.2.3</b> Flow File</a></li>
 <li class="chapter" data-level="5.2.4" data-path="fx-strategy.html"><a href="fx-strategy.html#return-file-3"><i class="fa fa-check"></i><b>5.2.4</b> Return File</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="fx-strategy.html"><a href="fx-strategy.html#strategy-implementation-2"><i class="fa fa-check"></i><b>5.3</b> Strategy Implementation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="fx-strategy.html"><a href="fx-strategy.html#compounding-flows-2"><i class="fa fa-check"></i><b>5.3.1</b> Compounding Flows</a></li>
+<li class="chapter" data-level="5.3.2" data-path="fx-strategy.html"><a href="fx-strategy.html#ranking-currencies"><i class="fa fa-check"></i><b>5.3.2</b> Ranking Currencies</a></li>
+<li class="chapter" data-level="5.3.3" data-path="fx-strategy.html"><a href="fx-strategy.html#model-2"><i class="fa fa-check"></i><b>5.3.3</b> Model</a></li>
+<li class="chapter" data-level="5.3.4" data-path="fx-strategy.html"><a href="fx-strategy.html#preformance-2"><i class="fa fa-check"></i><b>5.3.4</b> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html"><i class="fa fa-check"></i><b>6</b> Active/Passive Country Strategy</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#overview-3"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#activepassive-indicator"><i class="fa fa-check"></i><b>6.2</b> Active/Passive Indicator</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#aggregations-3"><i class="fa fa-check"></i><b>6.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="6.2.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#calculation-3"><i class="fa fa-check"></i><b>6.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="6.2.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#flow-file-3"><i class="fa fa-check"></i><b>6.2.3</b> Flow File</a></li>
+<li class="chapter" data-level="6.2.4" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#return-file-4"><i class="fa fa-check"></i><b>6.2.4</b> Return File</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -225,12 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">EPFR Notebooks</h1>
 <p class="author"><em>Olivia Blaszkowski</em></p>
-<p class="date"><em>2022-10-24</em></p>
+<p class="date"><em>2022-10-25</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The objective of this book is to present EPFR’s proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value.</p>
-<p>This book has nine proof-of-concept strategies created by Quantitative Analysts at EPFR. The backtesting methodology across each of these is relatively similar. They are quintile based, long/short, and we apply similar lookback periods for our backtests. This is because we do not tend to optimize any of these strategies since our goal is simply for the reader to construct a signal from EPFR’s data and realize the value. The theory is that from these examples the reader will be able to build upon these models or create their own for more optimized results in the future.</p>
+<p>This book has ten proof-of-concept strategies created by Quantitative Analysts at EPFR. The backtesting methodology across each of these is relatively similar. They are quintile based, long/short, and we apply similar lookback periods for our backtests. This is because we do not tend to optimize any of these strategies since our goal is simply for the reader to construct a signal from EPFR’s data and realize the value. The theory is that from these examples the reader will be able to build upon these models or create their own for more optimized results in the future.</p>
 <p>For this type of testing on our data, we provide the time series file available for download. <span style="color: red;">(add an interactive field i.e. request to download, email sales, or download options)</span></p>
 
 </div>

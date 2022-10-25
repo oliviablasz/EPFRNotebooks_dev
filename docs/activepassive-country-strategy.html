@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 EPFR Library | EPFR Notebooks</title>
+  <title>Chapter 6 Active/Passive Country Strategy | EPFR Notebooks</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 EPFR Library | EPFR Notebooks" />
+  <meta property="og:title" content="Chapter 6 Active/Passive Country Strategy | EPFR Notebooks" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="oliviablasz/EPFRNotebooks_v2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 EPFR Library | EPFR Notebooks" />
+  <meta name="twitter:title" content="Chapter 6 Active/Passive Country Strategy | EPFR Notebooks" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="flow-percentage-country-strategy.html"/>
+<link rel="prev" href="fx-strategy.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -240,20 +240,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="epfr-library" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> EPFR Library<a href="epfr-library.html#epfr-library" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The EPFR Library has an extensive list of applicable functions for use on our data and will be used in this demonstration of our strategies.</p>
-<p>To install the library <code>EPFR</code>, <a href="https://github.com/vsrimurthy/EPFR">click here</a> to download zip from github.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="epfr-library.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;EPFR&#39;</span>)</span></code></pre></div>
+<div id="activepassive-country-strategy" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Active/Passive Country Strategy<a href="activepassive-country-strategy.html#activepassive-country-strategy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The main focus of this proof of concept is to understand the methodology behind the <em>Active/Passive Country Strategy</em>.</p>
+<hr />
+<div id="overview-3" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Overview<a href="activepassive-country-strategy.html#overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!-- <span style="color: red;">Bullet Points might be good here to refer to or expand to be more formal?</span> -->
+<!-- * The EPFR active/passive country strategy picks equity markets of countries across the globe.  -->
+<!-- * The strategy uses monthly country allocations together with EPFR’s fund classifications.  -->
+<!-- * The strategy is based on the ratio of average allocation of active over passive funds. -->
+<!-- * This ratio is summed over a trailing twelve month period. -->
+<!-- * The strategy works well everywhere, but is slightly weaker within EAFE countries. -->
+<!-- The top fifth of countries, in terms of twelve month active over passive allocation, tends to outperform the bottom fifth by about 4% per year. -->
+<p>This strategy, in particular, is a country rotation strategy, where it chooses different equity markets of countries across the globe. This approach uses the stated monthly allocations of equity funds with a cross-border mandate together with EPFR’s fund classification to create an indicator. In terms of twelve month active over passive allocation, the top fifth of countries tends to outperform the bottom fifth by about 4% per year. The strategy works well everywhere, but is slightly weaker within EAFE countries.</p>
+<!-- as this strategy is based on percentage flow into countries.  -->
+<hr />
+</div>
+<div id="activepassive-indicator" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Active/Passive Indicator<a href="activepassive-country-strategy.html#activepassive-indicator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <em>Active/Passive Country Strategy</em> developed by EPFR Global is based on the ratio of average allocation of active over passive funds. In this section, the reader will understand what types of aggregations can be used to create a signal for this strategy as well as the methodology behind the Active/Passive indicator calculations. Understanding these fundamentals will further supplement a user’s experience working with these data sets as they continue exploring for value and underlying meaning.</p>
+<hr />
+<div id="aggregations-3" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Aggregations<a href="activepassive-country-strategy.html#aggregations-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- section needs to be cleaned up, not sure if this is right -->
+<p>The first step is defining a subset of data to capture in calculating our signal. We use active and passive equity funds with a cross-border investment mandate for this strategy.</p>
+<ul>
+<li>Cross-boarder focus: includes global funds, regional funds, Europe regional investing in different countries in Europe, essentially any fund that has a mandate that spans more than one country.</li>
+</ul>
+<p>We exclude the single country-mandated fund flows from this analysis.</p>
+<p>The figure below shows EPFR’s coverage over time, which is reported at the end of July each year. As seen below, cross-border funds, which report their country allocations to EPFR have changed substantially over time.</p>
+<p><img src="../png/coverage_FX.png" width="475" /></p>
+<p>Users looking for more specific detail can customize this aggregation even further using EPFR’s fund-level or share class-level granularity. Some good examples would be ETF or Mutual funds, Institituinal or Retail. Users can use these tags to different degrees in creating aggregated signals to backtest.</p>
+<p>This can be achieved using fund-level flow files or reaching out to EPFR’s quant team for customized aggregations.</p>
+<hr />
+</div>
+<div id="calculation-3" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Calculation<a href="activepassive-country-strategy.html#calculation-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To begin calculating the Active/Passive, we start with our subset of active and passive cross-border equity funds.</p>
+<p><span style="color: red;">continue…</span></p>
+<hr />
+</div>
+<div id="flow-file-3" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Flow File<a href="activepassive-country-strategy.html#flow-file-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The users may create flow percentages for their desired active/passive country aggregations and granularity using the methodology described in the previous section.</p>
+<p>EPFR also provides a pre-calculated aggregation for its users for the <em>Active/Passive Country Strategy</em>. This file can be found on the FTP under the strategies folder. Please refer to the FTP Folder Structure section for the exact location of this file. This file contains daily flow data for 55 countries and is updated monthly <span style="color: red;">at 5:00 PM est. with a T+X</span> day lag.</p>
+<p>For this demonstration, we use the pre-calculated file. We store this file name/location as below.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="activepassive-country-strategy.html#cb59-1" aria-hidden="true" tabindex="-1"></a>flow.file <span class="ot">&lt;-</span> <span class="st">&quot;ActPasCtry-monthly.csv&quot;</span> <span class="co"># PATH TO FLOW PERCENTAGE .csv FILE</span></span></code></pre></div>
+<p><span style="color: red;">Example? Clean up/filter files here?</span></p>
+<hr />
+</div>
+<div id="return-file-4" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Return File<a href="activepassive-country-strategy.html#return-file-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The return file for this strategy should contain daily fund returns for each of the countries in the flow file, which the user can find using their own resources.</p>
+<p>EPFR also provides Fund Return data, that can be used as a proxy to returns. To create a return file using EPFR daily flow data, the following equation can be used:</p>
+<p><span class="math display">\[\text{Fund Return}_{c,t} = \frac{\sum^{N}_{i=m} \text{Portfolio Change}_i}{\sum^{N}_{i=m} \text{Assets Start}_i}\]</span>
+Where:</p>
+<ul>
+<li><span class="math inline">\(\text{Fund Return}\)</span> = the return value of country <span class="math inline">\(c\)</span>, across all funds <span class="math inline">\(i\)</span>, for day <span class="math inline">\(t\)</span></li>
+</ul>
+<p>For this demonstration, we will use a file that has calculated returns using EPFR daily flow data, which has been locally named <em>.csv</em>.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="activepassive-country-strategy.html#cb60-1" aria-hidden="true" tabindex="-1"></a>ret.file <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span></code></pre></div>
+<p><span style="color: red;">Example?</span></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="flow-percentage-country-strategy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fx-strategy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -284,7 +343,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-EPFRLib.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-ActPas.Rmd",
 "text": "Edit"
 },
 "history": {
