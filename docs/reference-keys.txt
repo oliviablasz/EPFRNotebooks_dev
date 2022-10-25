@@ -1,5 +1,7 @@
 introduction
+required-r-libraries
 epfr-library
+rcurl
 flow-percentage-country-strategy
 overview
 daily-percentage-flow
