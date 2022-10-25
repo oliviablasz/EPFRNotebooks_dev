@@ -44,3 +44,15 @@ aggregations-3
 calculation-3
 flow-file-3
 return-file-4
+flow-percentage-dm-rates-strategy
+overview-4
+daily-percentage-flow-3
+aggregations-4
+calculation-4
+flow-file-4
+return-file-5
+strategy-implementation-3
+compounding-flows-3
+ranking-countries-1
+model-3
+preformance-3
