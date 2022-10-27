@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>EPFR Strategy Notebooks</title>
+  <title>3 Filters | EPFR Strategy Notebooks</title>
   <meta name="description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="EPFR Strategy Notebooks" />
+  <meta property="og:title" content="3 Filters | EPFR Strategy Notebooks" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="github-repo" content="oliviablasz/EPFRNotebooks_v2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="EPFR Strategy Notebooks" />
+  <meta name="twitter:title" content="3 Filters | EPFR Strategy Notebooks" />
   
   <meta name="twitter:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="epfr-library.html"/>
+<link rel="prev" href="epfr-library.html"/>
+<link rel="next" href="flow-percentage-country-strategy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -238,14 +238,21 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">EPFR Strategy Notebooks</h1>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The objective of this book is to present EPFR’s proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value.</p>
-<p>This book has ten proof-of-concept strategies created by Quantitative Analysts at EPFR. The backtesting methodology across each of these is relatively similar. They are quintile based, long/short, and we apply similar lookback periods for our backtests. This is because we do not tend to optimize any of these strategies since our goal is simply for the reader to construct a signal from EPFR’s data and realize the value. The theory is that from these examples the reader will be able to build upon these models or create their own for more optimized results in the future.</p>
-<p>For this type of testing on our data, we provide the time series file available for download. <span style="color: red;">(add an interactive field i.e. request to download, email sales, or download options)</span></p>
+<div id="filters" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Filters<a href="filters.html#filters" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>EPFR has an extensive list of over two dozen filters that can be applied to our data sets, therefore the signals we can get can be fine-tuned.</p>
+<p>The data can be filtered by:</p>
+<ul>
+<li>Investor Type (retail or institutional)</li>
+<li>Share class</li>
+<li>Fund domicile</li>
+<li>Theme (ESG, Sharia, ect.)</li>
+<li>Currency of flows</li>
+<li>Individual managers</li>
+<li>Duration</li>
+<li>Style</li>
+<li>Sector</li>
+</ul>
 
 </div>
             </section>
@@ -253,8 +260,8 @@ code span.wa { font-style: italic; } /* Warning */
           </div>
         </div>
       </div>
-
-<a href="epfr-library.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="epfr-library.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="flow-percentage-country-strategy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +292,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Aggregations.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4.3 Strategy Implementation | EPFR Notebooks" />
+<meta property="og:type" content="book" />
+
+<meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+<meta name="github-repo" content="oliviablasz/EPFRNotebooks_v2" />
+
+<meta name="author" content="Olivia Blaszkowski" />
+
+<meta name="date" content="2022-10-26" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>">
+
+<title>4.3 Strategy Implementation | EPFR Notebooks</title>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.23/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li class="has-sub"><a href="2-required-r-libraries.html#required-r-libraries" id="toc-required-r-libraries"><span class="toc-section-number">2</span> Required R Libraries</a>
+<ul>
+<li><a href="2.1-epfr-library.html#epfr-library" id="toc-epfr-library"><span class="toc-section-number">2.1</span> EPFR Library</a></li>
+<li><a href="2.2-rcurl.html#rcurl" id="toc-rcurl"><span class="toc-section-number">2.2</span> RCurl</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-flow-percentage-country-strategy.html#flow-percentage-country-strategy" id="toc-flow-percentage-country-strategy"><span class="toc-section-number">3</span> Flow-Percentage Country Strategy</a>
+<ul>
+<li><a href="3.1-overview.html#overview" id="toc-overview"><span class="toc-section-number">3.1</span> Overview</a></li>
+<li class="has-sub"><a href="3.2-daily-percentage-flow.html#daily-percentage-flow" id="toc-daily-percentage-flow"><span class="toc-section-number">3.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="3.2-daily-percentage-flow.html#aggregations" id="toc-aggregations"><span class="toc-section-number">3.2.1</span> Aggregations</a></li>
+<li><a href="3.2-daily-percentage-flow.html#calculation" id="toc-calculation"><span class="toc-section-number">3.2.2</span> Calculation</a></li>
+<li><a href="3.2-daily-percentage-flow.html#flow-file" id="toc-flow-file"><span class="toc-section-number">3.2.3</span> Flow File</a></li>
+<li><a href="3.2-daily-percentage-flow.html#return-file" id="toc-return-file"><span class="toc-section-number">3.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="3.3-strategy-implementation.html#strategy-implementation" id="toc-strategy-implementation"><span class="toc-section-number">3.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="3.3-strategy-implementation.html#compounding-flows" id="toc-compounding-flows"><span class="toc-section-number">3.3.1</span> Compounding Flows</a></li>
+<li><a href="3.3-strategy-implementation.html#ranking-countries" id="toc-ranking-countries"><span class="toc-section-number">3.3.2</span> Ranking Countries</a></li>
+<li><a href="3.3-strategy-implementation.html#model" id="toc-model"><span class="toc-section-number">3.3.3</span> Model</a></li>
+<li><a href="3.3-strategy-implementation.html#preformance" id="toc-preformance"><span class="toc-section-number">3.3.4</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-multi-asset-strategy.html#multi-asset-strategy" id="toc-multi-asset-strategy"><span class="toc-section-number">4</span> Multi-Asset Strategy</a>
+<ul>
+<li><a href="4.1-overview-1.html#overview-1" id="toc-overview-1"><span class="toc-section-number">4.1</span> Overview</a></li>
+<li class="has-sub"><a href="4.2-daily-percentage-flow-1.html#daily-percentage-flow-1" id="toc-daily-percentage-flow-1"><span class="toc-section-number">4.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="4.2-daily-percentage-flow-1.html#aggregations-1" id="toc-aggregations-1"><span class="toc-section-number">4.2.1</span> Aggregations</a></li>
+<li><a href="4.2-daily-percentage-flow-1.html#calculation-1" id="toc-calculation-1"><span class="toc-section-number">4.2.2</span> Calculation</a></li>
+<li><a href="4.2-daily-percentage-flow-1.html#flow-file-1" id="toc-flow-file-1"><span class="toc-section-number">4.2.3</span> Flow File</a></li>
+<li><a href="4.2-daily-percentage-flow-1.html#return-file-1" id="toc-return-file-1"><span class="toc-section-number">4.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="4.3-strategy-implementation-1.html#strategy-implementation-1" id="toc-strategy-implementation-1"><span class="toc-section-number">4.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="4.3-strategy-implementation-1.html#compounding-flows-1" id="toc-compounding-flows-1"><span class="toc-section-number">4.3.1</span> Compounding Flows</a></li>
+<li><a href="4.3-strategy-implementation-1.html#return-file-2" id="toc-return-file-2"><span class="toc-section-number">4.3.2</span> Return file</a></li>
+<li><a href="4.3-strategy-implementation-1.html#ranking-asset-classes" id="toc-ranking-asset-classes"><span class="toc-section-number">4.3.3</span> Ranking Asset Classes</a></li>
+<li><a href="4.3-strategy-implementation-1.html#model-1" id="toc-model-1"><span class="toc-section-number">4.3.4</span> Model</a></li>
+<li><a href="4.3-strategy-implementation-1.html#preformance-1" id="toc-preformance-1"><span class="toc-section-number">4.3.5</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="5-fx-strategy.html#fx-strategy" id="toc-fx-strategy"><span class="toc-section-number">5</span> FX Strategy</a>
+<ul>
+<li><a href="5.1-overview-2.html#overview-2" id="toc-overview-2"><span class="toc-section-number">5.1</span> Overview</a></li>
+<li class="has-sub"><a href="5.2-daily-percentage-flow-2.html#daily-percentage-flow-2" id="toc-daily-percentage-flow-2"><span class="toc-section-number">5.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="5.2-daily-percentage-flow-2.html#aggregations-2" id="toc-aggregations-2"><span class="toc-section-number">5.2.1</span> Aggregations</a></li>
+<li><a href="5.2-daily-percentage-flow-2.html#calculation-2" id="toc-calculation-2"><span class="toc-section-number">5.2.2</span> Calculation</a></li>
+<li><a href="5.2-daily-percentage-flow-2.html#flow-file-2" id="toc-flow-file-2"><span class="toc-section-number">5.2.3</span> Flow File</a></li>
+<li><a href="5.2-daily-percentage-flow-2.html#return-file-3" id="toc-return-file-3"><span class="toc-section-number">5.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="5.3-strategy-implementation-2.html#strategy-implementation-2" id="toc-strategy-implementation-2"><span class="toc-section-number">5.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="5.3-strategy-implementation-2.html#compounding-flows-2" id="toc-compounding-flows-2"><span class="toc-section-number">5.3.1</span> Compounding Flows</a></li>
+<li><a href="5.3-strategy-implementation-2.html#ranking-currencies" id="toc-ranking-currencies"><span class="toc-section-number">5.3.2</span> Ranking Currencies</a></li>
+<li><a href="5.3-strategy-implementation-2.html#model-2" id="toc-model-2"><span class="toc-section-number">5.3.3</span> Model</a></li>
+<li><a href="5.3-strategy-implementation-2.html#preformance-2" id="toc-preformance-2"><span class="toc-section-number">5.3.4</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="6-activepassive-country-strategy.html#activepassive-country-strategy" id="toc-activepassive-country-strategy"><span class="toc-section-number">6</span> Active/Passive Country Strategy</a>
+<ul>
+<li><a href="6.1-overview-3.html#overview-3" id="toc-overview-3"><span class="toc-section-number">6.1</span> Overview</a></li>
+<li class="has-sub"><a href="6.2-activepassive-indicator.html#activepassive-indicator" id="toc-activepassive-indicator"><span class="toc-section-number">6.2</span> Active/Passive Indicator</a>
+<ul>
+<li><a href="6.2-activepassive-indicator.html#aggregations-3" id="toc-aggregations-3"><span class="toc-section-number">6.2.1</span> Aggregations</a></li>
+<li><a href="6.2-activepassive-indicator.html#calculation-3" id="toc-calculation-3"><span class="toc-section-number">6.2.2</span> Calculation</a></li>
+<li><a href="6.2-activepassive-indicator.html#flow-file-3" id="toc-flow-file-3"><span class="toc-section-number">6.2.3</span> Flow File</a></li>
+<li><a href="6.2-activepassive-indicator.html#return-file-4" id="toc-return-file-4"><span class="toc-section-number">6.2.4</span> Return File</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="7-flow-percentage-dm-rates-strategy.html#flow-percentage-dm-rates-strategy" id="toc-flow-percentage-dm-rates-strategy"><span class="toc-section-number">7</span> Flow-Percentage DM Rates Strategy</a>
+<ul>
+<li><a href="7.1-overview-4.html#overview-4" id="toc-overview-4"><span class="toc-section-number">7.1</span> Overview</a></li>
+<li class="has-sub"><a href="7.2-daily-percentage-flow-3.html#daily-percentage-flow-3" id="toc-daily-percentage-flow-3"><span class="toc-section-number">7.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="7.2-daily-percentage-flow-3.html#aggregations-4" id="toc-aggregations-4"><span class="toc-section-number">7.2.1</span> Aggregations</a></li>
+<li><a href="7.2-daily-percentage-flow-3.html#calculation-4" id="toc-calculation-4"><span class="toc-section-number">7.2.2</span> Calculation</a></li>
+<li><a href="7.2-daily-percentage-flow-3.html#flow-file-4" id="toc-flow-file-4"><span class="toc-section-number">7.2.3</span> Flow File</a></li>
+<li><a href="7.2-daily-percentage-flow-3.html#return-file-5" id="toc-return-file-5"><span class="toc-section-number">7.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="7.3-strategy-implementation-3.html#strategy-implementation-3" id="toc-strategy-implementation-3"><span class="toc-section-number">7.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="7.3-strategy-implementation-3.html#compounding-flows-3" id="toc-compounding-flows-3"><span class="toc-section-number">7.3.1</span> Compounding Flows</a></li>
+<li><a href="7.3-strategy-implementation-3.html#ranking-countries-1" id="toc-ranking-countries-1"><span class="toc-section-number">7.3.2</span> Ranking Countries</a></li>
+<li><a href="7.3-strategy-implementation-3.html#model-3" id="toc-model-3"><span class="toc-section-number">7.3.3</span> Model</a></li>
+<li><a href="7.3-strategy-implementation-3.html#section" id="toc-section"></a></li>
+<li><a href="7.3-strategy-implementation-3.html#preformance-3" id="toc-preformance-3"><span class="toc-section-number">7.3.4</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="strategy-implementation-1" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Strategy Implementation</h2>
+<!-- * For each asset class, compound daily percentage flow over the trailing twenty days (_lookback_). -->
+<!-- * Rank asset classes into five equal baskets based on twenty day percentage flow. -->
+<!-- * Go long the top fifth and short the bottom fifth. -->
+<!-- * Re-balance weekly. -->
+<p>The final step is to implement this strategy to create a signal. Let’s begin by using the function <code>multi.asset()</code> from <code>library('EPFR')</code> to read the flow file. This function simply compiles both data sets together.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="4.3-strategy-implementation-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">multi.asset</span>(flow.file) <span class="co"># GET FLOW PERCENTAGE</span></span></code></pre></div>
+<p>One of the first options we have is choosing the universe we want to use. <span style="color: red;">EPFR has tested this signal within two different universes of asset classes Rgn (7 Region Equity), F.I. (Fixed Income), and both together (Multi)</span>. For this example, we choose <strong>Multi</strong>, which has about 17 asset classes.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="4.3-strategy-implementation-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="st">&quot;Multi&quot;</span> <span class="co"># Multi/Rgn/FI</span></span></code></pre></div>
+<div id="compounding-flows-1" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Compounding Flows</h3>
+<p>Next, we set up a variable for our look-back period, which can also be called a flow window. This variable will be the window of time we use to create a trailing compounded daily percentage flow. The look-back period we choose for our demonstrations is <strong>20 days</strong>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="4.3-strategy-implementation-1.html#cb32-1" aria-hidden="true" tabindex="-1"></a>lookback <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># FLOW WINDOW (IN WEEKDAYS) - 20 day look back period</span></span></code></pre></div>
+<p>Again, using a function from the <code>library('EPFR')</code>, <code>compound.flows()</code> compounds the daily percentage flow over the trailing <code>lookback</code> period for each country.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="4.3-strategy-implementation-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">compound.flows</span>(x, lookback, <span class="dv">1</span>, F) <span class="co"># COMPOUND FLOWS</span></span></code></pre></div>
+</div>
+<div id="return-file-2" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Return file</h3>
+<p>We will then import our two total return files and modify them to be one data frame of total index returns indexed so that time moves forward. To do this we will use function <code>ret.to.idx()</code> from <code>library('EPFR')</code> which will translate these returns to a total return index. We also use the functions <code>map.rname()</code> to ensure the row names of the matrices line up with our flow file and <code>ret.idx.gaps.fix()</code> to replace any NA values.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="4.3-strategy-implementation-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#RGN RETURNS</span></span>
+<span id="cb34-2"><a href="4.3-strategy-implementation-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">mat.read</span>(ret.file.Rgn)</span>
+<span id="cb34-3"><a href="4.3-strategy-implementation-1.html#cb34-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ret.to.idx</span>(<span class="fu">map.rname</span>(y, <span class="fu">dimnames</span>(x)[[<span class="dv">1</span>]])) <span class="co"># CONVERT TO A TOTAL-RETURN INDEX           </span></span>
+<span id="cb34-4"><a href="4.3-strategy-implementation-1.html#cb34-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ret.idx.gaps.fix</span>(y)</span>
+<span id="cb34-5"><a href="4.3-strategy-implementation-1.html#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="4.3-strategy-implementation-1.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#F.I. RETURNS</span></span>
+<span id="cb34-7"><a href="4.3-strategy-implementation-1.html#cb34-7" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">mat.read</span>(ret.file.FI)</span>
+<span id="cb34-8"><a href="4.3-strategy-implementation-1.html#cb34-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">ret.to.idx</span>(<span class="fu">map.rname</span>(z, <span class="fu">dimnames</span>(y)[[<span class="dv">1</span>]])) <span class="co"># CONVERT TO A TOTAL-RETURN INDEX           </span></span>
+<span id="cb34-9"><a href="4.3-strategy-implementation-1.html#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="4.3-strategy-implementation-1.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#COMBINE RETURN FILES</span></span>
+<span id="cb34-11"><a href="4.3-strategy-implementation-1.html#cb34-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y, z)[, <span class="fu">dimnames</span>(x)[[<span class="dv">2</span>]]] <span class="co"># FINAL TOTAL-RETURN INDEX TABLE          </span></span>
+<span id="cb34-12"><a href="4.3-strategy-implementation-1.html#cb34-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> y[<span class="fu">max</span>(<span class="fu">simplify2array</span>(<span class="fu">lapply</span>(y, <span class="cf">function</span>(x) {<span class="fu">find.data</span>(<span class="sc">!</span><span class="fu">is.na</span>(x), T)})))<span class="sc">:</span><span class="fu">min</span>(<span class="fu">simplify2array</span>(<span class="fu">lapply</span>(y, <span class="cf">function</span>(x) {<span class="fu">find.data</span>(<span class="sc">!</span><span class="fu">is.na</span>(x), F)}))), ] <span class="co"># ENSURE ALL PIECES HAVE RETURN OVER THE SAME HORIZON         </span></span></code></pre></div>
+<p>Then, to subset the flow file <span class="math inline">\(x\)</span> and return file <span class="math inline">\(y\)</span> to the selected universe <span class="math inline">\(idx\)</span> of asset classes, the function the following code is used.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="4.3-strategy-implementation-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (idx <span class="sc">==</span> <span class="st">&quot;Rgn&quot;</span>) { </span>
+<span id="cb35-2"><a href="4.3-strategy-implementation-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb35-3"><a href="4.3-strategy-implementation-1.html#cb35-3" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> y[, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb35-4"><a href="4.3-strategy-implementation-1.html#cb35-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (idx <span class="sc">==</span> <span class="st">&quot;FI&quot;</span>) {   </span>
+<span id="cb35-5"><a href="4.3-strategy-implementation-1.html#cb35-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[, <span class="dv">8</span><span class="sc">:</span><span class="fu">dim</span>(x)[<span class="dv">2</span>]]</span>
+<span id="cb35-6"><a href="4.3-strategy-implementation-1.html#cb35-6" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> y[, <span class="dv">8</span><span class="sc">:</span><span class="fu">dim</span>(y)[<span class="dv">2</span>]]</span>
+<span id="cb35-7"><a href="4.3-strategy-implementation-1.html#cb35-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {    </span>
+<span id="cb35-8"><a href="4.3-strategy-implementation-1.html#cb35-8" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">map.rname</span>(<span class="fu">portfolio.beta.wrapper</span>(y, <span class="st">&quot;ACWorld&quot;</span>, lookback), <span class="fu">dimnames</span>(x)[[<span class="dv">1</span>]])</span>
+<span id="cb35-9"><a href="4.3-strategy-implementation-1.html#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(x)[<span class="dv">1</span>]) x[j, ] <span class="ot">&lt;-</span> <span class="fu">portfolio.residual</span>(<span class="fu">unlist</span>(x[j, ]), <span class="fu">unlist</span>(z[j, ]))</span>
+<span id="cb35-10"><a href="4.3-strategy-implementation-1.html#cb35-10" aria-hidden="true" tabindex="-1"></a>}   </span></code></pre></div>
+<p><em>* Note: subsetting can be also be done when creating the flow and return files</em></p>
+</div>
+<div id="ranking-asset-classes" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Ranking Asset Classes</h3>
+<p>Next, we sort the countries in each universe into five equal bins based on their 20-day Percentage Flow Compounded value for the selected holding period. To do this, we will use the function from <code>library('EPFR')</code>, called <code>bbk()</code>. This function will output a standardized backtest result.</p>
+<p>Th <code>bbk()</code> function requires our compounded daily percentage flow file, a return file, and our selected universe. Please refer to the library documentation for the complete list of parameters of this function.</p>
+<p>The first parameter we add is the number of bins we want to use. For our case, we want to use 5 because our strategy is to go long the top fifth and short the bottom fifth.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="4.3-strategy-implementation-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>nBin <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># NUMBER OF BINS</span></span></code></pre></div>
+<p>Since EPFR data is published with T+1 day lag and is released around 5:00 pm EST, we account for a T+2 day delay in our model since that is when one can trade. Users interested in more timely signals can also use the T+2 Open Prices for backtesting purposes. EPFR also offers a Premium Daily offering, an earlier release of the end-of-day data covering a significant subset of fund-level flow information.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="4.3-strategy-implementation-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>delay <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># DELAY IN KNOWING DATA (IN WEEKDAYS) - data takes time to have</span></span></code></pre></div>
+<p>It is also important to note that this model will need to be re-balanced weekly. We will set the day of the week to trade as <strong>Friday</strong>.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="4.3-strategy-implementation-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a>doW <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># DAY OF THE WEEK YOU WILL TRADE ON (5 = FRIDAYS)</span></span></code></pre></div>
+<p>Additionally, we also evaluate the returns for different holding periods. So we define a return horizon for weekly, fortnightly, monthly, bi-monthly, quarterly, and semi-annually.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="4.3-strategy-implementation-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>hz <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">45</span>, <span class="dv">65</span>, <span class="dv">130</span>) <span class="co"># RETURN HORIZON (IN WEEKDAYS) - holding periods</span></span></code></pre></div>
+<p>Now that we have defined all of our inputs, to rank the countries into quintiles by their 20-day percentage flow, we call function <code>bbk()</code> for a 1-week holding period.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="4.3-strategy-implementation-1.html#cb40-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], nBin, doW, T, <span class="dv">0</span>, delay)</span></code></pre></div>
+</div>
+<div id="model-1" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Model</h3>
+<p><strong>Flow percentage compounded over trailing 20 days</strong></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="4.3-strategy-implementation-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.to.xlModel</span>(z[[<span class="st">&quot;raw&quot;</span>]], delay, hz[<span class="dv">1</span>], F)</span></code></pre></div>
+<div id="htmlwidget-96fcf5b83b02ece2c9a1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-96fcf5b83b02ece2c9a1">{"x":{"filter":"none","vertical":false,"data":[["20220105","20211229","20211222","20211215","20211208","20211201"],["20220107","20211231","20211224","20211217","20211210","20211203"],["20220114","20220107","20211231","20211224","20211217","20211210"],["0.945787208765092","1.59663728824269","2.05916785394251","1.74224377509136","2.27304608330798","1.85377117088579"],["1.75657418779162","2.1189377410964","2.33824159616968","1.92161203393657","1.86064649683095","1.05122645011959"],["1.91619807740034","1.962476288712","2.37767993267849","1.74180446784388","1.77623418295425","1.6068639038676"],["1.22735113038615","1.39760331678043","2.51779797039303","2.22970980793067","1.41173254182309","1.5535567286682"],["1.99383339156076","2.23438581461106","2.38049820478145","1.92458368151599","2.11156530458689","0.463230135485113"],["1.1532840265794","1.34109881608138","2.02152618850136","1.70432370748002","1.60833772647576","1.15604572802441"],["2.44990642276196","3.69075892518263","4.31850994041937","4.23225666853829","4.08162694513769","2.75428155657813"],["-0.415820182699886","-0.383438043930337","-0.424324963482702","-0.41911403792362","-0.527287618212045","-0.465096517951294"],["0.206610393554034","0.104481405456585","-0.0595674894476765","0.0893937197257727","-0.00694542272864339","0.217538616331675"],["1.92641005016152","1.39129344569379","0.278243330659899","-0.604210776169183","-0.770875399702312","-0.489190150570602"],["2.70139993134071","2.50210613768962","1.67164343038728","1.22838701293997","1.95835530404034","2.34043045848649"],["2.1911888838363","1.52584466237994","0.975300658321198","-1.12738834910117","-0.958828798353384","0.192772688495863"],["4.05296433968319","7.47784336965099","9.41585278655772","8.73622691326319","8.2764952221358","5.74647520895119"],["1.87152706942432","2.44480258936049","2.15529004662518","1.84281292380993","0.292779771121444","-0.395275554506802"],["1.636357170101","0.671225066977134","0.375740119015366","0.497005567918348","1.20651101554497","0.949923406737113"],["0.439137935850333","0.566275894280479","0.204985630432679","0.171548770552284","0.182520078322924","0.334873909616419"],["0.0559087437535111","0.0365762295920633","-0.104828866537139","-0.0137316880798174","0.126305309073739","0.552130701897944"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Open<\/th>\n      <th>Close<\/th>\n      <th>AsiaXJP<\/th>\n      <th>EurXGB<\/th>\n      <th>Japan<\/th>\n      <th>LatAm<\/th>\n      <th>PacXJP<\/th>\n      <th>UK<\/th>\n      <th>USA<\/th>\n      <th>GLOBEM<\/th>\n      <th>WESEUR<\/th>\n      <th>HYIELD<\/th>\n      <th>FLOATS<\/th>\n      <th>USTRIN<\/th>\n      <th>USTRLT<\/th>\n      <th>USTRST<\/th>\n      <th>CASH<\/th>\n      <th>USMUNI<\/th>\n      <th>GLOFIX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><strong>One-week ahead return (Friday to Friday)</strong></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="4.3-strategy-implementation-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.to.xlModel</span>(z[[<span class="st">&quot;raw.fwd.rets&quot;</span>]], delay, hz[<span class="dv">1</span>], F)</span></code></pre></div>
+<div id="htmlwidget-78ec376f92a628f782ce" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-78ec376f92a628f782ce">{"x":{"filter":"none","vertical":false,"data":[["20220105","20211229","20211222","20211215","20211208","20211201"],["20220107","20211231","20211224","20211217","20211210","20211203"],["20220114","20220107","20211231","20211224","20211217","20211210"],["0.801418207503929","-1.00311761371361","0.873686935970909","0.449443889068334","-2.73770417383099","1.35727099277125"],["-1.67981023825901","-1.37252281573492","1.09924246391901","1.52769326099252","-1.25871646936628","1.95640305135858"],["-1.30765653796966","-2.11679075448406","0.0840077643368033","-0.220776045320193","-0.777752700354867","1.01605404922439"],["4.04641090223146","-3.13599684250775","2.45813104501866","-0.600260491281574","-1.13774791814139","3.09900715769837"],["-0.140561069374911","-1.49170741197295","1.29902918084157","0.745012077146939","-0.817456886317203","1.54816916406831"],["-0.369070472750238","-0.449204686981673","0.734010900827116","2.02342932717447","-1.12432055566323","1.50436400414389"],["-0.725641303841982","-2.82248228128145","0.716846386648783","2.38835031640428","-1.89679500676311","3.00559745929047"],["-0.884581105397189","-1.05739275929217","0.138276915559572","-0.0425596817305944","-0.326742371190562","0.636691257806106"],["0.00697645393111657","-0.410309801739643","-0.200412528426867","-0.451821919926275","-0.0453203306002337","0.101430133513745"],["0.0395950255090867","-0.810166819899422","0.257376980406519","0.438539023010847","-0.0272082700079892","0.62581434946209"],["0.173752064406315","0.158827969148177","0.103586958913766","0.028155112307104","-0.0273585259363358","0.243789442393449"],["-0.195311865184905","-1.27611748915197","-0.0411712922571326","-0.398719881405711","0.404895838359252","-0.740992012299287"],["-0.198572235466955","-3.22263068939354","-0.108270048603927","-1.20751481867033","1.02525267298117","-2.44306433873987"],["-0.0917428209475872","-0.165218722985571","0.00160940007900479","-0.0455015542407153","0.0484074517246853","-0.0817069605475353"],["-0.000963996481459617","-0.0062249482672172","-0.00120199632480933","-0.000663999235342771","-0.00083399754878144","-0.000490001578000943"],["-0.412083923924257","-0.550329689427599","0.181159815432807","-0.0212146270155387","0.00258972784074274","-0.0389043214656226"],["-0.186375737506438","-0.69104634815568","0.00506660228992928","-0.131177625199712","0.0142354948939243","0.115703084027416"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Open<\/th>\n      <th>Close<\/th>\n      <th>AsiaXJP<\/th>\n      <th>EurXGB<\/th>\n      <th>Japan<\/th>\n      <th>LatAm<\/th>\n      <th>PacXJP<\/th>\n      <th>UK<\/th>\n      <th>USA<\/th>\n      <th>GLOBEM<\/th>\n      <th>WESEUR<\/th>\n      <th>HYIELD<\/th>\n      <th>FLOATS<\/th>\n      <th>USTRIN<\/th>\n      <th>USTRLT<\/th>\n      <th>USTRST<\/th>\n      <th>CASH<\/th>\n      <th>USMUNI<\/th>\n      <th>GLOFIX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><strong>Twenty-day flow percentage ranked into quintiles (computed only where forward returns are available)</strong></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="4.3-strategy-implementation-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.to.xlModel</span>(z[[<span class="st">&quot;bins&quot;</span>]], delay, hz[<span class="dv">1</span>], F)</span></code></pre></div>
+<div id="htmlwidget-063c19235b048c0c5427" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-063c19235b048c0c5427">{"x":{"filter":"none","vertical":false,"data":[["20220105","20211229","20211222","20211215","20211208","20211201"],["20220107","20211231","20211224","20211217","20211210","20211203"],["20220114","20220107","20211231","20211224","20211217","20211210"],["4","3","3","2","1","2"],["3","2","2","2","2","3"],["2","2","2","3","2","2"],["4","3","1","1","3","2"],["2","2","2","2","2","4"],["4","4","3","3","3","2"],["1","1","1","1","1","1"],["5","5","5","5","5","5"],["5","5","5","4","4","4"],["2","4","4","5","5","5"],["1","1","3","3","2","1"],["2","3","4","5","5","4"],["1","1","1","1","1","1"],["3","2","2","2","4","5"],["3","4","4","4","3","3"],["4","4","4","4","4","4"],["5","5","5","4","4","3"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Open<\/th>\n      <th>Close<\/th>\n      <th>AsiaXJP<\/th>\n      <th>EurXGB<\/th>\n      <th>Japan<\/th>\n      <th>LatAm<\/th>\n      <th>PacXJP<\/th>\n      <th>UK<\/th>\n      <th>USA<\/th>\n      <th>GLOBEM<\/th>\n      <th>WESEUR<\/th>\n      <th>HYIELD<\/th>\n      <th>FLOATS<\/th>\n      <th>USTRIN<\/th>\n      <th>USTRLT<\/th>\n      <th>USTRST<\/th>\n      <th>CASH<\/th>\n      <th>USMUNI<\/th>\n      <th>GLOFIX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p><strong>Quintile Returns over the equal-weight universe</strong></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="4.3-strategy-implementation-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.to.xlModel</span>(z[[<span class="st">&quot;rets&quot;</span>]], delay, hz[<span class="dv">1</span>], F)</span></code></pre></div>
+<div id="htmlwidget-aecaba6c20fb3ae8bf1d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aecaba6c20fb3ae8bf1d">{"x":{"filter":"none","vertical":false,"data":[["20220105","20211229","20211222","20211215","20211208","20211201"],["20220107","20211231","20211224","20211217","20211210","20211203"],["20220114","20220107","20211231","20211224","20211217","20211210"],[-0.184023315936794,-0.760775488400641,0.575119589376169,-0.0700286662067668,-0.692342403326595,-0.431527960065381],[-0.334853102724352,-0.085240414186079,0.173855997315762,0.40560824988421,-0.209581379615953,1.04387190324608],[-0.524708509531939,-0.603757803016147,0.123312060258927,0.346715796362901,-0.243561057906749,-0.00976343644406611],[1.08279918729597,0.74733797596432,-0.34807532816399,-0.414773211201776,0.515717851842497,-0.48287640675911],[-0.288529620626757,0.481736542379133,-0.466139208504125,-0.264467181732712,0.527721498264618,-0.30670259880651],[0.104506304689963,-1.24251203077977,1.04125879788029,0.194438515525945,-1.22006390159121,-0.124825361258871],[-0.0661305090307464,-1.2013195121083,0.447116204978336,0.263553668357559,-0.510739765877718,0.700302147713397]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Open<\/th>\n      <th>Close<\/th>\n      <th>Q1<\/th>\n      <th>Q2<\/th>\n      <th>Q3<\/th>\n      <th>Q4<\/th>\n      <th>Q5<\/th>\n      <th>TxB<\/th>\n      <th>uRet<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7,8,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+</div>
+<div id="preformance-1" class="section level3" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Preformance</h3>
+<p><strong>Performance over all holding periods</strong></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="4.3-strategy-implementation-1.html#cb45-1" aria-hidden="true" tabindex="-1"></a>fcn <span class="ot">&lt;-</span> <span class="cf">function</span>(retW) {<span class="fu">as.matrix</span>(<span class="fu">bbk</span>(x, y, <span class="dv">1</span>, retW, <span class="dv">5</span>, doW, T, <span class="dv">0</span>, delay)<span class="sc">$</span>summ)} <span class="co"># DEFINE SUMMARY FUNCTION</span></span>
+<span id="cb45-2"><a href="4.3-strategy-implementation-1.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="4.3-strategy-implementation-1.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mat.ex.array3d</span>(<span class="fu">sapply</span>(<span class="fu">split</span>(hz, hz), fcn, <span class="at">simplify =</span> <span class="st">&quot;array&quot;</span>)) <span class="co"># WRITE SUMMARIES</span></span></code></pre></div>
+<table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+TxB
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+uRet
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="10">
+<td colspan="1" style="border-bottom: 1px solid;">
+<strong>Bi-Monthly</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnMn
+</td>
+<td style="text-align:right;">
+7.635970e-01
+</td>
+<td style="text-align:right;">
+7.397826e-01
+</td>
+<td style="text-align:right;">
+7.122453e-01
+</td>
+<td style="text-align:right;">
+-1.943031e-01
+</td>
+<td style="text-align:right;">
+-2.203148e+00
+</td>
+<td style="text-align:right;">
+2.966745e+00
+</td>
+<td style="text-align:right;">
+3.414070e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnSd
+</td>
+<td style="text-align:right;">
+5.703049e+00
+</td>
+<td style="text-align:right;">
+4.854255e+00
+</td>
+<td style="text-align:right;">
+5.453061e+00
+</td>
+<td style="text-align:right;">
+4.872437e+00
+</td>
+<td style="text-align:right;">
+5.267957e+00
+</td>
+<td style="text-align:right;">
+7.488472e+00
+</td>
+<td style="text-align:right;">
+9.178851e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Sharpe
+</td>
+<td style="text-align:right;">
+1.419266e+01
+</td>
+<td style="text-align:right;">
+1.544406e+01
+</td>
+<td style="text-align:right;">
+1.354719e+01
+</td>
+<td style="text-align:right;">
+-4.940614e+00
+</td>
+<td style="text-align:right;">
+-4.236819e+01
+</td>
+<td style="text-align:right;">
+4.018834e+01
+</td>
+<td style="text-align:right;">
+3.734956e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+HitRate
+</td>
+<td style="text-align:right;">
+-1.384998e-01
+</td>
+<td style="text-align:right;">
+1.058201e+00
+</td>
+<td style="text-align:right;">
+3.018985e+00
+</td>
+<td style="text-align:right;">
+-5.415500e-01
+</td>
+<td style="text-align:right;">
+-9.581388e+00
+</td>
+<td style="text-align:right;">
+7.222222e+00
+</td>
+<td style="text-align:right;">
+1.509804e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Beta
+</td>
+<td style="text-align:right;">
+-3.174645e-01
+</td>
+<td style="text-align:right;">
+1.030534e-01
+</td>
+<td style="text-align:right;">
+1.926830e-01
+</td>
+<td style="text-align:right;">
+1.455521e-01
+</td>
+<td style="text-align:right;">
+-2.066925e-01
+</td>
+<td style="text-align:right;">
+-1.107720e-01
+</td>
+<td style="text-align:right;">
+1.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Alpha
+</td>
+<td style="text-align:right;">
+1.840452e+00
+</td>
+<td style="text-align:right;">
+4.074328e-01
+</td>
+<td style="text-align:right;">
+4.561190e-02
+</td>
+<td style="text-align:right;">
+-6.932604e-01
+</td>
+<td style="text-align:right;">
+-1.504961e+00
+</td>
+<td style="text-align:right;">
+3.345413e+00
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DrawDn
+</td>
+<td style="text-align:right;">
+-2.001579e+01
+</td>
+<td style="text-align:right;">
+-1.523026e+01
+</td>
+<td style="text-align:right;">
+-2.004672e+01
+</td>
+<td style="text-align:right;">
+-2.110050e+01
+</td>
+<td style="text-align:right;">
+-3.591594e+01
+</td>
+<td style="text-align:right;">
+-1.819404e+01
+</td>
+<td style="text-align:right;">
+-3.101945e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnBeg
+</td>
+<td style="text-align:right;">
+2.013398e+07
+</td>
+<td style="text-align:right;">
+2.011840e+07
+</td>
+<td style="text-align:right;">
+2.009293e+07
+</td>
+<td style="text-align:right;">
+2.007733e+07
+</td>
+<td style="text-align:right;">
+2.008191e+07
+</td>
+<td style="text-align:right;">
+2.014288e+07
+</td>
+<td style="text-align:right;">
+2.007096e+07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnN
+</td>
+<td style="text-align:right;">
+4.088889e+01
+</td>
+<td style="text-align:right;">
+2.144444e+01
+</td>
+<td style="text-align:right;">
+2.566667e+01
+</td>
+<td style="text-align:right;">
+3.800000e+01
+</td>
+<td style="text-align:right;">
+7.688889e+01
+</td>
+<td style="text-align:right;">
+2.244444e+01
+</td>
+<td style="text-align:right;">
+7.666667e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnTo
+</td>
+<td style="text-align:right;">
+3.652347e+02
+</td>
+<td style="text-align:right;">
+4.015315e+02
+</td>
+<td style="text-align:right;">
+4.470992e+02
+</td>
+<td style="text-align:right;">
+4.059375e+02
+</td>
+<td style="text-align:right;">
+3.744334e+02
+</td>
+<td style="text-align:right;">
+7.396681e+02
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr grouplength="10">
+<td colspan="1" style="border-bottom: 1px solid;">
+<strong>Fornightly</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnMn
+</td>
+<td style="text-align:right;">
+1.442381e+00
+</td>
+<td style="text-align:right;">
+1.573006e+00
+</td>
+<td style="text-align:right;">
+3.935395e-01
+</td>
+<td style="text-align:right;">
+-2.208811e-01
+</td>
+<td style="text-align:right;">
+-3.638753e+00
+</td>
+<td style="text-align:right;">
+5.081134e+00
+</td>
+<td style="text-align:right;">
+3.426943e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnSd
+</td>
+<td style="text-align:right;">
+5.401058e+00
+</td>
+<td style="text-align:right;">
+4.895209e+00
+</td>
+<td style="text-align:right;">
+5.844298e+00
+</td>
+<td style="text-align:right;">
+4.732945e+00
+</td>
+<td style="text-align:right;">
+5.194209e+00
+</td>
+<td style="text-align:right;">
+7.106315e+00
+</td>
+<td style="text-align:right;">
+8.320958e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Sharpe
+</td>
+<td style="text-align:right;">
+2.677673e+01
+</td>
+<td style="text-align:right;">
+3.277613e+01
+</td>
+<td style="text-align:right;">
+6.567065e+00
+</td>
+<td style="text-align:right;">
+-4.519568e+00
+</td>
+<td style="text-align:right;">
+-7.018693e+01
+</td>
+<td style="text-align:right;">
+7.153031e+01
+</td>
+<td style="text-align:right;">
+4.119830e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+HitRate
+</td>
+<td style="text-align:right;">
+5.249344e-01
+</td>
+<td style="text-align:right;">
+6.430446e+00
+</td>
+<td style="text-align:right;">
+9.186352e-01
+</td>
+<td style="text-align:right;">
+5.249344e-01
+</td>
+<td style="text-align:right;">
+-8.530184e+00
+</td>
+<td style="text-align:right;">
+5.774278e+00
+</td>
+<td style="text-align:right;">
+1.233596e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Beta
+</td>
+<td style="text-align:right;">
+-3.238685e-01
+</td>
+<td style="text-align:right;">
+1.376663e-01
+</td>
+<td style="text-align:right;">
+2.279249e-01
+</td>
+<td style="text-align:right;">
+1.113727e-01
+</td>
+<td style="text-align:right;">
+-2.361083e-01
+</td>
+<td style="text-align:right;">
+-8.776020e-02
+</td>
+<td style="text-align:right;">
+1.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Alpha
+</td>
+<td style="text-align:right;">
+2.551778e+00
+</td>
+<td style="text-align:right;">
+1.099451e+00
+</td>
+<td style="text-align:right;">
+-3.849375e-01
+</td>
+<td style="text-align:right;">
+-6.056432e-01
+</td>
+<td style="text-align:right;">
+-2.825251e+00
+</td>
+<td style="text-align:right;">
+5.377029e+00
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DrawDn
+</td>
+<td style="text-align:right;">
+-1.984602e+01
+</td>
+<td style="text-align:right;">
+-1.702294e+01
+</td>
+<td style="text-align:right;">
+-1.914383e+01
+</td>
+<td style="text-align:right;">
+-2.761772e+01
+</td>
+<td style="text-align:right;">
+-5.414657e+01
+</td>
+<td style="text-align:right;">
+-1.167558e+01
+</td>
+<td style="text-align:right;">
+-3.576917e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnBeg
+</td>
+<td style="text-align:right;">
+2.011612e+07
+</td>
+<td style="text-align:right;">
+2.008055e+07
+</td>
+<td style="text-align:right;">
+2.010542e+07
+</td>
+<td style="text-align:right;">
+2.008047e+07
+</td>
+<td style="text-align:right;">
+2.007061e+07
+</td>
+<td style="text-align:right;">
+2.017017e+07
+</td>
+<td style="text-align:right;">
+2.007106e+07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnN
+</td>
+<td style="text-align:right;">
+2.145000e+02
+</td>
+<td style="text-align:right;">
+1.750000e+01
+</td>
+<td style="text-align:right;">
+5.250000e+01
+</td>
+<td style="text-align:right;">
+2.200000e+02
+</td>
+<td style="text-align:right;">
+3.785000e+02
+</td>
+<td style="text-align:right;">
+4.950000e+01
+</td>
+<td style="text-align:right;">
+3.150000e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnTo
+</td>
+<td style="text-align:right;">
+1.059386e+03
+</td>
+<td style="text-align:right;">
+1.450526e+03
+</td>
+<td style="text-align:right;">
+1.760702e+03
+</td>
+<td style="text-align:right;">
+1.445395e+03
+</td>
+<td style="text-align:right;">
+1.069649e+03
+</td>
+<td style="text-align:right;">
+2.129035e+03
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr grouplength="10">
+<td colspan="1" style="border-bottom: 1px solid;">
+<strong>Monthly</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnMn
+</td>
+<td style="text-align:right;">
+9.030652e-01
+</td>
+<td style="text-align:right;">
+1.096467e+00
+</td>
+<td style="text-align:right;">
+1.592991e+00
+</td>
+<td style="text-align:right;">
+-5.327352e-01
+</td>
+<td style="text-align:right;">
+-3.247699e+00
+</td>
+<td style="text-align:right;">
+4.150764e+00
+</td>
+<td style="text-align:right;">
+3.443160e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnSd
+</td>
+<td style="text-align:right;">
+5.664919e+00
+</td>
+<td style="text-align:right;">
+4.970418e+00
+</td>
+<td style="text-align:right;">
+5.578344e+00
+</td>
+<td style="text-align:right;">
+4.596058e+00
+</td>
+<td style="text-align:right;">
+5.216193e+00
+</td>
+<td style="text-align:right;">
+7.520090e+00
+</td>
+<td style="text-align:right;">
+8.803569e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Sharpe
+</td>
+<td style="text-align:right;">
+1.648706e+01
+</td>
+<td style="text-align:right;">
+2.262043e+01
+</td>
+<td style="text-align:right;">
+3.007056e+01
+</td>
+<td style="text-align:right;">
+-1.149527e+01
+</td>
+<td style="text-align:right;">
+-6.338826e+01
+</td>
+<td style="text-align:right;">
+5.548760e+01
+</td>
+<td style="text-align:right;">
+3.914899e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+HitRate
+</td>
+<td style="text-align:right;">
+-7.867181e-01
+</td>
+<td style="text-align:right;">
+2.493800e+00
+</td>
+<td style="text-align:right;">
+4.597685e+00
+</td>
+<td style="text-align:right;">
+1.311656e+00
+</td>
+<td style="text-align:right;">
+-1.168917e+01
+</td>
+<td style="text-align:right;">
+7.085974e+00
+</td>
+<td style="text-align:right;">
+1.194682e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Beta
+</td>
+<td style="text-align:right;">
+-3.267392e-01
+</td>
+<td style="text-align:right;">
+1.623399e-01
+</td>
+<td style="text-align:right;">
+2.219792e-01
+</td>
+<td style="text-align:right;">
+7.645240e-02
+</td>
+<td style="text-align:right;">
+-2.136298e-01
+</td>
+<td style="text-align:right;">
+-1.131094e-01
+</td>
+<td style="text-align:right;">
+1.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Alpha
+</td>
+<td style="text-align:right;">
+2.027370e+00
+</td>
+<td style="text-align:right;">
+5.387789e-01
+</td>
+<td style="text-align:right;">
+8.257839e-01
+</td>
+<td style="text-align:right;">
+-7.985807e-01
+</td>
+<td style="text-align:right;">
+-2.506752e+00
+</td>
+<td style="text-align:right;">
+4.534122e+00
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DrawDn
+</td>
+<td style="text-align:right;">
+-1.747428e+01
+</td>
+<td style="text-align:right;">
+-1.513634e+01
+</td>
+<td style="text-align:right;">
+-1.556107e+01
+</td>
+<td style="text-align:right;">
+-2.664261e+01
+</td>
+<td style="text-align:right;">
+-5.292538e+01
+</td>
+<td style="text-align:right;">
+-1.538682e+01
+</td>
+<td style="text-align:right;">
+-3.389934e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnBeg
+</td>
+<td style="text-align:right;">
+2.014572e+07
+</td>
+<td style="text-align:right;">
+2.010819e+07
+</td>
+<td style="text-align:right;">
+2.012542e+07
+</td>
+<td style="text-align:right;">
+2.007794e+07
+</td>
+<td style="text-align:right;">
+2.007589e+07
+</td>
+<td style="text-align:right;">
+2.016296e+07
+</td>
+<td style="text-align:right;">
+2.007104e+07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnN
+</td>
+<td style="text-align:right;">
+6.300000e+01
+</td>
+<td style="text-align:right;">
+2.575000e+01
+</td>
+<td style="text-align:right;">
+2.625000e+01
+</td>
+<td style="text-align:right;">
+1.160000e+02
+</td>
+<td style="text-align:right;">
+1.687500e+02
+</td>
+<td style="text-align:right;">
+2.350000e+01
+</td>
+<td style="text-align:right;">
+1.675000e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnTo
+</td>
+<td style="text-align:right;">
+7.597392e+02
+</td>
+<td style="text-align:right;">
+8.737916e+02
+</td>
+<td style="text-align:right;">
+9.724237e+02
+</td>
+<td style="text-align:right;">
+8.652367e+02
+</td>
+<td style="text-align:right;">
+7.843321e+02
+</td>
+<td style="text-align:right;">
+1.544071e+03
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr grouplength="10">
+<td colspan="1" style="border-bottom: 1px solid;">
+<strong>Quarterly</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnMn
+</td>
+<td style="text-align:right;">
+7.058165e-01
+</td>
+<td style="text-align:right;">
+6.519758e-01
+</td>
+<td style="text-align:right;">
+7.942645e-01
+</td>
+<td style="text-align:right;">
+-1.851943e-01
+</td>
+<td style="text-align:right;">
+-2.122456e+00
+</td>
+<td style="text-align:right;">
+2.828273e+00
+</td>
+<td style="text-align:right;">
+3.451610e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnSd
+</td>
+<td style="text-align:right;">
+5.993071e+00
+</td>
+<td style="text-align:right;">
+4.860626e+00
+</td>
+<td style="text-align:right;">
+5.306706e+00
+</td>
+<td style="text-align:right;">
+5.055374e+00
+</td>
+<td style="text-align:right;">
+5.284020e+00
+</td>
+<td style="text-align:right;">
+7.857959e+00
+</td>
+<td style="text-align:right;">
+9.179433e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Sharpe
+</td>
+<td style="text-align:right;">
+1.195884e+01
+</td>
+<td style="text-align:right;">
+1.173996e+01
+</td>
+<td style="text-align:right;">
+1.414239e+01
+</td>
+<td style="text-align:right;">
+-2.811952e+00
+</td>
+<td style="text-align:right;">
+-3.976393e+01
+</td>
+<td style="text-align:right;">
+3.505460e+01
+</td>
+<td style="text-align:right;">
+3.767121e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+HitRate
+</td>
+<td style="text-align:right;">
+-6.608821e-01
+</td>
+<td style="text-align:right;">
+1.694915e+00
+</td>
+<td style="text-align:right;">
+3.263948e+00
+</td>
+<td style="text-align:right;">
+1.054264e+00
+</td>
+<td style="text-align:right;">
+-1.111810e+01
+</td>
+<td style="text-align:right;">
+5.595019e+00
+</td>
+<td style="text-align:right;">
+1.746167e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Beta
+</td>
+<td style="text-align:right;">
+-3.225457e-01
+</td>
+<td style="text-align:right;">
+9.045280e-02
+</td>
+<td style="text-align:right;">
+1.687521e-01
+</td>
+<td style="text-align:right;">
+1.866497e-01
+</td>
+<td style="text-align:right;">
+-2.156764e-01
+</td>
+<td style="text-align:right;">
+-1.068694e-01
+</td>
+<td style="text-align:right;">
+1.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Alpha
+</td>
+<td style="text-align:right;">
+1.795488e+00
+</td>
+<td style="text-align:right;">
+3.552444e-01
+</td>
+<td style="text-align:right;">
+2.140898e-01
+</td>
+<td style="text-align:right;">
+-8.249169e-01
+</td>
+<td style="text-align:right;">
+-1.383348e+00
+</td>
+<td style="text-align:right;">
+3.178836e+00
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DrawDn
+</td>
+<td style="text-align:right;">
+-2.282047e+01
+</td>
+<td style="text-align:right;">
+-1.882605e+01
+</td>
+<td style="text-align:right;">
+-1.608565e+01
+</td>
+<td style="text-align:right;">
+-2.152574e+01
+</td>
+<td style="text-align:right;">
+-3.648110e+01
+</td>
+<td style="text-align:right;">
+-1.987720e+01
+</td>
+<td style="text-align:right;">
+-2.855401e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnBeg
+</td>
+<td style="text-align:right;">
+2.012157e+07
+</td>
+<td style="text-align:right;">
+2.011369e+07
+</td>
+<td style="text-align:right;">
+2.010760e+07
+</td>
+<td style="text-align:right;">
+2.008231e+07
+</td>
+<td style="text-align:right;">
+2.008389e+07
+</td>
+<td style="text-align:right;">
+2.013920e+07
+</td>
+<td style="text-align:right;">
+2.007107e+07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnN
+</td>
+<td style="text-align:right;">
+2.761538e+01
+</td>
+<td style="text-align:right;">
+1.923077e+01
+</td>
+<td style="text-align:right;">
+2.023077e+01
+</td>
+<td style="text-align:right;">
+2.430769e+01
+</td>
+<td style="text-align:right;">
+4.876923e+01
+</td>
+<td style="text-align:right;">
+1.923077e+01
+</td>
+<td style="text-align:right;">
+4.692308e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnTo
+</td>
+<td style="text-align:right;">
+2.641165e+02
+</td>
+<td style="text-align:right;">
+2.823328e+02
+</td>
+<td style="text-align:right;">
+3.134410e+02
+</td>
+<td style="text-align:right;">
+2.794081e+02
+</td>
+<td style="text-align:right;">
+2.723905e+02
+</td>
+<td style="text-align:right;">
+5.365071e+02
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr grouplength="10">
+<td colspan="1" style="border-bottom: 1px solid;">
+<strong>Semi-Annual</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnMn
+</td>
+<td style="text-align:right;">
+1.419500e-02
+</td>
+<td style="text-align:right;">
+-1.272822e-01
+</td>
+<td style="text-align:right;">
+1.144012e+00
+</td>
+<td style="text-align:right;">
+4.769958e-01
+</td>
+<td style="text-align:right;">
+-1.624492e+00
+</td>
+<td style="text-align:right;">
+1.638687e+00
+</td>
+<td style="text-align:right;">
+3.264504e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnSd
+</td>
+<td style="text-align:right;">
+5.757576e+00
+</td>
+<td style="text-align:right;">
+5.180931e+00
+</td>
+<td style="text-align:right;">
+5.467953e+00
+</td>
+<td style="text-align:right;">
+5.494893e+00
+</td>
+<td style="text-align:right;">
+5.943082e+00
+</td>
+<td style="text-align:right;">
+8.168316e+00
+</td>
+<td style="text-align:right;">
+9.887262e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Sharpe
+</td>
+<td style="text-align:right;">
+2.781460e-01
+</td>
+<td style="text-align:right;">
+-2.382069e+00
+</td>
+<td style="text-align:right;">
+2.067799e+01
+</td>
+<td style="text-align:right;">
+9.149410e+00
+</td>
+<td style="text-align:right;">
+-3.013122e+01
+</td>
+<td style="text-align:right;">
+2.052194e+01
+</td>
+<td style="text-align:right;">
+3.310566e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+HitRate
+</td>
+<td style="text-align:right;">
+-2.860301e+00
+</td>
+<td style="text-align:right;">
+-4.615385e+00
+</td>
+<td style="text-align:right;">
+4.986737e+00
+</td>
+<td style="text-align:right;">
+2.197171e+00
+</td>
+<td style="text-align:right;">
+-1.154288e+01
+</td>
+<td style="text-align:right;">
+6.436782e+00
+</td>
+<td style="text-align:right;">
+1.798851e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Beta
+</td>
+<td style="text-align:right;">
+-2.237177e-01
+</td>
+<td style="text-align:right;">
+7.332260e-02
+</td>
+<td style="text-align:right;">
+1.688394e-01
+</td>
+<td style="text-align:right;">
+2.074675e-01
+</td>
+<td style="text-align:right;">
+-3.195084e-01
+</td>
+<td style="text-align:right;">
+9.579070e-02
+</td>
+<td style="text-align:right;">
+1.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Alpha
+</td>
+<td style="text-align:right;">
+7.342073e-01
+</td>
+<td style="text-align:right;">
+-3.584744e-01
+</td>
+<td style="text-align:right;">
+5.934298e-01
+</td>
+<td style="text-align:right;">
+-1.919548e-01
+</td>
+<td style="text-align:right;">
+-5.937316e-01
+</td>
+<td style="text-align:right;">
+1.327939e+00
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DrawDn
+</td>
+<td style="text-align:right;">
+-2.441441e+01
+</td>
+<td style="text-align:right;">
+-1.963327e+01
+</td>
+<td style="text-align:right;">
+-1.324949e+01
+</td>
+<td style="text-align:right;">
+-1.791113e+01
+</td>
+<td style="text-align:right;">
+-3.292179e+01
+</td>
+<td style="text-align:right;">
+-2.402701e+01
+</td>
+<td style="text-align:right;">
+-2.575678e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnBeg
+</td>
+<td style="text-align:right;">
+2.011291e+07
+</td>
+<td style="text-align:right;">
+2.011219e+07
+</td>
+<td style="text-align:right;">
+2.011445e+07
+</td>
+<td style="text-align:right;">
+2.009184e+07
+</td>
+<td style="text-align:right;">
+2.008349e+07
+</td>
+<td style="text-align:right;">
+2.011673e+07
+</td>
+<td style="text-align:right;">
+2.007133e+07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnN
+</td>
+<td style="text-align:right;">
+1.650000e+01
+</td>
+<td style="text-align:right;">
+1.411538e+01
+</td>
+<td style="text-align:right;">
+7.076923e+00
+</td>
+<td style="text-align:right;">
+8.384615e+00
+</td>
+<td style="text-align:right;">
+2.442308e+01
+</td>
+<td style="text-align:right;">
+8.500000e+00
+</td>
+<td style="text-align:right;">
+2.500000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnTo
+</td>
+<td style="text-align:right;">
+1.379784e+02
+</td>
+<td style="text-align:right;">
+1.464499e+02
+</td>
+<td style="text-align:right;">
+1.563376e+02
+</td>
+<td style="text-align:right;">
+1.444226e+02
+</td>
+<td style="text-align:right;">
+1.385026e+02
+</td>
+<td style="text-align:right;">
+2.764810e+02
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr grouplength="10">
+<td colspan="1" style="border-bottom: 1px solid;">
+<strong>Weekly</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnMn
+</td>
+<td style="text-align:right;">
+1.553535e+00
+</td>
+<td style="text-align:right;">
+1.983383e+00
+</td>
+<td style="text-align:right;">
+3.841690e-01
+</td>
+<td style="text-align:right;">
+-3.989662e-01
+</td>
+<td style="text-align:right;">
+-4.052587e+00
+</td>
+<td style="text-align:right;">
+5.606122e+00
+</td>
+<td style="text-align:right;">
+3.476831e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnSd
+</td>
+<td style="text-align:right;">
+5.409883e+00
+</td>
+<td style="text-align:right;">
+5.058031e+00
+</td>
+<td style="text-align:right;">
+5.886029e+00
+</td>
+<td style="text-align:right;">
+4.958011e+00
+</td>
+<td style="text-align:right;">
+5.132273e+00
+</td>
+<td style="text-align:right;">
+6.716251e+00
+</td>
+<td style="text-align:right;">
+8.039942e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Sharpe
+</td>
+<td style="text-align:right;">
+2.871661e+01
+</td>
+<td style="text-align:right;">
+3.921256e+01
+</td>
+<td style="text-align:right;">
+6.526794e+00
+</td>
+<td style="text-align:right;">
+-8.046901e+00
+</td>
+<td style="text-align:right;">
+-7.896281e+01
+</td>
+<td style="text-align:right;">
+8.347100e+01
+</td>
+<td style="text-align:right;">
+4.324447e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+HitRate
+</td>
+<td style="text-align:right;">
+1.837270e+00
+</td>
+<td style="text-align:right;">
+3.149606e+00
+</td>
+<td style="text-align:right;">
+6.561680e-01
+</td>
+<td style="text-align:right;">
+7.874016e-01
+</td>
+<td style="text-align:right;">
+-7.611549e+00
+</td>
+<td style="text-align:right;">
+6.561680e+00
+</td>
+<td style="text-align:right;">
+7.874016e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Beta
+</td>
+<td style="text-align:right;">
+-2.667200e-01
+</td>
+<td style="text-align:right;">
+1.008716e-01
+</td>
+<td style="text-align:right;">
+2.424949e-01
+</td>
+<td style="text-align:right;">
+1.403368e-01
+</td>
+<td style="text-align:right;">
+-2.973800e-01
+</td>
+<td style="text-align:right;">
+3.066010e-02
+</td>
+<td style="text-align:right;">
+1.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Alpha
+</td>
+<td style="text-align:right;">
+2.480875e+00
+</td>
+<td style="text-align:right;">
+1.632670e+00
+</td>
+<td style="text-align:right;">
+-4.589446e-01
+</td>
+<td style="text-align:right;">
+-8.868935e-01
+</td>
+<td style="text-align:right;">
+-3.018647e+00
+</td>
+<td style="text-align:right;">
+5.499522e+00
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DrawDn
+</td>
+<td style="text-align:right;">
+-1.467527e+01
+</td>
+<td style="text-align:right;">
+-1.703081e+01
+</td>
+<td style="text-align:right;">
+-3.106995e+01
+</td>
+<td style="text-align:right;">
+-2.821559e+01
+</td>
+<td style="text-align:right;">
+-5.957920e+01
+</td>
+<td style="text-align:right;">
+-1.279376e+01
+</td>
+<td style="text-align:right;">
+-3.582700e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnBeg
+</td>
+<td style="text-align:right;">
+2.012112e+07
+</td>
+<td style="text-align:right;">
+2.007092e+07
+</td>
+<td style="text-align:right;">
+2.010072e+07
+</td>
+<td style="text-align:right;">
+2.008043e+07
+</td>
+<td style="text-align:right;">
+2.007061e+07
+</td>
+<td style="text-align:right;">
+2.018020e+07
+</td>
+<td style="text-align:right;">
+2.007103e+07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+DDnN
+</td>
+<td style="text-align:right;">
+4.580000e+02
+</td>
+<td style="text-align:right;">
+7.200000e+01
+</td>
+<td style="text-align:right;">
+1.120000e+02
+</td>
+<td style="text-align:right;">
+4.150000e+02
+</td>
+<td style="text-align:right;">
+7.600000e+02
+</td>
+<td style="text-align:right;">
+3.800000e+01
+</td>
+<td style="text-align:right;">
+5.600000e+01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+AnnTo
+</td>
+<td style="text-align:right;">
+1.432676e+03
+</td>
+<td style="text-align:right;">
+2.217346e+03
+</td>
+<td style="text-align:right;">
+3.027070e+03
+</td>
+<td style="text-align:right;">
+2.260053e+03
+</td>
+<td style="text-align:right;">
+1.485064e+03
+</td>
+<td style="text-align:right;">
+2.917740e+03
+</td>
+<td style="text-align:right;">
+0.000000e+00
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Annualized mean one-week returns</strong></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="4.3-strategy-implementation-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], <span class="dv">5</span>, doW, T, <span class="dv">0</span>, delay)<span class="sc">$</span>annSumm <span class="co"># DISPLAY CALENDAR-YEAR RETURNS</span></span></code></pre></div>
+<table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Q5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+TxB
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+uRet
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+nPrds
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:right;">
+5.5262428
+</td>
+<td style="text-align:right;">
+1.1621261
+</td>
+<td style="text-align:right;">
+1.3307199
+</td>
+<td style="text-align:right;">
+2.9439689
+</td>
+<td style="text-align:right;">
+-12.392901
+</td>
+<td style="text-align:right;">
+17.9191440
+</td>
+<td style="text-align:right;">
+4.083357
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2008
+</td>
+<td style="text-align:right;">
+19.4053704
+</td>
+<td style="text-align:right;">
+-13.4654215
+</td>
+<td style="text-align:right;">
+7.3922948
+</td>
+<td style="text-align:right;">
+-8.3878656
+</td>
+<td style="text-align:right;">
+2.340051
+</td>
+<td style="text-align:right;">
+17.0653193
+</td>
+<td style="text-align:right;">
+-27.417418
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:right;">
+0.6341039
+</td>
+<td style="text-align:right;">
+3.8773276
+</td>
+<td style="text-align:right;">
+16.8464068
+</td>
+<td style="text-align:right;">
+-5.9257291
+</td>
+<td style="text-align:right;">
+-14.749309
+</td>
+<td style="text-align:right;">
+15.3834125
+</td>
+<td style="text-align:right;">
+24.141740
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:right;">
+4.2089450
+</td>
+<td style="text-align:right;">
+6.6323576
+</td>
+<td style="text-align:right;">
+2.9863370
+</td>
+<td style="text-align:right;">
+-8.6460349
+</td>
+<td style="text-align:right;">
+-4.510379
+</td>
+<td style="text-align:right;">
+8.7193238
+</td>
+<td style="text-align:right;">
+9.964876
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:right;">
+4.7583767
+</td>
+<td style="text-align:right;">
+-1.7937327
+</td>
+<td style="text-align:right;">
+-15.6605055
+</td>
+<td style="text-align:right;">
+6.2891454
+</td>
+<td style="text-align:right;">
+4.908245
+</td>
+<td style="text-align:right;">
+-0.1498686
+</td>
+<td style="text-align:right;">
+-2.537112
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;">
+0.6443603
+</td>
+<td style="text-align:right;">
+6.2562635
+</td>
+<td style="text-align:right;">
+-7.0180903
+</td>
+<td style="text-align:right;">
+0.0584413
+</td>
+<td style="text-align:right;">
+-2.045876
+</td>
+<td style="text-align:right;">
+2.6902368
+</td>
+<td style="text-align:right;">
+9.883816
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+-3.2194308
+</td>
+<td style="text-align:right;">
+7.6863118
+</td>
+<td style="text-align:right;">
+5.5149219
+</td>
+<td style="text-align:right;">
+-3.5482053
+</td>
+<td style="text-align:right;">
+-7.812966
+</td>
+<td style="text-align:right;">
+4.5935357
+</td>
+<td style="text-align:right;">
+4.569832
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;">
+1.5277652
+</td>
+<td style="text-align:right;">
+2.5782000
+</td>
+<td style="text-align:right;">
+1.6069874
+</td>
+<td style="text-align:right;">
+-3.1673960
+</td>
+<td style="text-align:right;">
+-2.349158
+</td>
+<td style="text-align:right;">
+3.8769231
+</td>
+<td style="text-align:right;">
+4.051446
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;">
+0.0838904
+</td>
+<td style="text-align:right;">
+0.7708154
+</td>
+<td style="text-align:right;">
+1.0277650
+</td>
+<td style="text-align:right;">
+-0.1808276
+</td>
+<td style="text-align:right;">
+-1.898306
+</td>
+<td style="text-align:right;">
+1.9821963
+</td>
+<td style="text-align:right;">
+-1.968191
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;">
+-2.0358030
+</td>
+<td style="text-align:right;">
+2.7496787
+</td>
+<td style="text-align:right;">
+4.4755326
+</td>
+<td style="text-align:right;">
+-0.9666013
+</td>
+<td style="text-align:right;">
+-4.817166
+</td>
+<td style="text-align:right;">
+2.7813631
+</td>
+<td style="text-align:right;">
+5.941342
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:right;">
+3.0046060
+</td>
+<td style="text-align:right;">
+-0.5971810
+</td>
+<td style="text-align:right;">
+-3.9675876
+</td>
+<td style="text-align:right;">
+4.3296370
+</td>
+<td style="text-align:right;">
+-4.013626
+</td>
+<td style="text-align:right;">
+7.0182325
+</td>
+<td style="text-align:right;">
+8.457597
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:right;">
+-6.5752564
+</td>
+<td style="text-align:right;">
+-4.7046419
+</td>
+<td style="text-align:right;">
+-1.0789123
+</td>
+<td style="text-align:right;">
+8.4138797
+</td>
+<td style="text-align:right;">
+2.708518
+</td>
+<td style="text-align:right;">
+-9.2837747
+</td>
+<td style="text-align:right;">
+-6.120206
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2019
+</td>
+<td style="text-align:right;">
+0.0207033
+</td>
+<td style="text-align:right;">
+-0.2608606
+</td>
+<td style="text-align:right;">
+1.2774272
+</td>
+<td style="text-align:right;">
+2.3167628
+</td>
+<td style="text-align:right;">
+-4.039333
+</td>
+<td style="text-align:right;">
+4.0600368
+</td>
+<td style="text-align:right;">
+11.606858
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020
+</td>
+<td style="text-align:right;">
+-2.8206326
+</td>
+<td style="text-align:right;">
+8.4216793
+</td>
+<td style="text-align:right;">
+-0.1265118
+</td>
+<td style="text-align:right;">
+0.1683652
+</td>
+<td style="text-align:right;">
+-8.506248
+</td>
+<td style="text-align:right;">
+5.6856156
+</td>
+<td style="text-align:right;">
+5.327833
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021
+</td>
+<td style="text-align:right;">
+0.9314158
+</td>
+<td style="text-align:right;">
+10.3067531
+</td>
+<td style="text-align:right;">
+-7.2639833
+</td>
+<td style="text-align:right;">
+0.1108005
+</td>
+<td style="text-align:right;">
+-7.557504
+</td>
+<td style="text-align:right;">
+8.4889199
+</td>
+<td style="text-align:right;">
+3.660437
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2022
+</td>
+<td style="text-align:right;">
+-24.5647689
+</td>
+<td style="text-align:right;">
+-10.9224314
+</td>
+<td style="text-align:right;">
+-29.3401241
+</td>
+<td style="text-align:right;">
+47.5835662
+</td>
+<td style="text-align:right;">
+5.023380
+</td>
+<td style="text-align:right;">
+-29.5881489
+</td>
+<td style="text-align:right;">
+-32.953700
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<!-- </div> -->
+<p style="text-align: center;">
+<a href="4.2-daily-percentage-flow-1.html"><button class="btn btn-default">Previous</button></a>
+<a href="5-fx-strategy.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

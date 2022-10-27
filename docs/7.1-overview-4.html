@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="7.1 Overview | EPFR Notebooks" />
+<meta property="og:type" content="book" />
+
+<meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+<meta name="github-repo" content="oliviablasz/EPFRNotebooks_v2" />
+
+<meta name="author" content="Olivia Blaszkowski" />
+
+<meta name="date" content="2022-10-26" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>">
+
+<title>7.1 Overview | EPFR Notebooks</title>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.23/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li class="has-sub"><a href="2-required-r-libraries.html#required-r-libraries" id="toc-required-r-libraries"><span class="toc-section-number">2</span> Required R Libraries</a>
+<ul>
+<li><a href="2.1-epfr-library.html#epfr-library" id="toc-epfr-library"><span class="toc-section-number">2.1</span> EPFR Library</a></li>
+<li><a href="2.2-rcurl.html#rcurl" id="toc-rcurl"><span class="toc-section-number">2.2</span> RCurl</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-flow-percentage-country-strategy.html#flow-percentage-country-strategy" id="toc-flow-percentage-country-strategy"><span class="toc-section-number">3</span> Flow-Percentage Country Strategy</a>
+<ul>
+<li><a href="3.1-overview.html#overview" id="toc-overview"><span class="toc-section-number">3.1</span> Overview</a></li>
+<li class="has-sub"><a href="3.2-daily-percentage-flow.html#daily-percentage-flow" id="toc-daily-percentage-flow"><span class="toc-section-number">3.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="3.2-daily-percentage-flow.html#aggregations" id="toc-aggregations"><span class="toc-section-number">3.2.1</span> Aggregations</a></li>
+<li><a href="3.2-daily-percentage-flow.html#calculation" id="toc-calculation"><span class="toc-section-number">3.2.2</span> Calculation</a></li>
+<li><a href="3.2-daily-percentage-flow.html#flow-file" id="toc-flow-file"><span class="toc-section-number">3.2.3</span> Flow File</a></li>
+<li><a href="3.2-daily-percentage-flow.html#return-file" id="toc-return-file"><span class="toc-section-number">3.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="3.3-strategy-implementation.html#strategy-implementation" id="toc-strategy-implementation"><span class="toc-section-number">3.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="3.3-strategy-implementation.html#compounding-flows" id="toc-compounding-flows"><span class="toc-section-number">3.3.1</span> Compounding Flows</a></li>
+<li><a href="3.3-strategy-implementation.html#ranking-countries" id="toc-ranking-countries"><span class="toc-section-number">3.3.2</span> Ranking Countries</a></li>
+<li><a href="3.3-strategy-implementation.html#model" id="toc-model"><span class="toc-section-number">3.3.3</span> Model</a></li>
+<li><a href="3.3-strategy-implementation.html#preformance" id="toc-preformance"><span class="toc-section-number">3.3.4</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-multi-asset-strategy.html#multi-asset-strategy" id="toc-multi-asset-strategy"><span class="toc-section-number">4</span> Multi-Asset Strategy</a>
+<ul>
+<li><a href="4.1-overview-1.html#overview-1" id="toc-overview-1"><span class="toc-section-number">4.1</span> Overview</a></li>
+<li class="has-sub"><a href="4.2-daily-percentage-flow-1.html#daily-percentage-flow-1" id="toc-daily-percentage-flow-1"><span class="toc-section-number">4.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="4.2-daily-percentage-flow-1.html#aggregations-1" id="toc-aggregations-1"><span class="toc-section-number">4.2.1</span> Aggregations</a></li>
+<li><a href="4.2-daily-percentage-flow-1.html#calculation-1" id="toc-calculation-1"><span class="toc-section-number">4.2.2</span> Calculation</a></li>
+<li><a href="4.2-daily-percentage-flow-1.html#flow-file-1" id="toc-flow-file-1"><span class="toc-section-number">4.2.3</span> Flow File</a></li>
+<li><a href="4.2-daily-percentage-flow-1.html#return-file-1" id="toc-return-file-1"><span class="toc-section-number">4.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="4.3-strategy-implementation-1.html#strategy-implementation-1" id="toc-strategy-implementation-1"><span class="toc-section-number">4.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="4.3-strategy-implementation-1.html#compounding-flows-1" id="toc-compounding-flows-1"><span class="toc-section-number">4.3.1</span> Compounding Flows</a></li>
+<li><a href="4.3-strategy-implementation-1.html#return-file-2" id="toc-return-file-2"><span class="toc-section-number">4.3.2</span> Return file</a></li>
+<li><a href="4.3-strategy-implementation-1.html#ranking-asset-classes" id="toc-ranking-asset-classes"><span class="toc-section-number">4.3.3</span> Ranking Asset Classes</a></li>
+<li><a href="4.3-strategy-implementation-1.html#model-1" id="toc-model-1"><span class="toc-section-number">4.3.4</span> Model</a></li>
+<li><a href="4.3-strategy-implementation-1.html#preformance-1" id="toc-preformance-1"><span class="toc-section-number">4.3.5</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="5-fx-strategy.html#fx-strategy" id="toc-fx-strategy"><span class="toc-section-number">5</span> FX Strategy</a>
+<ul>
+<li><a href="5.1-overview-2.html#overview-2" id="toc-overview-2"><span class="toc-section-number">5.1</span> Overview</a></li>
+<li class="has-sub"><a href="5.2-daily-percentage-flow-2.html#daily-percentage-flow-2" id="toc-daily-percentage-flow-2"><span class="toc-section-number">5.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="5.2-daily-percentage-flow-2.html#aggregations-2" id="toc-aggregations-2"><span class="toc-section-number">5.2.1</span> Aggregations</a></li>
+<li><a href="5.2-daily-percentage-flow-2.html#calculation-2" id="toc-calculation-2"><span class="toc-section-number">5.2.2</span> Calculation</a></li>
+<li><a href="5.2-daily-percentage-flow-2.html#flow-file-2" id="toc-flow-file-2"><span class="toc-section-number">5.2.3</span> Flow File</a></li>
+<li><a href="5.2-daily-percentage-flow-2.html#return-file-3" id="toc-return-file-3"><span class="toc-section-number">5.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="5.3-strategy-implementation-2.html#strategy-implementation-2" id="toc-strategy-implementation-2"><span class="toc-section-number">5.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="5.3-strategy-implementation-2.html#compounding-flows-2" id="toc-compounding-flows-2"><span class="toc-section-number">5.3.1</span> Compounding Flows</a></li>
+<li><a href="5.3-strategy-implementation-2.html#ranking-currencies" id="toc-ranking-currencies"><span class="toc-section-number">5.3.2</span> Ranking Currencies</a></li>
+<li><a href="5.3-strategy-implementation-2.html#model-2" id="toc-model-2"><span class="toc-section-number">5.3.3</span> Model</a></li>
+<li><a href="5.3-strategy-implementation-2.html#preformance-2" id="toc-preformance-2"><span class="toc-section-number">5.3.4</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="6-activepassive-country-strategy.html#activepassive-country-strategy" id="toc-activepassive-country-strategy"><span class="toc-section-number">6</span> Active/Passive Country Strategy</a>
+<ul>
+<li><a href="6.1-overview-3.html#overview-3" id="toc-overview-3"><span class="toc-section-number">6.1</span> Overview</a></li>
+<li class="has-sub"><a href="6.2-activepassive-indicator.html#activepassive-indicator" id="toc-activepassive-indicator"><span class="toc-section-number">6.2</span> Active/Passive Indicator</a>
+<ul>
+<li><a href="6.2-activepassive-indicator.html#aggregations-3" id="toc-aggregations-3"><span class="toc-section-number">6.2.1</span> Aggregations</a></li>
+<li><a href="6.2-activepassive-indicator.html#calculation-3" id="toc-calculation-3"><span class="toc-section-number">6.2.2</span> Calculation</a></li>
+<li><a href="6.2-activepassive-indicator.html#flow-file-3" id="toc-flow-file-3"><span class="toc-section-number">6.2.3</span> Flow File</a></li>
+<li><a href="6.2-activepassive-indicator.html#return-file-4" id="toc-return-file-4"><span class="toc-section-number">6.2.4</span> Return File</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="7-flow-percentage-dm-rates-strategy.html#flow-percentage-dm-rates-strategy" id="toc-flow-percentage-dm-rates-strategy"><span class="toc-section-number">7</span> Flow-Percentage DM Rates Strategy</a>
+<ul>
+<li><a href="7.1-overview-4.html#overview-4" id="toc-overview-4"><span class="toc-section-number">7.1</span> Overview</a></li>
+<li class="has-sub"><a href="7.2-daily-percentage-flow-3.html#daily-percentage-flow-3" id="toc-daily-percentage-flow-3"><span class="toc-section-number">7.2</span> Daily Percentage Flow</a>
+<ul>
+<li><a href="7.2-daily-percentage-flow-3.html#aggregations-4" id="toc-aggregations-4"><span class="toc-section-number">7.2.1</span> Aggregations</a></li>
+<li><a href="7.2-daily-percentage-flow-3.html#calculation-4" id="toc-calculation-4"><span class="toc-section-number">7.2.2</span> Calculation</a></li>
+<li><a href="7.2-daily-percentage-flow-3.html#flow-file-4" id="toc-flow-file-4"><span class="toc-section-number">7.2.3</span> Flow File</a></li>
+<li><a href="7.2-daily-percentage-flow-3.html#return-file-5" id="toc-return-file-5"><span class="toc-section-number">7.2.4</span> Return File</a></li>
+</ul></li>
+<li class="has-sub"><a href="7.3-strategy-implementation-3.html#strategy-implementation-3" id="toc-strategy-implementation-3"><span class="toc-section-number">7.3</span> Strategy Implementation</a>
+<ul>
+<li><a href="7.3-strategy-implementation-3.html#compounding-flows-3" id="toc-compounding-flows-3"><span class="toc-section-number">7.3.1</span> Compounding Flows</a></li>
+<li><a href="7.3-strategy-implementation-3.html#ranking-countries-1" id="toc-ranking-countries-1"><span class="toc-section-number">7.3.2</span> Ranking Countries</a></li>
+<li><a href="7.3-strategy-implementation-3.html#model-3" id="toc-model-3"><span class="toc-section-number">7.3.3</span> Model</a></li>
+<li><a href="7.3-strategy-implementation-3.html#section" id="toc-section"></a></li>
+<li><a href="7.3-strategy-implementation-3.html#preformance-3" id="toc-preformance-3"><span class="toc-section-number">7.3.4</span> Preformance</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="overview-4" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Overview</h2>
+<p>This strategy, in particular, is a country rotation strategy, where it picks amongst G10 10 Year Rates, based on a percentage flow indicator. This approach uses the stated allocations of bond funds with a cross-border focus and calculates percentage flow into G10 countries. In terms of twenty-day percentage flows, the top fifth of G10 10 year rates outperform the bottom fifth by around 22pbs per year.</p>
+<p>G10 Countries used in analysis are:
+1. United States
+2. Europe
+3. United Kingdom
+4. Japan
+5. Australia
+6. New Zealand
+7. Canada
+8. Switzerland
+9. Norway
+10. Sweden</p>
+<hr />
+</div>
+<p style="text-align: center;">
+<a href="7-flow-percentage-dm-rates-strategy.html"><button class="btn btn-default">Previous</button></a>
+<a href="7.2-daily-percentage-flow-3.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
