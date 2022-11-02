@@ -123,10 +123,9 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="2.1" data-path="epfr-library.html"><a href="epfr-library.html#about"><i class="fa fa-check"></i><b>2.1</b> About</a></li>
 <li class="chapter" data-level="2.2" data-path="epfr-library.html"><a href="epfr-library.html#ftp"><i class="fa fa-check"></i><b>2.2</b> ftp.get()</a></li>
-<li class="chapter" data-level="2.3" data-path="epfr-library.html"><a href="epfr-library.html#mat.read"><i class="fa fa-check"></i><b>2.3</b> mat.read()</a></li>
-<li class="chapter" data-level="2.4" data-path="epfr-library.html"><a href="epfr-library.html#compound.flows"><i class="fa fa-check"></i><b>2.4</b> compound.flows()</a></li>
-<li class="chapter" data-level="2.5" data-path="epfr-library.html"><a href="epfr-library.html#bbk"><i class="fa fa-check"></i><b>2.5</b> bbk()</a></li>
-<li class="chapter" data-level="2.6" data-path="epfr-library.html"><a href="epfr-library.html#bbk.matrix"><i class="fa fa-check"></i><b>2.6</b> bbk.matrix()</a></li>
+<li class="chapter" data-level="2.3" data-path="epfr-library.html"><a href="epfr-library.html#compound.flows"><i class="fa fa-check"></i><b>2.3</b> compound.flows()</a></li>
+<li class="chapter" data-level="2.4" data-path="epfr-library.html"><a href="epfr-library.html#bbk"><i class="fa fa-check"></i><b>2.4</b> bbk()</a></li>
+<li class="chapter" data-level="2.5" data-path="epfr-library.html"><a href="epfr-library.html#bbk.matrix"><i class="fa fa-check"></i><b>2.5</b> bbk.matrix()</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="Filters.html"><a href="Filters.html"><i class="fa fa-check"></i><b>3</b> Filters</a></li>
 <li class="chapter" data-level="4" data-path="flow-percentage-country-strategy.html"><a href="flow-percentage-country-strategy.html"><i class="fa fa-check"></i><b>4</b> Flow-Percentage Country Strategy</a>
@@ -241,7 +240,7 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="about" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> About<a href="epfr-library.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Please refer to the library documentation for the description and complete list of parameters for each function.</p>
-<p>The functions that are used in this documents demonstration of EPFR’s strategies include <code>ftp.get()</code>, <code>mat.read()</code>, <code>compound.flows()</code>, <code>bbk()</code>, <code>Ctry.msci.members.rng()</code>, <code>Ctry.info()</code>, <code>ret.to.idx()</code>, <code>ret.idx.gaps.fix()</code>, <code>portfolio.beta.wrapper()</code>, <code>portfolio.residual()</code>.</p>
+<p>The functions that are used in this documents demonstration of EPFR’s strategies include <code>ftp.get()</code>, <code>compound.flows()</code>, <code>bbk()</code>, <code>Ctry.msci.members.rng()</code>, <code>Ctry.info()</code>, <code>ret.to.idx()</code>, <code>ret.idx.gaps.fix()</code>, <code>portfolio.beta.wrapper()</code>, <code>portfolio.residual()</code>.</p>
 <hr />
 </div>
 <div id="ftp" class="section level2 hasAnchor" number="2.2">
@@ -261,19 +260,14 @@ code span.wa { font-style: italic; } /* Warning */
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="epfr-library.html#cb8-1" aria-hidden="true" tabindex="-1"></a>flow.file <span class="ot">&lt;-</span> <span class="fu">paste</span>(fldr, <span class="fu">ftp.file</span>(file), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>) <span class="co"># STORES FLOW FILE PATH</span></span></code></pre></div>
 <hr />
 </div>
-<div id="mat.read" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> mat.read()<a href="epfr-library.html#mat.read" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>should I replace all <code>mat.read()</code> with non EPFR library code?</p>
-<hr />
-</div>
-<div id="compound.flows" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> compound.flows()<a href="epfr-library.html#compound.flows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="compound.flows" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> compound.flows()<a href="epfr-library.html#compound.flows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>EPFR’s function <code>compound.flows()</code> is very simple but quickly compounds our percentage flow file over a trailing lookback period.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="epfr-library.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compound.flows</span>(<span class="st">&quot;DailyPercentageFlow.csv&quot;</span>, <span class="at">lookback =</span> <span class="dv">20</span>)</span></code></pre></div>
 <hr />
 </div>
-<div id="bbk" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> bbk()<a href="epfr-library.html#bbk" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bbk" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> bbk()<a href="epfr-library.html#bbk" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>EPFR’s function <code>bbk()</code> is more complex as it creates our standard output model.</p>
 <p>This function requires many different parameters such as our compounded daily percentage flow file and a return file.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="epfr-library.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Compounded Percentage Flow&quot;</span></span>
@@ -287,8 +281,9 @@ code span.wa { font-style: italic; } /* Warning */
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="epfr-library.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], nBin, doW, T, <span class="dv">0</span>, delay, idx)</span></code></pre></div>
 <hr />
 </div>
-<div id="bbk.matrix" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> bbk.matrix()<a href="epfr-library.html#bbk.matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bbk.matrix" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> bbk.matrix()<a href="epfr-library.html#bbk.matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="epfr-library.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bbk.matrix</span>()</span></code></pre></div>
 
 </div>
 </div>

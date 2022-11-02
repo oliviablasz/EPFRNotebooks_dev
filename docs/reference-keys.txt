@@ -2,7 +2,6 @@ introduction
 epfr-library
 about
 ftp
-mat.read
 compound.flows
 bbk
 bbk.matrix
