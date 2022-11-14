@@ -201,6 +201,24 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="7.3.4" data-path="flow-percentage-dm-rates-strategy.html"><a href="flow-percentage-dm-rates-strategy.html#performance-3"><i class="fa fa-check"></i><b>7.3.4</b> Performance</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html"><i class="fa fa-check"></i><b>8</b> Active/Passive Country Strategy</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#overview-4"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#activepassive-indicator"><i class="fa fa-check"></i><b>8.2</b> Active/Passive Indicator</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#aggregations-4"><i class="fa fa-check"></i><b>8.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="8.2.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#calculation-4"><i class="fa fa-check"></i><b>8.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="8.2.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#aggregate-indicator-file"><i class="fa fa-check"></i><b>8.2.3</b> Aggregate Indicator File</a></li>
+<li class="chapter" data-level="8.2.4" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#return-file-5"><i class="fa fa-check"></i><b>8.2.4</b> Return File</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#strategy-implementation-4"><i class="fa fa-check"></i><b>8.3</b> Strategy Implementation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#compounding-flows-4"><i class="fa fa-check"></i><b>8.3.1</b> Compounding Flows</a></li>
+<li class="chapter" data-level="8.3.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#ranking-countries-2"><i class="fa fa-check"></i><b>8.3.2</b> Ranking Countries</a></li>
+<li class="chapter" data-level="8.3.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#model-4"><i class="fa fa-check"></i><b>8.3.3</b> Model</a></li>
+<li class="chapter" data-level="8.3.4" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#performance-4"><i class="fa fa-check"></i><b>8.3.4</b> Performance</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://www.epfr.com/" target="blank">EPFR Global</a></li>
 
@@ -2851,7 +2869,7 @@ KWD
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="fx-strategy.html#cb60-1" aria-hidden="true" tabindex="-1"></a>delay <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># DELAY IN KNOWING DATA (IN WEEKDAYS) - data takes time to have</span></span></code></pre></div>
 <p>It is also important to note that this model will need to be re-balanced weekly. The day of the week the rebalancing occurs is at the discretion of the user. For this example we will set the day of the week to trade as <strong>Friday</strong>.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="fx-strategy.html#cb61-1" aria-hidden="true" tabindex="-1"></a>doW <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># DAY OF THE WEEK YOU WILL TRADE ON (5 = FRIDAYS)</span></span></code></pre></div>
-<p>Additionally, we also evaluate the returns for different holding periods. The user can input return horizions that they are interested in here. For this example we define a return horizon for weekly, fortnightly, monthly, bi-monthly, quarterly, and semi-annually.</p>
+<p>Additionally, we also evaluate the returns for different holding periods. The user can input return horizons that they are interested in here. For this example we define a return horizon for weekly, fortnightly, monthly, bi-monthly, quarterly, and semi-annually.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="fx-strategy.html#cb62-1" aria-hidden="true" tabindex="-1"></a>hz <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">45</span>, <span class="dv">65</span>, <span class="dv">130</span>) <span class="co"># RETURN HORIZON (IN WEEKDAYS) - holding periods</span></span></code></pre></div>
 <p>Now that we have defined all of our inputs, to rank the currencies into quintiles by their 20-day percentage flow, we call function <code>bbk()</code> for a 1-week holding period.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="fx-strategy.html#cb63-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], nBin, doW, T, <span class="dv">0</span>, delay, idx)</span></code></pre></div>

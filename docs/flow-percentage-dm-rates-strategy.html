@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="fx-strategy.html"/>
-
+<link rel="next" href="activepassive-country-strategy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -199,6 +199,24 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="7.3.2" data-path="flow-percentage-dm-rates-strategy.html"><a href="flow-percentage-dm-rates-strategy.html#ranking-countries-1"><i class="fa fa-check"></i><b>7.3.2</b> Ranking Countries</a></li>
 <li class="chapter" data-level="7.3.3" data-path="flow-percentage-dm-rates-strategy.html"><a href="flow-percentage-dm-rates-strategy.html#model-3"><i class="fa fa-check"></i><b>7.3.3</b> Model</a></li>
 <li class="chapter" data-level="7.3.4" data-path="flow-percentage-dm-rates-strategy.html"><a href="flow-percentage-dm-rates-strategy.html#performance-3"><i class="fa fa-check"></i><b>7.3.4</b> Performance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html"><i class="fa fa-check"></i><b>8</b> Active/Passive Country Strategy</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#overview-4"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#activepassive-indicator"><i class="fa fa-check"></i><b>8.2</b> Active/Passive Indicator</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#aggregations-4"><i class="fa fa-check"></i><b>8.2.1</b> Aggregations</a></li>
+<li class="chapter" data-level="8.2.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#calculation-4"><i class="fa fa-check"></i><b>8.2.2</b> Calculation</a></li>
+<li class="chapter" data-level="8.2.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#aggregate-indicator-file"><i class="fa fa-check"></i><b>8.2.3</b> Aggregate Indicator File</a></li>
+<li class="chapter" data-level="8.2.4" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#return-file-5"><i class="fa fa-check"></i><b>8.2.4</b> Return File</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#strategy-implementation-4"><i class="fa fa-check"></i><b>8.3</b> Strategy Implementation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#compounding-flows-4"><i class="fa fa-check"></i><b>8.3.1</b> Compounding Flows</a></li>
+<li class="chapter" data-level="8.3.2" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#ranking-countries-2"><i class="fa fa-check"></i><b>8.3.2</b> Ranking Countries</a></li>
+<li class="chapter" data-level="8.3.3" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#model-4"><i class="fa fa-check"></i><b>8.3.3</b> Model</a></li>
+<li class="chapter" data-level="8.3.4" data-path="activepassive-country-strategy.html"><a href="activepassive-country-strategy.html#performance-4"><i class="fa fa-check"></i><b>8.3.4</b> Performance</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -1098,7 +1116,7 @@ US
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="flow-percentage-dm-rates-strategy.html#cb76-1" aria-hidden="true" tabindex="-1"></a>delay <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># DELAY IN KNOWING DATA (IN WEEKDAYS) - data takes time to have</span></span></code></pre></div>
 <p>It is also important to note that this model will need to be re-balanced weekly. The day of the week the rebalancing occurs is at the discretion of the user. For this example we will set the day of the week to trade as <strong>Friday</strong>.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="flow-percentage-dm-rates-strategy.html#cb77-1" aria-hidden="true" tabindex="-1"></a>doW <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># DAY OF THE WEEK YOU WILL TRADE ON (5 = FRIDAYS)</span></span></code></pre></div>
-<p>Additionally, we also evaluate the returns for different holding periods. The user can input return horizions that they are interested in here. For this example we define a return horizon for weekly, fortnightly, monthly, bi-monthly, quarterly, and semi-annually.</p>
+<p>Additionally, we also evaluate the returns for different holding periods. The user can input return horizons that they are interested in here. For this example we define a return horizon for weekly, fortnightly, monthly, bi-monthly, quarterly, and semi-annually.</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="flow-percentage-dm-rates-strategy.html#cb78-1" aria-hidden="true" tabindex="-1"></a>hz <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">45</span>, <span class="dv">65</span>, <span class="dv">130</span>) <span class="co"># RETURN HORIZON (IN WEEKDAYS) - holding periods</span></span></code></pre></div>
 <p>Now that we have defined all of our inputs, to rank the countries into quintiles by their 20-day percentage flow, we call function <code>bbk()</code> for a 1-week holding period.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="flow-percentage-dm-rates-strategy.html#cb79-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">bbk</span>(x, y, <span class="dv">1</span>, hz[<span class="dv">1</span>], nBin, doW, T, <span class="dv">0</span>, delay)</span></code></pre></div>
@@ -1135,8 +1153,6 @@ US
 <!--   column_spec(3, bold = T, border_right = T) %>% -->
 <!--   scroll_box(width = "100%", height = "500px") -->
 <!-- ``` -->
-<div id="bins" class="section level4 hasAnchor" number="7.3.3.1">
-<h4><span class="header-section-number">7.3.3.1</span> Bins<a href="flow-percentage-dm-rates-strategy.html#bins" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Twenty-day flow percentage ranked into quintiles (computed only where forward returns are available)</strong></p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="flow-percentage-dm-rates-strategy.html#cb80-1" aria-hidden="true" tabindex="-1"></a>z[[<span class="st">&quot;bins&quot;</span>]]</span></code></pre></div>
 <table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
@@ -1364,9 +1380,7 @@ US
 <!--   #kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% -->
 <!--   scroll_box(width = "100%", height = "500px") -->
 <!-- ``` -->
-</div>
-<div id="binrets" class="section level4 hasAnchor" number="7.3.3.2">
-<h4><span class="header-section-number">7.3.3.2</span> BinRets<a href="flow-percentage-dm-rates-strategy.html#binrets" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Quintile Returns over the equal-weight universe</strong></p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="flow-percentage-dm-rates-strategy.html#cb81-1" aria-hidden="true" tabindex="-1"></a>z[[<span class="st">&quot;rets&quot;</span>]]</span></code></pre></div>
 <table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1540,7 +1554,6 @@ uRet
 <!--   scroll_box(width = "100%", height = "500px") -->
 <!-- ``` -->
 <hr />
-</div>
 </div>
 <div id="performance-3" class="section level3 hasAnchor" number="7.3.4">
 <h3><span class="header-section-number">7.3.4</span> Performance<a href="flow-percentage-dm-rates-strategy.html#performance-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3679,8 +3692,8 @@ nPrds
           </div>
         </div>
       </div>
-<a href="fx-strategy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="fx-strategy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="activepassive-country-strategy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
