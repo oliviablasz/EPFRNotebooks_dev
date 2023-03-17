@@ -29,7 +29,7 @@
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="data-6.html"/>
-<link rel="next" href="epfr-data-filters-1.html"/>
+<link rel="next" href="definitions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,6 +274,33 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="7.2.3" data-path="strategy-implementation-6.html"><a href="strategy-implementation-6.html#model-7"><i class="fa fa-check"></i><b>7.2.3</b> Model</a></li>
 <li class="chapter" data-level="7.2.4" data-path="strategy-implementation-6.html"><a href="strategy-implementation-6.html#performance-6"><i class="fa fa-check"></i><b>7.2.4</b> Performance</a></li>
 </ul></li>
+</ul></li>
+<li class="part"><span><b>Quant Factors</b></span></li>
+<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a></li>
+<li class="chapter" data-level="9" data-path="flow-momentum-1.html"><a href="flow-momentum-1.html"><i class="fa fa-check"></i><b>9</b> Flow Momentum</a></li>
+<li class="chapter" data-level="10" data-path="smart-money.html"><a href="smart-money.html"><i class="fa fa-check"></i><b>10</b> Smart Money</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="flotrend.html"><a href="flotrend.html"><i class="fa fa-check"></i><b>10.1</b> FloTrend</a></li>
+<li class="chapter" data-level="10.2" data-path="flodiff.html"><a href="flodiff.html"><i class="fa fa-check"></i><b>10.2</b> FloDiff</a></li>
+<li class="chapter" data-level="10.3" data-path="flodiff2.html"><a href="flodiff2.html"><i class="fa fa-check"></i><b>10.3</b> FloDiff2</a></li>
+<li class="chapter" data-level="10.4" data-path="actwttrend.html"><a href="actwttrend.html"><i class="fa fa-check"></i><b>10.4</b> ActWtTrend</a></li>
+<li class="chapter" data-level="10.5" data-path="actwtdiff.html"><a href="actwtdiff.html"><i class="fa fa-check"></i><b>10.5</b> ActWtDiff</a></li>
+<li class="chapter" data-level="10.6" data-path="actwtdiff2.html"><a href="actwtdiff2.html"><i class="fa fa-check"></i><b>10.6</b> ActWtDiff2</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="manager-momentum.html"><a href="manager-momentum.html"><i class="fa fa-check"></i><b>11</b> Manager momentum</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="allocmo.html"><a href="allocmo.html"><i class="fa fa-check"></i><b>11.1</b> AllocMo</a></li>
+<li class="chapter" data-level="11.2" data-path="alloctrend.html"><a href="alloctrend.html"><i class="fa fa-check"></i><b>11.2</b> AllocTrend</a></li>
+<li class="chapter" data-level="11.3" data-path="allocdiff.html"><a href="allocdiff.html"><i class="fa fa-check"></i><b>11.3</b> AllocDiff</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html"><i class="fa fa-check"></i><b>12</b> Ownership Dispersion</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="herfindahl.html"><a href="herfindahl.html"><i class="fa fa-check"></i><b>12.1</b> Herfindahl</a></li>
+<li class="chapter" data-level="12.2" data-path="fund-count.html"><a href="fund-count.html"><i class="fa fa-check"></i><b>12.2</b> Fund Count</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="conviction.html"><a href="conviction.html"><i class="fa fa-check"></i><b>13</b> Conviction</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="allocationskew.html"><a href="allocationskew.html"><i class="fa fa-check"></i><b>13.1</b> AllocationSkew</a></li>
 </ul></li>
 <li class="part"><span><b>FAQ</b></span></li>
 <li class="chapter" data-level="" data-path="epfr-data-filters-1.html"><a href="epfr-data-filters-1.html"><i class="fa fa-check"></i>EPFR Data &amp; Filters</a>
@@ -3094,13 +3121,32 @@ nPrds
 
 
 
+<!-- In addition to other offerings EPFR has, we also have Stock Allocations data. -->
+<!-- EPFR tracks around **23-26** trillion AuM in equity funds, and at the stock level positions we track around **12** trillion AuM. Below you can find this coverage over time in comparison to our other offerings.  -->
+<!-- <center> -->
+<!-- ![Updated at the end of July each year](https://raw.githubusercontent.com/oliviablasz/EPFRNotebooks_v1/main/png/coverage_allocations.PNG){width=250px} -->
+<!-- </center> -->
+<!-- Allocations data is published monthly with a 26 day lag. -->
+<!-- --- -->
+<!-- ## Holdings -->
+<!-- What EPFR provides is the average percentage allocation of fund managers to individual securities, by Geographic Focus. This output is aggregate data, which we provide monthly at the stock level only.  -->
+<!-- There are 4 different outputs of average allocations that EPFR provides. This includes equal and Fund-weighted average percentage allocations which can include or exclude funds with zero allocation in the calculation. -->
+<!-- --- -->
+<!-- ### Granularity -->
+<!-- EPFR's holdings data is broken down by the following filters to create very different variations of average allocations: -->
+<!-- * Active -->
+<!-- * Passive -->
+<!-- * Exchange-traded funds (ETF) -->
+<!-- * Mutual -->
+<!-- --- -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="data-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="epfr-data-filters-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="definitions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
