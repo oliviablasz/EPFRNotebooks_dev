@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 FX Strategy | EPFR Strategy Notebooks</title>
+  <title>EPFR.r Library | EPFR Strategy Notebooks</title>
   <meta name="description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 FX Strategy | EPFR Strategy Notebooks" />
+  <meta property="og:title" content="EPFR.r Library | EPFR Strategy Notebooks" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
   <meta property="og:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="github-repo" content="EPFR/EPFR-QuantNotebooks" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 FX Strategy | EPFR Strategy Notebooks" />
+  <meta name="twitter:title" content="EPFR.r Library | EPFR Strategy Notebooks" />
   
   <meta name="twitter:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="twitter:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="strategy-implementation.html"/>
-<link rel="next" href="data-1.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="set-up.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -314,11 +314,20 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="fx-strategy" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> FX Strategy<a href="fx-strategy.html#fx-strategy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<!-- ## Overview -->
-<p>The <em>FX Strategy</em> is an equity fund-based currency rotation strategy, which ranks different foreign exchange markets of countries across a customized universe of both developed and emerging markets. This approach uses the stated allocations of equity funds with a cross-border focus and calculates the percentage flow into currencies.</p>
-<!-- In terms of twenty-day percentage flows, the top fifth of ACWI currencies outperform the bottom fifth by over 4% per year. The strategy works best amongst G10 currencies, but adds value across the board. -->
+<div id="epfr.r-library" class="section level1 unnumbered hasAnchor">
+<h1>EPFR.r Library<a href="epfr.r-library.html#epfr.r-library" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- (PART\*) EPFR Library -->
+<p>The R-based EPFR Library, created by members of the EPFR Quant Team, has an extensive list of applicable functions for use on our data and will be used in this demonstration of our strategies.</p>
+<p>This library includes a variety of different functions that can help create signals, rank factors, evaluate performance of strategies, along with a list of other useful tools for handling EPFR data.</p>
+<hr />
+<p>To install the library <code>EPFR.r</code>, <a href="https://github.com/EPFR/EPFR-Quant-Library-R">click here</a> to download the zip file from github, or you can find the code to do this below.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="epfr.r-library.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb1-2"><a href="epfr.r-library.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;EPFR/EPFR-Quant-Library-R&quot;</span>)</span>
+<span id="cb1-3"><a href="epfr.r-library.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;EPFR.r&quot;</span>)</span></code></pre></div>
+<!-- --- -->
+<!-- ### About {-} -->
+<p>To learn more please refer to the library documentation for all of the descriptions and complete list of parameters for each function, which is easily accessible via the help function in R (tip: <code>?fcn_name()</code>).</p>
+<!-- `ftp.get()`, `compound.flows()`, `bbk()`, bbk.matrix(), `Ctry.msci.members.rng()`, `Ctry.info()`, `ret.to.idx()`, `ret.idx.gaps.fix()`, `portfolio.beta.wrapper()`, `portfolio.residual()`, `mat.daily.to.monthly()`. -->
 <hr />
 </div>
             </section>
@@ -326,8 +335,8 @@ code span.wa { font-style: italic; } /* Warning */
           </div>
         </div>
       </div>
-<a href="strategy-implementation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="set-up.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -358,7 +367,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/EPFR/EPFR-QuantNotebooks/docs/01-Macro.Rmd",
+"link": "https://github.com/EPFR/EPFR-QuantNotebooks/docs/00-EPFRLib.Rmd",
 "text": "Suggest an edit"
 },
 "history": {
