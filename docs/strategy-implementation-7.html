@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13.1 AllocationSkew | EPFR Strategy Notebooks</title>
+  <title>14 Strategy Implementation | EPFR Strategy Notebooks</title>
   <meta name="description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13.1 AllocationSkew | EPFR Strategy Notebooks" />
+  <meta property="og:title" content="14 Strategy Implementation | EPFR Strategy Notebooks" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
   <meta property="og:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="github-repo" content="EPFR/EPFR-QuantNotebooks" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13.1 AllocationSkew | EPFR Strategy Notebooks" />
+  <meta name="twitter:title" content="14 Strategy Implementation | EPFR Strategy Notebooks" />
   
   <meta name="twitter:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="twitter:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="conviction.html"/>
-<link rel="next" href="strategy-implementation-7.html"/>
+<link rel="prev" href="allocationskew.html"/>
+<link rel="next" href="epfr-data-filters-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -369,27 +369,36 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="allocationskew" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> AllocationSkew<a href="allocationskew.html#allocationskew" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Multiplies a fund’s AuM by the direction of the difference between the average allocations of a peer group of funds and the fund’s latest allocations towards the same stock. If this difference is positive, the fund is underweight vs peers, and if the difference is negative, the fund is overweight vs peers. By summing these AuM across all applicable funds, then dividing by the sum of all AuM, we get a normalized metric. We expect this factor to reflect the percentage of AuM that is underweight a stock.</p>
-<div id="calculation-12" class="section level3 hasAnchor" number="13.1.1">
-<h3><span class="header-section-number">13.1.1</span> Calculation<a href="allocationskew.html#calculation-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[\text{AllocationSkew} \equiv \sum sgn(-\omega^+) \times \frac{ A}{\sum  A}\]</span></p>
+<div id="strategy-implementation-7" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">14</span> Strategy Implementation<a href="strategy-implementation-7.html#strategy-implementation-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="compounding-flows-5" class="section level4 hasAnchor" number="14.0.0.1">
+<h4><span class="header-section-number">14.0.0.1</span> Compounding Flows<a href="strategy-implementation-7.html#compounding-flows-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
-<div id="interpretation-9" class="section level3 hasAnchor" number="13.1.2">
-<h3><span class="header-section-number">13.1.2</span> Interpretation<a href="allocationskew.html#interpretation-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A positive value tells us that most funds, or at least those with a larger AuM, are underweight, meaning that only a small fraction of managers are bullish towards the stock. Similarly, a negative value indicates that many high-AuM funds are overweight the stock.</p>
+<div id="ranking-stocks" class="section level4 hasAnchor" number="14.0.0.2">
+<h4><span class="header-section-number">14.0.0.2</span> Ranking stocks<a href="strategy-implementation-7.html#ranking-stocks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="model-8" class="section level4 hasAnchor" number="14.0.0.3">
+<h4><span class="header-section-number">14.0.0.3</span> Model<a href="strategy-implementation-7.html#model-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <hr />
 </div>
+<div id="factor-performance" class="section level4 hasAnchor" number="14.0.0.4">
+<h4><span class="header-section-number">14.0.0.4</span> Factor Performance<a href="strategy-implementation-7.html#factor-performance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
-<!-- </div> -->
+<div id="performance-consistency" class="section level4 hasAnchor" number="14.0.0.5">
+<h4><span class="header-section-number">14.0.0.5</span> Performance Consistency<a href="strategy-implementation-7.html#performance-consistency" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+
+</div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="conviction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="strategy-implementation-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="allocationskew.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="epfr-data-filters-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
