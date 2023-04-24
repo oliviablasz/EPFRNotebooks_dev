@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.1 AllocMo | EPFR Strategy Notebooks</title>
+  <title>14 Backtest Implementation | EPFR Strategy Notebooks</title>
   <meta name="description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.1 AllocMo | EPFR Strategy Notebooks" />
+  <meta property="og:title" content="14 Backtest Implementation | EPFR Strategy Notebooks" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
   <meta property="og:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="github-repo" content="EPFR/EPFR-QuantNotebooks" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.1 AllocMo | EPFR Strategy Notebooks" />
+  <meta name="twitter:title" content="14 Backtest Implementation | EPFR Strategy Notebooks" />
   
   <meta name="twitter:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="twitter:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="manager-momentum.html"/>
-<link rel="next" href="alloctrend.html"/>
+<link rel="prev" href="allocskew.html"/>
+<link rel="next" href="epfr-data-filters-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -382,25 +382,39 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="allocmo" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> AllocMo<a href="allocmo.html#allocmo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A measure of manager allocation changes towards the stock, in absolute $ terms of AuM, where the change in allocation over the month reflects price pressure from manager-directed trading. By using both start and end AuM in the equation, we neutralize the effect of underlying price changes.</p>
-<div id="calculation" class="section level3 hasAnchor" number="11.1.1">
-<h3><span class="header-section-number">11.1.1</span> Calculation<a href="allocmo.html#calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[\text{AllocMo} \equiv \frac{\sum \Delta \omega \times ( A + \alpha)}{\sum (\omega - \Delta \omega/2) \times ( A + \alpha)}\]</span></p>
+<div id="backtest-implementation" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">14</span> Backtest Implementation<a href="backtest-implementation.html#backtest-implementation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-7" class="section level4 hasAnchor" number="14.0.0.1">
+<h4><span class="header-section-number">14.0.0.1</span> Data<a href="backtest-implementation.html#data-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
-<div id="interpretation-7" class="section level3 hasAnchor" number="11.1.2">
-<h3><span class="header-section-number">11.1.2</span> Interpretation<a href="allocmo.html#interpretation-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A positive value tells us that allocations towards a given stock have increased.</p>
+<div id="compounding-flows-5" class="section level4 hasAnchor" number="14.0.0.2">
+<h4><span class="header-section-number">14.0.0.2</span> Compounding Flows<a href="backtest-implementation.html#compounding-flows-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="ranking-stocks" class="section level4 hasAnchor" number="14.0.0.3">
+<h4><span class="header-section-number">14.0.0.3</span> Ranking stocks<a href="backtest-implementation.html#ranking-stocks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="model-8" class="section level4 hasAnchor" number="14.0.0.4">
+<h4><span class="header-section-number">14.0.0.4</span> Model<a href="backtest-implementation.html#model-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<hr />
+</div>
+<div id="factor-performance" class="section level4 hasAnchor" number="14.0.0.5">
+<h4><span class="header-section-number">14.0.0.5</span> Factor Performance<a href="backtest-implementation.html#factor-performance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="performance-consistency" class="section level4 hasAnchor" number="14.0.0.6">
+<h4><span class="header-section-number">14.0.0.6</span> Performance Consistency<a href="backtest-implementation.html#performance-consistency" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="manager-momentum.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="alloctrend.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="allocskew.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="epfr-data-filters-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

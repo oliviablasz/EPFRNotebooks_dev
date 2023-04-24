@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.1 AllocMo | EPFR Strategy Notebooks</title>
+  <title>EPFR Stock Factors | EPFR Strategy Notebooks</title>
   <meta name="description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.1 AllocMo | EPFR Strategy Notebooks" />
+  <meta property="og:title" content="EPFR Stock Factors | EPFR Strategy Notebooks" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
   <meta property="og:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="github-repo" content="EPFR/EPFR-QuantNotebooks" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.1 AllocMo | EPFR Strategy Notebooks" />
+  <meta name="twitter:title" content="EPFR Stock Factors | EPFR Strategy Notebooks" />
   
   <meta name="twitter:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="twitter:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="manager-momentum.html"/>
-<link rel="next" href="alloctrend.html"/>
+<link rel="prev" href="macro-strategy-signals.html"/>
+<link rel="next" href="epfr.r-library.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -382,25 +382,57 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="allocmo" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> AllocMo<a href="allocmo.html#allocmo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A measure of manager allocation changes towards the stock, in absolute $ terms of AuM, where the change in allocation over the month reflects price pressure from manager-directed trading. By using both start and end AuM in the equation, we neutralize the effect of underlying price changes.</p>
-<div id="calculation" class="section level3 hasAnchor" number="11.1.1">
-<h3><span class="header-section-number">11.1.1</span> Calculation<a href="allocmo.html#calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[\text{AllocMo} \equiv \frac{\sum \Delta \omega \times ( A + \alpha)}{\sum (\omega - \Delta \omega/2) \times ( A + \alpha)}\]</span></p>
+<div id="epfr-stock-factors" class="section level2 unnumbered hasAnchor">
+<h2>EPFR Stock Factors<a href="epfr-stock-factors.html#epfr-stock-factors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quantitative analysts at EPFR have created 13 different proof-of-concept stock factors using EPFR’s monthly holdings data and daily or monthly flows, which provide insight to various trends in the market. By identifying and following these trends, users can make better informed investment decisions. Below is a list of EPFR’s 7 daily and 6 monthly proof-of-concept factors that use stock level data used to create a signal:</p>
+<div id="daily-factors" class="section level3 unnumbered hasAnchor">
+<h3>Daily Factors:<a href="epfr-stock-factors.html#daily-factors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><a href="flow-momentum-1.html#flow-momentum-1">Flow Momentum</a>
+<ol style="list-style-type: decimal">
+<li><a href="flow-momentum-1.html#flomo">FloMo</a></li>
+</ol></li>
+<li><a href="smart-money.html#smart-money">Smart Money</a>
+<ol start="2" style="list-style-type: decimal">
+<li><a href="smart-money.html#flotrend">FloTrend</a></li>
+<li><a href="smart-money.html#flodiff">FloDiff</a></li>
+<li><a href="smart-money.html#flodiff2">FloDiff2</a></li>
+<li><a href="smart-money.html#actwttrend">ActWtTrend</a></li>
+<li><a href="smart-money.html#actwtdiff">ActWtDiff</a></li>
+<li><a href="smart-money.html#actwtdiff2">ActWtDiff2</a></li>
+</ol></li>
+</ul>
 </div>
-<div id="interpretation-7" class="section level3 hasAnchor" number="11.1.2">
-<h3><span class="header-section-number">11.1.2</span> Interpretation<a href="allocmo.html#interpretation-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A positive value tells us that allocations towards a given stock have increased.</p>
+<div id="monthly-factors" class="section level3 unnumbered hasAnchor">
+<h3>Monthly Factors:<a href="epfr-stock-factors.html#monthly-factors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><a href="manager-momentum.html#manager-momentum">Manager momentum</a>
+<ol style="list-style-type: decimal">
+<li><a href="allocmo.html#allocmo">AllocMo</a></li>
+<li><a href="alloctrend.html#alloctrend">AllocTrend</a></li>
+<li><a href="allocdiff.html#allocdiff">AllocDiff</a></li>
+</ol></li>
+<li><a href="ownership-dispersion.html#ownership-dispersion">Ownership Dispersion</a>
+<ol start="4" style="list-style-type: decimal">
+<li><a href="herfindahl.html#herfindahl">Herfindahl</a></li>
+<li><a href="fund-count.html#fund-count">Fund Count</a></li>
+</ol></li>
+<li><a href="conviction.html#conviction">Conviction</a>
+<ol start="6" style="list-style-type: decimal">
+<li><a href="allocskew.html#allocskew">AllocSkew</a></li>
+</ol></li>
+</ul>
+
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="manager-momentum.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="alloctrend.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="macro-strategy-signals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="epfr.r-library.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -431,7 +463,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/EPFR/EPFR-QuantNotebooks/docs/02-Stock.Rmd",
+"link": "https://github.com/EPFR/EPFR-QuantNotebooks/docs/index.Rmd",
 "text": "Suggest an edit"
 },
 "history": {

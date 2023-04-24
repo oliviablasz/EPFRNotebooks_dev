@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.1 AllocMo | EPFR Strategy Notebooks</title>
+  <title>8 Introduction | EPFR Strategy Notebooks</title>
   <meta name="description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.1 AllocMo | EPFR Strategy Notebooks" />
+  <meta property="og:title" content="8 Introduction | EPFR Strategy Notebooks" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
   <meta property="og:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="github-repo" content="EPFR/EPFR-QuantNotebooks" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.1 AllocMo | EPFR Strategy Notebooks" />
+  <meta name="twitter:title" content="8 Introduction | EPFR Strategy Notebooks" />
   
   <meta name="twitter:description" content="The objective of this book is to present EPFRs proof of concept strategies so that readers have a profound understanding of how to use our EPFR’s flow and allocation dataset, construct a signal, and find initial value." />
   <meta name="twitter:image" content="https://epfr.github.io/EPFR-QuantNotebooks/images/cover-image.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="manager-momentum.html"/>
-<link rel="next" href="alloctrend.html"/>
+<link rel="prev" href="strategy-implementation-6.html"/>
+<link rel="next" href="flow-momentum-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -120,16 +120,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
 <ul>
-<li class="chapter" data-level="" data-path="macro-strategy-signals.html"><a href="macro-strategy-signals.html"><i class="fa fa-check"></i>Macro Strategy Signals</a>
-<ul>
-<li class="chapter" data-level="" data-path="macro-strategy-signals.html"><a href="macro-strategy-signals.html#flow-momentum"><i class="fa fa-check"></i>Flow Momentum</a></li>
-<li class="chapter" data-level="" data-path="macro-strategy-signals.html"><a href="macro-strategy-signals.html#activepassive-indicator"><i class="fa fa-check"></i>Active/Passive Indicator</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="epfr-stock-factors.html"><a href="epfr-stock-factors.html"><i class="fa fa-check"></i>EPFR Stock Factors</a>
-<ul>
-<li class="chapter" data-level="" data-path="epfr-stock-factors.html"><a href="epfr-stock-factors.html#daily-factors"><i class="fa fa-check"></i>Daily Factors:</a></li>
-<li class="chapter" data-level="" data-path="epfr-stock-factors.html"><a href="epfr-stock-factors.html#monthly-factors"><i class="fa fa-check"></i>Monthly Factors:</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#signals"><i class="fa fa-check"></i>Signals</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="epfr.r-library.html"><a href="epfr.r-library.html"><i class="fa fa-check"></i>EPFR.r Library</a>
 <ul>
@@ -285,14 +276,15 @@ code span.wa { font-style: italic; } /* Warning */
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Stock Factors</b></span></li>
-<li class="chapter" data-level="8" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>8</b> Overview</a>
+<li class="chapter" data-level="8" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>8</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#data-location"><i class="fa fa-check"></i>Data Location</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#data-derivation"><i class="fa fa-check"></i>Data Derivation</a></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html#data-definitions"><i class="fa fa-check"></i>Data &amp; Definitions</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="flow-momentum-1.html"><a href="flow-momentum-1.html"><i class="fa fa-check"></i><b>9</b> Flow Momentum</a>
 <ul>
-<li class="chapter" data-level="" data-path="flow-momentum-1.html"><a href="flow-momentum-1.html#flomo"><i class="fa fa-check"></i>FloMo</a></li>
+<li class="chapter" data-level="9.0.1" data-path="flow-momentum-1.html"><a href="flow-momentum-1.html#flomo"><i class="fa fa-check"></i><b>9.0.1</b> FloMo</a></li>
+<li class="chapter" data-level="9.0.2" data-path="flow-momentum-1.html"><a href="flow-momentum-1.html#aggregate-flomo-file"><i class="fa fa-check"></i><b>9.0.2</b> Aggregate FloMo File</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="smart-money.html"><a href="smart-money.html"><i class="fa fa-check"></i><b>10</b> Smart Money</a>
 <ul>
@@ -307,29 +299,29 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="11.1" data-path="allocmo.html"><a href="allocmo.html"><i class="fa fa-check"></i><b>11.1</b> AllocMo</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="allocmo.html"><a href="allocmo.html#calculation"><i class="fa fa-check"></i><b>11.1.1</b> Calculation</a></li>
-<li class="chapter" data-level="11.1.2" data-path="allocmo.html"><a href="allocmo.html#interpretation-7"><i class="fa fa-check"></i><b>11.1.2</b> Interpretation</a></li>
+<li class="chapter" data-level="11.1.1" data-path="allocmo.html"><a href="allocmo.html#calculation-6"><i class="fa fa-check"></i><b>11.1.1</b> Calculation</a></li>
+<li class="chapter" data-level="11.1.2" data-path="allocmo.html"><a href="allocmo.html#interpretation-6"><i class="fa fa-check"></i><b>11.1.2</b> Interpretation</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="alloctrend.html"><a href="alloctrend.html"><i class="fa fa-check"></i><b>11.2</b> AllocTrend</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="alloctrend.html"><a href="alloctrend.html#calculation-1"><i class="fa fa-check"></i><b>11.2.1</b> Calculation</a></li>
-<li class="chapter" data-level="11.2.2" data-path="alloctrend.html"><a href="alloctrend.html#interpretation-8"><i class="fa fa-check"></i><b>11.2.2</b> Interpretation</a></li>
+<li class="chapter" data-level="11.2.1" data-path="alloctrend.html"><a href="alloctrend.html#calculation-7"><i class="fa fa-check"></i><b>11.2.1</b> Calculation</a></li>
+<li class="chapter" data-level="11.2.2" data-path="alloctrend.html"><a href="alloctrend.html#interpretation-7"><i class="fa fa-check"></i><b>11.2.2</b> Interpretation</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="allocdiff.html"><a href="allocdiff.html"><i class="fa fa-check"></i><b>11.3</b> AllocDiff</a>
 <ul>
-<li class="chapter" data-level="11.3.1" data-path="allocdiff.html"><a href="allocdiff.html#calculation-2"><i class="fa fa-check"></i><b>11.3.1</b> Calculation</a></li>
-<li class="chapter" data-level="11.3.2" data-path="allocdiff.html"><a href="allocdiff.html#interpretation-9"><i class="fa fa-check"></i><b>11.3.2</b> Interpretation</a></li>
+<li class="chapter" data-level="11.3.1" data-path="allocdiff.html"><a href="allocdiff.html#calculation-8"><i class="fa fa-check"></i><b>11.3.1</b> Calculation</a></li>
+<li class="chapter" data-level="11.3.2" data-path="allocdiff.html"><a href="allocdiff.html#interpretation-8"><i class="fa fa-check"></i><b>11.3.2</b> Interpretation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html"><i class="fa fa-check"></i><b>12</b> Ownership Dispersion</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="herfindahl.html"><a href="herfindahl.html"><i class="fa fa-check"></i><b>12.1</b> Herfindahl</a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="herfindahl.html"><a href="herfindahl.html#calculation-3"><i class="fa fa-check"></i><b>12.1.1</b> Calculation</a></li>
+<li class="chapter" data-level="12.1.1" data-path="herfindahl.html"><a href="herfindahl.html#calculation-9"><i class="fa fa-check"></i><b>12.1.1</b> Calculation</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="fund-count.html"><a href="fund-count.html"><i class="fa fa-check"></i><b>12.2</b> Fund Count</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="fund-count.html"><a href="fund-count.html#calculation-4"><i class="fa fa-check"></i><b>12.2.1</b> Calculation</a></li>
+<li class="chapter" data-level="12.2.1" data-path="fund-count.html"><a href="fund-count.html#calculation-10"><i class="fa fa-check"></i><b>12.2.1</b> Calculation</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="refrences.html"><a href="refrences.html"><i class="fa fa-check"></i><b>12.3</b> Refrences</a></li>
 </ul></li>
@@ -337,11 +329,11 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="13.1" data-path="allocskew.html"><a href="allocskew.html"><i class="fa fa-check"></i><b>13.1</b> AllocSkew</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="allocskew.html"><a href="allocskew.html#calculation-5"><i class="fa fa-check"></i><b>13.1.1</b> Calculation</a></li>
-<li class="chapter" data-level="13.1.2" data-path="allocskew.html"><a href="allocskew.html#interpretation-10"><i class="fa fa-check"></i><b>13.1.2</b> Interpretation</a></li>
+<li class="chapter" data-level="13.1.1" data-path="allocskew.html"><a href="allocskew.html#calculation-11"><i class="fa fa-check"></i><b>13.1.1</b> Calculation</a></li>
+<li class="chapter" data-level="13.1.2" data-path="allocskew.html"><a href="allocskew.html#interpretation-9"><i class="fa fa-check"></i><b>13.1.2</b> Interpretation</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a></li>
+<li class="chapter" data-level="14" data-path="strategy-implementation-7.html"><a href="strategy-implementation-7.html"><i class="fa fa-check"></i><b>14</b> Strategy Implementation</a></li>
 <li class="part"><span><b>FAQ</b></span></li>
 <li class="chapter" data-level="" data-path="epfr-data-filters-1.html"><a href="epfr-data-filters-1.html"><i class="fa fa-check"></i>EPFR Data &amp; Filters</a>
 <ul>
@@ -382,16 +374,53 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="allocmo" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> AllocMo<a href="allocmo.html#allocmo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A measure of manager allocation changes towards the stock, in absolute $ terms of AuM, where the change in allocation over the month reflects price pressure from manager-directed trading. By using both start and end AuM in the equation, we neutralize the effect of underlying price changes.</p>
-<div id="calculation" class="section level3 hasAnchor" number="11.1.1">
-<h3><span class="header-section-number">11.1.1</span> Calculation<a href="allocmo.html#calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[\text{AllocMo} \equiv \frac{\sum \Delta \omega \times ( A + \alpha)}{\sum (\omega - \Delta \omega/2) \times ( A + \alpha)}\]</span></p>
+<div id="introduction-1" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Introduction<a href="introduction-1.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Quantitative analysts at EPFR have created 13 different proof-of-concept stock factors that can be used in single stock rotation strategies, and have been backtested in universes such as S&amp;P 500, Russell 2000, MSCI EM.</p>
+<div id="factors" class="section level3 unnumbered hasAnchor">
+<h3>Factors<a href="introduction-1.html#factors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The stock factors that have been created using EPFR’s holdings data and daily or monthly flows provide insight to various trends in the market. By identifying and following these trends, users can make better informed investment decisions. Below is a list of EPFR’s 7 daily and 6 monthly proof-of-concept factors that use stock level data used to create a signal:</p>
+<ul>
+<li><a href="flow-momentum-1.html#flow-momentum-1">Flow Momentum</a>
+<ol style="list-style-type: decimal">
+<li><a href="flow-momentum-1.html#flomo">FloMo</a></li>
+</ol></li>
+<li><a href="smart-money.html#smart-money">Smart Money</a>
+<ol start="2" style="list-style-type: decimal">
+<li><a href="smart-money.html#flotrend">FloTrend</a></li>
+<li><a href="smart-money.html#flodiff">FloDiff</a></li>
+<li><a href="smart-money.html#flodiff2">FloDiff2</a></li>
+<li><a href="smart-money.html#actwttrend">ActWtTrend</a></li>
+<li><a href="smart-money.html#actwtdiff">ActWtDiff</a></li>
+<li><a href="smart-money.html#actwtdiff2">ActWtDiff2</a></li>
+</ol></li>
+<li><a href="manager-momentum.html#manager-momentum">Manager momentum</a>
+<ol style="list-style-type: decimal">
+<li><a href="allocmo.html#allocmo">AllocMo</a></li>
+<li><a href="alloctrend.html#alloctrend">AllocTrend</a></li>
+<li><a href="allocdiff.html#allocdiff">AllocDiff</a></li>
+</ol></li>
+<li><a href="ownership-dispersion.html#ownership-dispersion">Ownership Dispersion</a>
+<ol start="4" style="list-style-type: decimal">
+<li><a href="herfindahl.html#herfindahl">Herfindahl</a></li>
+<li><a href="fund-count.html#fund-count">Fund Count</a></li>
+</ol></li>
+<li><a href="conviction.html#conviction">Conviction</a>
+<ol start="6" style="list-style-type: decimal">
+<li><a href="allocskew.html#allocskew">AllocSkew</a></li>
+</ol></li>
+</ul>
 </div>
-<div id="interpretation-7" class="section level3 hasAnchor" number="11.1.2">
-<h3><span class="header-section-number">11.1.2</span> Interpretation<a href="allocmo.html#interpretation-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A positive value tells us that allocations towards a given stock have increased.</p>
+<div id="data-definitions" class="section level3 unnumbered hasAnchor">
+<h3>Data &amp; Definitions<a href="introduction-1.html#data-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quantitative analysts at EPFR derive stock factors from the following variables in EPFR’s holdings and fund flow database:</p>
+<p><strong>Holdings:</strong></p>
+<p><span class="math inline">\(\begin{align} \omega &amp; \equiv \text{% weight held by a fund in a security} \\ \Delta \omega &amp; \equiv \text{change in weight from prior month} \\ \omega^{+} &amp; \equiv \text{active weight versus peers} \end{align}\)</span></p>
+<p><strong>Flows:</strong></p>
+<p><span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \alpha &amp; \equiv \text{dollar starting assets of a fund} \\  A &amp; \equiv \text{dollar ending assets of a fund} \end{align}\)</span></p>
+<p><em>Note: these are not the only stock factors that can be derived from this data base. Users looking to test a different hypothesis can work with the team of Quantitative analysts at EPFR to create other factors using the database.</em></p>
+<!-- Using our holdings and flow data the user is able to create many different quant factors. EPFR has created a set of 13 proof of concept quant factors using the following data. -->
+<hr />
 </div>
 </div>
             </section>
@@ -399,8 +428,8 @@ code span.wa { font-style: italic; } /* Warning */
           </div>
         </div>
       </div>
-<a href="manager-momentum.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="alloctrend.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="strategy-implementation-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="flow-momentum-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
