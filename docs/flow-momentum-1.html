@@ -387,7 +387,7 @@ code span.wa { font-style: italic; } /* Warning */
 <p>Flow momentum shows where flows are moving.</p>
 <div id="flomo" class="section level3 unnumbered hasAnchor">
 <h3>FloMo<a href="flow-momentum-1.html#flomo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>FloMo is calculated by normalized the dollar flow over AuM.</p>
+<p>FloMo is calculated by the normalized the dollar flow over AuM.</p>
 <p>To calculate the dollar flow to a security, EPFR scales a fund’s flow by multiplying it against its stated stock allocation, on that day. The same procedure is applied to all funds with fund flow and stock allocation information, which are then summed for each security across all funds, to get the total dollar flow into a security.</p>
 <!-- $$\text{Total Flow}_{s,t} = \sum \varphi \times \omega$$ -->
 <!-- Where: -->
@@ -411,6 +411,135 @@ where:</p>
 <!-- '/StockFlows4.1/QuantitativeFactors/Daily/FloMo' -->
 <!-- ``` -->
 <!-- The user will find all aggregate FloMo history as well as history broken down by Active, Passive, ETF and Mutual funds. -->
+<div id="example-flomo" class="section level4 unnumbered hasAnchor">
+<h4>Example FloMo<a href="flow-momentum-1.html#example-flomo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Below shows a snippet of what EPFR’s <em>FloMo</em> Files contain:</p>
+<p>Location: <code>'/StockFlows4.1/QuantitativeFactors/Daily/FloMo/Aggregate/FlowMomentum202011.txt</code></p>
+<table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+ReportDate
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+HSecurityId
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+SecurityName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+FloMo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+1112
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11/02/2020 12:00:00 AM
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+1002967
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+Microsoft Corporation COM
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+0.081192843801613
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+5264
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11/02/2020 12:00:00 AM
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+410864
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+Apple Inc. COM
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+0.075320134299900
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+8679
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11/02/2020 12:00:00 AM
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+90522
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+“Amazon.com, Inc. COM”
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+0.055117562719877
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11412
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11/02/2020 12:00:00 AM
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+1002408
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+Exxon Mobil Corporation COM
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+0.294078014369536
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+12226
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11/02/2020 12:00:00 AM
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+623932
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+“Netflix, Inc. COM”
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+0.015998119230939
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+13276
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+11/02/2020 12:00:00 AM
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+6012656
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+Visa Inc COM CL A
+</td>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+0.192744375318591
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="interpretation" class="section level4 unnumbered hasAnchor">
 <h4>Interpretation<a href="flow-momentum-1.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A positive value indicates money flowing to a security. Similarly a negative value indicates outflow from a security.</p>
