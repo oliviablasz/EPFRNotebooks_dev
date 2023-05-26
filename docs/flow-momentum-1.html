@@ -296,6 +296,7 @@ code span.wa { font-style: italic; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="10" data-path="smart-money.html"><a href="smart-money.html"><i class="fa fa-check"></i><b>10</b> Smart Money</a>
 <ul>
+<li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#references"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flotrend"><i class="fa fa-check"></i>FloTrend</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff"><i class="fa fa-check"></i>FloDiff</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff2"><i class="fa fa-check"></i>FloDiff2</a></li>
@@ -313,13 +314,18 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#herfindahl"><i class="fa fa-check"></i>Herfindahl</a></li>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#fund-count"><i class="fa fa-check"></i>Fund Count</a></li>
-<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#refrences"><i class="fa fa-check"></i>Refrences</a></li>
+<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="conviction.html"><a href="conviction.html"><i class="fa fa-check"></i><b>13</b> Conviction</a>
 <ul>
 <li class="chapter" data-level="" data-path="conviction.html"><a href="conviction.html#allocskew"><i class="fa fa-check"></i>AllocSkew</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a></li>
+<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a>
+<ul>
+<li class="chapter" data-level="" data-path="backtest-implementation.html"><a href="backtest-implementation.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="14.0.1" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-epfr-stock-factor-data"><i class="fa fa-check"></i><b>14.0.1</b> Import EPFR Stock Factor data</a></li>
+<li class="chapter" data-level="14.0.2" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-returns-data"><i class="fa fa-check"></i><b>14.0.2</b> Import Returns data</a></li>
+</ul></li>
 <li class="part"><span><b>FAQ</b></span></li>
 <li class="chapter" data-level="" data-path="epfr-data-filters-1.html"><a href="epfr-data-filters-1.html"><i class="fa fa-check"></i>EPFR Data &amp; Filters</a>
 <ul>
@@ -390,11 +396,15 @@ where:</p>
 <!-- '/StockFlows4.1/QuantitativeFactors/Daily/FloMo' -->
 <!-- ``` -->
 <!-- The user will find all aggregate FloMo history as well as history broken down by Active, Passive, ETF and Mutual funds. -->
-<hr />
+<div id="interpretation-flomo" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation FloMo<a href="flow-momentum-1.html#interpretation-flomo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value indicates money flowing to a security. Similarly a negative value indicates outflow from a security.</p>
+<!-- We can use these values to rank stocks into different baskets and g  -->
+</div>
 <div id="example-flomo" class="section level4 unnumbered hasAnchor">
 <h4>Example FloMo<a href="flow-momentum-1.html#example-flomo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>FloMo</em> Files contain:</p>
-<p>Location: <code>'/StockFlows4.1/QuantitativeFactors/Daily/FloMo/Aggregate/FlowMomentum202011.txt'</code></p>
+<p>Location: <code>'/StockFlows4.1/QuantitativeFactors/Daily/FloMo/Aggregate/FlowMomentum202012.txt'</code></p>
 <table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -537,11 +547,6 @@ Visa Inc
 </tbody>
 </table>
 <hr />
-</div>
-<div id="interpretation-flomo" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation FloMo<a href="flow-momentum-1.html#interpretation-flomo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value indicates money flowing to a security. Similarly a negative value indicates outflow from a security.</p>
-<!-- We can use these values to rank stocks into different baskets and g  -->
 </div>
 </div>
 </div>

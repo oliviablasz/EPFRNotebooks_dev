@@ -296,6 +296,7 @@ code span.wa { font-style: italic; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="10" data-path="smart-money.html"><a href="smart-money.html"><i class="fa fa-check"></i><b>10</b> Smart Money</a>
 <ul>
+<li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#references"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flotrend"><i class="fa fa-check"></i>FloTrend</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff"><i class="fa fa-check"></i>FloDiff</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff2"><i class="fa fa-check"></i>FloDiff2</a></li>
@@ -313,13 +314,18 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#herfindahl"><i class="fa fa-check"></i>Herfindahl</a></li>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#fund-count"><i class="fa fa-check"></i>Fund Count</a></li>
-<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#refrences"><i class="fa fa-check"></i>Refrences</a></li>
+<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="conviction.html"><a href="conviction.html"><i class="fa fa-check"></i><b>13</b> Conviction</a>
 <ul>
 <li class="chapter" data-level="" data-path="conviction.html"><a href="conviction.html#allocskew"><i class="fa fa-check"></i>AllocSkew</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a></li>
+<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a>
+<ul>
+<li class="chapter" data-level="" data-path="backtest-implementation.html"><a href="backtest-implementation.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="14.0.1" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-epfr-stock-factor-data"><i class="fa fa-check"></i><b>14.0.1</b> Import EPFR Stock Factor data</a></li>
+<li class="chapter" data-level="14.0.2" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-returns-data"><i class="fa fa-check"></i><b>14.0.2</b> Import Returns data</a></li>
+</ul></li>
 <li class="part"><span><b>FAQ</b></span></li>
 <li class="chapter" data-level="" data-path="epfr-data-filters-1.html"><a href="epfr-data-filters-1.html"><i class="fa fa-check"></i>EPFR Data &amp; Filters</a>
 <ul>
@@ -370,7 +376,10 @@ code span.wa { font-style: italic; } /* Warning */
 <p><span class="math display">\[\text{AllocMo} \equiv \frac{\sum \Delta \omega \times ( A + \alpha)}{\sum (\omega - \Delta \omega/2) \times ( A + \alpha)}\]</span></p>
 <p>where:</p>
 <p><span class="math inline">\(\begin{align} \omega &amp; \equiv \text{% weight held by a fund in a security} \\ \Delta \omega &amp; \equiv \text{change in weight from prior month} \\ \alpha &amp; \equiv \text{dollar starting assets of a fund} \\  A &amp; \equiv \text{dollar ending assets of a fund} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-allocmo" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation AllocMo<a href="manager-momentum.html#interpretation-allocmo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value tells us that allocations towards a given stock have increased.</p>
+</div>
 <div id="example-allocmo" class="section level4 unnumbered hasAnchor">
 <h4>Example AllocMo<a href="manager-momentum.html#example-allocmo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>AllocMo</em> Files contain:</p>
@@ -518,11 +527,6 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-allocmo" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation AllocMo<a href="manager-momentum.html#interpretation-allocmo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value tells us that allocations towards a given stock have increased.</p>
-<hr />
-</div>
 </div>
 <div id="alloctrend" class="section level3 unnumbered hasAnchor">
 <h3>AllocTrend<a href="manager-momentum.html#alloctrend" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -530,7 +534,10 @@ Visa Inc
 <p><span class="math display">\[\text{AllocTrend} \equiv \frac{\sum \Delta \omega \times ( A + \alpha)}{\sum |\Delta \omega \times ( A + \alpha)|}\]</span></p>
 <p>where:</p>
 <p><span class="math inline">\(\begin{align} \Delta \omega &amp; \equiv \text{change in weight from prior month} \\ \alpha &amp; \equiv \text{dollar starting assets of a fund} \\  A &amp; \equiv \text{dollar ending assets of a fund} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-alloctrend" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation AllocTrend<a href="manager-momentum.html#interpretation-alloctrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value tells us that allocations towards a given stock have increased.</p>
+</div>
 <div id="example-alloctrend" class="section level4 unnumbered hasAnchor">
 <h4>Example AllocTrend<a href="manager-momentum.html#example-alloctrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>AllocTrend</em> Files contain:</p>
@@ -678,11 +685,6 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-alloctrend" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation AllocTrend<a href="manager-momentum.html#interpretation-alloctrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value tells us that allocations towards a given stock have increased.</p>
-<hr />
-</div>
 </div>
 <div id="allocdiff" class="section level3 unnumbered hasAnchor">
 <h3>AllocDiff<a href="manager-momentum.html#allocdiff" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -690,7 +692,11 @@ Visa Inc
 <p><span class="math display">\[\text{AllocDiff} \equiv \frac{\sum sgn(\Delta \omega) \times ( A + \alpha)}{\sum ( A + \alpha)}\]</span></p>
 <p>where:</p>
 <p><span class="math inline">\(\begin{align} \Delta \omega &amp; \equiv \text{change in weight from prior month} \\ \alpha &amp; \equiv \text{dollar starting assets of a fund} \\  A &amp; \equiv \text{dollar ending assets of a fund} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-allocdiff" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation AllocDiff<a href="manager-momentum.html#interpretation-allocdiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value indicates an increase in the amount of AuM invested to the stock, and a negative value indicates a decrease in the AuM invested in the stock.</p>
+<p>The more positive the indicator, the larger the increase of AuM invested in the stock relative to other stocks with a less positive indicator. Similarly, a more negative indicator indicates a larger decrease in AuM invested in the stock relative to other stocks with a less negative indicator.</p>
+</div>
 <div id="example-allocdiff" class="section level4 unnumbered hasAnchor">
 <h4>Example AllocDiff<a href="manager-momentum.html#example-allocdiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>AllocDiff</em> Files contain:</p>
@@ -836,12 +842,6 @@ Visa Inc
 </tr>
 </tbody>
 </table>
-<hr />
-</div>
-<div id="interpretation-allocdiff" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation AllocDiff<a href="manager-momentum.html#interpretation-allocdiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value indicates an increase in the amount of AuM invested to the stock, and a negative value indicates a decrease in the AuM invested in the stock.</p>
-<p>The more positive the indicator, the larger the increase of AuM invested in the stock relative to other stocks with a less positive indicator. Similarly, a more negative indicator indicates a larger decrease in AuM invested in the stock relative to other stocks with a less negative indicator.</p>
 <hr />
 </div>
 </div>

@@ -88,8 +88,8 @@ manager-momentum
 ownership-dispersion
 conviction
 backtest-implementation
-data-7
-compounding-flows-5
+import-epfr-stock-factor-data
+import-returns-data
 ranking-stocks
 model-8
 factor-performance

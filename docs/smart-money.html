@@ -296,6 +296,7 @@ code span.wa { font-style: italic; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="10" data-path="smart-money.html"><a href="smart-money.html"><i class="fa fa-check"></i><b>10</b> Smart Money</a>
 <ul>
+<li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#references"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flotrend"><i class="fa fa-check"></i>FloTrend</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff"><i class="fa fa-check"></i>FloDiff</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff2"><i class="fa fa-check"></i>FloDiff2</a></li>
@@ -313,13 +314,18 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#herfindahl"><i class="fa fa-check"></i>Herfindahl</a></li>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#fund-count"><i class="fa fa-check"></i>Fund Count</a></li>
-<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#refrences"><i class="fa fa-check"></i>Refrences</a></li>
+<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="conviction.html"><a href="conviction.html"><i class="fa fa-check"></i><b>13</b> Conviction</a>
 <ul>
 <li class="chapter" data-level="" data-path="conviction.html"><a href="conviction.html#allocskew"><i class="fa fa-check"></i>AllocSkew</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a></li>
+<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a>
+<ul>
+<li class="chapter" data-level="" data-path="backtest-implementation.html"><a href="backtest-implementation.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="14.0.1" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-epfr-stock-factor-data"><i class="fa fa-check"></i><b>14.0.1</b> Import EPFR Stock Factor data</a></li>
+<li class="chapter" data-level="14.0.2" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-returns-data"><i class="fa fa-check"></i><b>14.0.2</b> Import Returns data</a></li>
+</ul></li>
 <li class="part"><span><b>FAQ</b></span></li>
 <li class="chapter" data-level="" data-path="epfr-data-filters-1.html"><a href="epfr-data-filters-1.html"><i class="fa fa-check"></i>EPFR Data &amp; Filters</a>
 <ul>
@@ -365,9 +371,14 @@ code span.wa { font-style: italic; } /* Warning */
 <p>Smart Money factors are known factors in literature, and simply an effect that tries to identify funds who are receiving additional flows.</p>
 <p>EPFR has a set of 6 daily Smart Money factors, which are based on active manager sentiment and fund activity.</p>
 <p>The idea behind the following “Smart Money” indicators is to mimic the actions of any funds receiving inflows, and do the opposite to those receiving outflows. The rationale is that investors follow, and invest in, funds that outperform. Thus, “Smart” funds receiving inflows will eventually increase their positions towards stocks that they already hold, subsequently creating additional flows into the stocks themselves.</p>
-<p>So the idea is that flows chase returns, and this will eventually create an inner loop between flows, returns, and price pressure; which is captured in 6 different ways.</p>
+<!-- These funds are chasing returns, so the idea is that by following these flows and basically we can find a relationship between flows and returns this way.  -->
+<!-- So the idea is that flows chase returns, and this will eventually create an inner loop between flows, returns, and price pressure; which is captured in 6 different ways.  -->
+<div id="references" class="section level3 unnumbered hasAnchor">
+<h3>References<a href="smart-money.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>[1] Lou, Dong. “A flow-based explanation for return predictability.” The Review of Financial Studies 25.12 (2012): 3457-3489.3.</p>
 <p><em>for more information on smart money effect please refer to academic literature resources</em></p>
 <hr />
+</div>
 <div id="flotrend" class="section level3 unnumbered hasAnchor">
 <h3>FloTrend<a href="smart-money.html#flotrend" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>FloTrend is calculated by the net change in flow allocations</p>
@@ -375,7 +386,11 @@ code span.wa { font-style: italic; } /* Warning */
 <p><span class="math display">\[\text{FloTrend} \equiv \frac{\sum \Delta \omega \times \varphi}{\sum | \Delta \omega \times \varphi|}\]</span></p>
 <p>where:</p>
 <p><span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \Delta \omega &amp; \equiv \text{change in weight from prior month} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-flotrend" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation FloTrend<a href="smart-money.html#interpretation-flotrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value indicates a positive manager sentiment towards a stock, as their weightings have increased, as well as high investor sentiment and strong inflows to the same fund.</p>
+<p>The more positive the indicator, the larger the increase in allocation towards the stock, or the higher the inflow, or both.</p>
+</div>
 <div id="example-flotrend" class="section level4 unnumbered hasAnchor">
 <h4>Example FloTrend<a href="smart-money.html#example-flotrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>FloTrend</em> Files contain:</p>
@@ -523,12 +538,6 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-flotrend" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation FloTrend<a href="smart-money.html#interpretation-flotrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value indicates a positive manager sentiment towards a stock, as their weightings have increased, as well as high investor sentiment and strong inflows to the same fund.</p>
-<p>The more positive the indicator, the larger the increase in allocation towards the stock, or the higher the inflow, or both.</p>
-<hr />
-</div>
 </div>
 <div id="flodiff" class="section level3 unnumbered hasAnchor">
 <h3>FloDiff<a href="smart-money.html#flodiff" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -536,7 +545,10 @@ Visa Inc
 <!-- #### Calculation {-} -->
 <p><span class="math display">\[\text{FloDiff} \equiv \frac{\sum \text{sgn}(\Delta \omega) \times \varphi}{\sum |\varphi|}\]</span>
 <span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \Delta \omega &amp; \equiv \text{change in weight from prior month} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-flodiff" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation FloDiff<a href="smart-money.html#interpretation-flodiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value tells us that more flows have been directed towards funds increasing their allocations to the stock. Similarly, a negative value indicates that more flows have been driven towards funds decreasing their position towards the stock.</p>
+</div>
 <div id="example-flodiff" class="section level4 unnumbered hasAnchor">
 <h4>Example FloDiff<a href="smart-money.html#example-flodiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>FloDiff</em> Files contain:</p>
@@ -684,18 +696,17 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-flodiff" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation FloDiff<a href="smart-money.html#interpretation-flodiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value tells us that more flows have been directed towards funds increasing their allocations to the stock. Similarly, a negative value indicates that more flows have been driven towards funds decreasing their position towards the stock.</p>
-<hr />
-</div>
 </div>
 <div id="flodiff2" class="section level3 unnumbered hasAnchor">
 <h3>FloDiff2<a href="smart-money.html#flodiff2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!-- #### Calculation {-} -->
 <p><span class="math display">\[\text{FloDiff2} \equiv \frac{\sum \Delta \omega \times \text{sgn}(\varphi)}{\sum |\Delta \omega|}\]</span>
 <span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \Delta \omega &amp; \equiv \text{change in weight from prior month} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-flodiff2" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation FloDiff2<a href="smart-money.html#interpretation-flodiff2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value tells us that more flows have been directed towards funds increasing their allocations to the stock by larger amounts. Similarly, a negative value indicates that more flows have come out of funds increasing their allocations to the stock by larger amounts.</p>
+<p>Conversely to the FloDiff indicator, this one places more emphasis on the changes in allocations, by removing any magnitude associated with fund in/outflows and simplifying them to a + or -1.</p>
+</div>
 <div id="example-flodiff2" class="section level4 unnumbered hasAnchor">
 <h4>Example FloDiff2<a href="smart-money.html#example-flodiff2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>FloDiff2</em> Files contain:</p>
@@ -843,19 +854,17 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-flodiff2" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation FloDiff2<a href="smart-money.html#interpretation-flodiff2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value tells us that more flows have been directed towards funds increasing their allocations to the stock by larger amounts. Similarly, a negative value indicates that more flows have come out of funds increasing their allocations to the stock by larger amounts.</p>
-<p>Conversely to the FloDiff indicator, this one places more emphasis on the changes in allocations, by removing any magnitude associated with fund in/outflows and simplifying them to a + or -1.</p>
-<hr />
-</div>
 </div>
 <div id="actwttrend" class="section level3 unnumbered hasAnchor">
 <h3>ActWtTrend<a href="smart-money.html#actwttrend" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!-- #### Calculation  -->
 <p><span class="math display">\[\text{ActWtTrend} \equiv \frac{\sum \omega^{+} \times \varphi}{\sum |\omega^{+} \times \varphi|}\]</span>
 <span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \omega^{+} &amp; \equiv \text{active weight versus peers} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-actwttrend" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation ActWtTrend<a href="smart-money.html#interpretation-actwttrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value indicates a positive manager sentiment towards the stock, as their active weights are bullish, as well as high investor sentiment and strong inflows to the same fund.</p>
+<p>The more positive the indicator, the larger the active weight towards the stock, or the higher the inflow, or both.</p>
+</div>
 <div id="example-actwttrend" class="section level4 unnumbered hasAnchor">
 <h4>Example ActWtTrend<a href="smart-money.html#example-actwttrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>ActWtTrend</em> Files contain:</p>
@@ -1003,12 +1012,6 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-actwttrend" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation ActWtTrend<a href="smart-money.html#interpretation-actwttrend" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value indicates a positive manager sentiment towards the stock, as their active weights are bullish, as well as high investor sentiment and strong inflows to the same fund.</p>
-<p>The more positive the indicator, the larger the active weight towards the stock, or the higher the inflow, or both.</p>
-<hr />
-</div>
 </div>
 <div id="actwtdiff" class="section level3 unnumbered hasAnchor">
 <h3>ActWtDiff<a href="smart-money.html#actwtdiff" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1016,7 +1019,10 @@ Visa Inc
 <!-- #### Calculation {-} -->
 <p><span class="math display">\[\text{ActWtDiff} \equiv \frac{\sum \text{sgn}(\omega^{+}) \times \varphi}{\sum |\varphi|}\]</span>
 <span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \omega^{+} &amp; \equiv \text{active weight versus peers} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-actwtdiff" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation ActWtDiff<a href="smart-money.html#interpretation-actwtdiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value tells us that more flows have been directed towards funds that are bullish towards the stock compared with its peers. Similarly, a negative value indicates that more flows have been driven towards funds that are bearish toward the stock compared with its peers.</p>
+</div>
 <div id="example-actwtdiff" class="section level4 unnumbered hasAnchor">
 <h4>Example ActWtDiff<a href="smart-money.html#example-actwtdiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>ActWtDiff</em> Files contain:</p>
@@ -1164,11 +1170,6 @@ Visa Inc
 </table>
 <hr />
 </div>
-<div id="interpretation-actwtdiff" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation ActWtDiff<a href="smart-money.html#interpretation-actwtdiff" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value tells us that more flows have been directed towards funds that are bullish towards the stock compared with its peers. Similarly, a negative value indicates that more flows have been driven towards funds that are bearish toward the stock compared with its peers.</p>
-<hr />
-</div>
 </div>
 <div id="actwtdiff2" class="section level3 unnumbered hasAnchor">
 <h3>ActWtDiff2<a href="smart-money.html#actwtdiff2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1176,7 +1177,10 @@ Visa Inc
 <!-- #### Calculation {-} -->
 <p><span class="math display">\[\text{ActWtDiff2} \equiv \frac{\sum \omega^{+} \times \text{sgn}(\varphi)}{\sum |\omega^{+}|}\]</span>
 <span class="math inline">\(\begin{align} \varphi &amp; \equiv \text{dollar flow into a fund} \\ \omega^{+} &amp; \equiv \text{active weight versus peers} \end{align}\)</span></p>
-<hr />
+<div id="interpretation-actwtdiff2" class="section level4 unnumbered hasAnchor">
+<h4>Interpretation ActWtDiff2<a href="smart-money.html#interpretation-actwtdiff2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A positive value tells us that more flows have been directed towards funds that are more highly bullish towards the stock compared with its peers (i.e. the active weight is larger). Similarly, a negative value indicates that more flows have come out of funds that are more highly bullish towards the stock compared with its peers.</p>
+</div>
 <div id="example-actwtdiff2" class="section level4 unnumbered hasAnchor">
 <h4>Example ActWtDiff2<a href="smart-money.html#example-actwtdiff2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Below shows a snippet of what EPFR’s <em>ActWtDiff2</em> Files contain:</p>
@@ -1322,11 +1326,6 @@ Visa Inc
 </tr>
 </tbody>
 </table>
-<hr />
-</div>
-<div id="interpretation-actwtdiff2" class="section level4 unnumbered hasAnchor">
-<h4>Interpretation ActWtDiff2<a href="smart-money.html#interpretation-actwtdiff2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A positive value tells us that more flows have been directed towards funds that are more highly bullish towards the stock compared with its peers (i.e. the active weight is larger). Similarly, a negative value indicates that more flows have come out of funds that are more highly bullish towards the stock compared with its peers.</p>
 <hr />
 </div>
 </div>

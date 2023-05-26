@@ -296,6 +296,7 @@ code span.wa { font-style: italic; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="10" data-path="smart-money.html"><a href="smart-money.html"><i class="fa fa-check"></i><b>10</b> Smart Money</a>
 <ul>
+<li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#references"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flotrend"><i class="fa fa-check"></i>FloTrend</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff"><i class="fa fa-check"></i>FloDiff</a></li>
 <li class="chapter" data-level="" data-path="smart-money.html"><a href="smart-money.html#flodiff2"><i class="fa fa-check"></i>FloDiff2</a></li>
@@ -313,13 +314,18 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#herfindahl"><i class="fa fa-check"></i>Herfindahl</a></li>
 <li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#fund-count"><i class="fa fa-check"></i>Fund Count</a></li>
-<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#refrences"><i class="fa fa-check"></i>Refrences</a></li>
+<li class="chapter" data-level="" data-path="ownership-dispersion.html"><a href="ownership-dispersion.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="conviction.html"><a href="conviction.html"><i class="fa fa-check"></i><b>13</b> Conviction</a>
 <ul>
 <li class="chapter" data-level="" data-path="conviction.html"><a href="conviction.html#allocskew"><i class="fa fa-check"></i>AllocSkew</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a></li>
+<li class="chapter" data-level="14" data-path="backtest-implementation.html"><a href="backtest-implementation.html"><i class="fa fa-check"></i><b>14</b> Backtest Implementation</a>
+<ul>
+<li class="chapter" data-level="" data-path="backtest-implementation.html"><a href="backtest-implementation.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="14.0.1" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-epfr-stock-factor-data"><i class="fa fa-check"></i><b>14.0.1</b> Import EPFR Stock Factor data</a></li>
+<li class="chapter" data-level="14.0.2" data-path="backtest-implementation.html"><a href="backtest-implementation.html#import-returns-data"><i class="fa fa-check"></i><b>14.0.2</b> Import Returns data</a></li>
+</ul></li>
 <li class="part"><span><b>FAQ</b></span></li>
 <li class="chapter" data-level="" data-path="epfr-data-filters-1.html"><a href="epfr-data-filters-1.html"><i class="fa fa-check"></i>EPFR Data &amp; Filters</a>
 <ul>
@@ -362,25 +368,274 @@ code span.wa { font-style: italic; } /* Warning */
             <section class="normal" id="section-">
 <div id="backtest-implementation" class="section level1 hasAnchor" number="14">
 <h1><span class="header-section-number">14</span> Backtest Implementation<a href="backtest-implementation.html#backtest-implementation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="data-7" class="section level4 hasAnchor" number="14.0.0.1">
-<h4><span class="header-section-number">14.0.0.1</span> Data<a href="backtest-implementation.html#data-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="functions" class="section level3 unnumbered hasAnchor">
+<h3>Functions<a href="backtest-implementation.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>ftp.QuantFactor.name()</code> was created to automatically generate the name of the file corresponding to the stock factor being backtested, along with the file’s location within the users EPFR ftp connection.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="backtest-implementation.html#cb141-1" aria-hidden="true" tabindex="-1"></a>ftp.QuantFactor.name <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">w =</span> F, <span class="at">u =</span> <span class="st">&quot;Aggregate&quot;</span>) {</span>
+<span id="cb141-2"><a href="backtest-implementation.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb141-3"><a href="backtest-implementation.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Name        : ftp.QuantFactor.path</span></span>
+<span id="cb141-4"><a href="backtest-implementation.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Author  : OB</span></span>
+<span id="cb141-5"><a href="backtest-implementation.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Date        : 5/24/23</span></span>
+<span id="cb141-6"><a href="backtest-implementation.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args        : x = the name of a quant factor being backtested</span></span>
+<span id="cb141-7"><a href="backtest-implementation.html#cb141-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         : w = Custom ftp path before StockFlows folder</span></span>
+<span id="cb141-8"><a href="backtest-implementation.html#cb141-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         : u = the name of a filter (Active, Aggregate, ETF, Mutual, Passive)</span></span>
+<span id="cb141-9"><a href="backtest-implementation.html#cb141-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Output  : outputs full ftp file path for quant factor</span></span>
+<span id="cb141-10"><a href="backtest-implementation.html#cb141-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb141-11"><a href="backtest-implementation.html#cb141-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb141-12"><a href="backtest-implementation.html#cb141-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(w <span class="sc">!=</span> F){</span>
+<span id="cb141-13"><a href="backtest-implementation.html#cb141-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb141-14"><a href="backtest-implementation.html#cb141-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;AllocMo&quot;</span>, <span class="st">&quot;AllocTrend&quot;</span>, <span class="st">&quot;AllocDiff&quot;</span>, <span class="st">&quot;Herfindahl&quot;</span>, <span class="st">&quot;AllocSkew&quot;</span>)){</span>
+<span id="cb141-15"><a href="backtest-implementation.html#cb141-15" aria-hidden="true" tabindex="-1"></a>      w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;/StockFlows4.1/QuantitativeFactors/Monthly/&quot;</span>, x, <span class="st">&quot;/&quot;</span>, u, <span class="st">&quot;/&quot;</span>) </span>
+<span id="cb141-16"><a href="backtest-implementation.html#cb141-16" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb141-17"><a href="backtest-implementation.html#cb141-17" aria-hidden="true" tabindex="-1"></a>      w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;/StockFlows4.1/QuantitativeFactors/Daily/&quot;</span>, x, <span class="st">&quot;/&quot;</span>, u, <span class="st">&quot;/&quot;</span>) </span>
+<span id="cb141-18"><a href="backtest-implementation.html#cb141-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb141-19"><a href="backtest-implementation.html#cb141-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb141-20"><a href="backtest-implementation.html#cb141-20" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb141-21"><a href="backtest-implementation.html#cb141-21" aria-hidden="true" tabindex="-1"></a>     w <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb141-22"><a href="backtest-implementation.html#cb141-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb141-23"><a href="backtest-implementation.html#cb141-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb141-24"><a href="backtest-implementation.html#cb141-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;FloMo&quot;</span>){</span>
+<span id="cb141-25"><a href="backtest-implementation.html#cb141-25" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;FlowMomentum&quot;</span>)</span>
+<span id="cb141-26"><a href="backtest-implementation.html#cb141-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;FloTrend&quot;</span>){</span>
+<span id="cb141-27"><a href="backtest-implementation.html#cb141-27" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;StockFlowTrend-&quot;</span>)</span>
+<span id="cb141-28"><a href="backtest-implementation.html#cb141-28" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;FloDiff&quot;</span>){</span>
+<span id="cb141-29"><a href="backtest-implementation.html#cb141-29" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;FlowDiff&quot;</span>)</span>
+<span id="cb141-30"><a href="backtest-implementation.html#cb141-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;FloDiff2&quot;</span>){</span>
+<span id="cb141-31"><a href="backtest-implementation.html#cb141-31" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;FlowDiff2&quot;</span>)</span>
+<span id="cb141-32"><a href="backtest-implementation.html#cb141-32" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;ActWtTrend&quot;</span>){</span>
+<span id="cb141-33"><a href="backtest-implementation.html#cb141-33" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;ActiveWeightTrend&quot;</span>)</span>
+<span id="cb141-34"><a href="backtest-implementation.html#cb141-34" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;ActWtDiff&quot;</span>){</span>
+<span id="cb141-35"><a href="backtest-implementation.html#cb141-35" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;ActiveWeightDif&quot;</span>)</span>
+<span id="cb141-36"><a href="backtest-implementation.html#cb141-36" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;ActWtDiff2&quot;</span>){</span>
+<span id="cb141-37"><a href="backtest-implementation.html#cb141-37" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;ActiveWeightDiff2&quot;</span>)</span>
+<span id="cb141-38"><a href="backtest-implementation.html#cb141-38" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;AllocMo&quot;</span>){</span>
+<span id="cb141-39"><a href="backtest-implementation.html#cb141-39" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;AllocationMomentum&quot;</span>)</span>
+<span id="cb141-40"><a href="backtest-implementation.html#cb141-40" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;AllocTrend&quot;</span>){</span>
+<span id="cb141-41"><a href="backtest-implementation.html#cb141-41" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;AllocationTrend&quot;</span>)</span>
+<span id="cb141-42"><a href="backtest-implementation.html#cb141-42" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;AllocDiff&quot;</span>){</span>
+<span id="cb141-43"><a href="backtest-implementation.html#cb141-43" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;AllocationDiff&quot;</span>)</span>
+<span id="cb141-44"><a href="backtest-implementation.html#cb141-44" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;Herfindahl&quot;</span>){</span>
+<span id="cb141-45"><a href="backtest-implementation.html#cb141-45" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;Herfindahl&quot;</span>)</span>
+<span id="cb141-46"><a href="backtest-implementation.html#cb141-46" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="st">&quot;AllocSkew&quot;</span>){</span>
+<span id="cb141-47"><a href="backtest-implementation.html#cb141-47" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;AllocationSkew&quot;</span>)</span>
+<span id="cb141-48"><a href="backtest-implementation.html#cb141-48" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb141-49"><a href="backtest-implementation.html#cb141-49" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, x)</span>
+<span id="cb141-50"><a href="backtest-implementation.html#cb141-50" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb141-51"><a href="backtest-implementation.html#cb141-51" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb141-52"><a href="backtest-implementation.html#cb141-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(u <span class="sc">!=</span> <span class="st">&quot;Aggregate&quot;</span>){</span>
+<span id="cb141-53"><a href="backtest-implementation.html#cb141-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb141-54"><a href="backtest-implementation.html#cb141-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(u <span class="sc">==</span> <span class="st">&quot;Mutual&quot;</span>){ u <span class="ot">&lt;-</span> <span class="st">&quot;MF&quot;</span> } </span>
+<span id="cb141-55"><a href="backtest-implementation.html#cb141-55" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, <span class="st">&quot;All&quot;</span>, u)</span>
+<span id="cb141-56"><a href="backtest-implementation.html#cb141-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb141-57"><a href="backtest-implementation.html#cb141-57" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb141-58"><a href="backtest-implementation.html#cb141-58" aria-hidden="true" tabindex="-1"></a>  w</span>
+<span id="cb141-59"><a href="backtest-implementation.html#cb141-59" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The function <code>ftp.QuantFactor.format()</code> was built for backtesting purposes to automatically format the stock factor files hosted on EPFRs ftp connection, to easily have unique Ids as rownames and each date as a column.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="backtest-implementation.html#cb142-1" aria-hidden="true" tabindex="-1"></a>ftp.QuantFactor.format <span class="ot">&lt;-</span> <span class="cf">function</span>(z, <span class="at">n =</span> <span class="sc">-</span><span class="dv">2</span>) {</span>
+<span id="cb142-2"><a href="backtest-implementation.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb142-3"><a href="backtest-implementation.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Name        : ftp.QuantFactor.path</span></span>
+<span id="cb142-4"><a href="backtest-implementation.html#cb142-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Author  : OB</span></span>
+<span id="cb142-5"><a href="backtest-implementation.html#cb142-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Date        : 5/24/23</span></span>
+<span id="cb142-6"><a href="backtest-implementation.html#cb142-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args        : z = single quant factor file from ftp</span></span>
+<span id="cb142-7"><a href="backtest-implementation.html#cb142-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         : n = delay in getting data</span></span>
+<span id="cb142-8"><a href="backtest-implementation.html#cb142-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Output  : outputs formatted data frame - ID as rows, date as header </span></span>
+<span id="cb142-9"><a href="backtest-implementation.html#cb142-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb142-10"><a href="backtest-implementation.html#cb142-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb142-11"><a href="backtest-implementation.html#cb142-11" aria-hidden="true" tabindex="-1"></a>  z<span class="sc">$</span>ReportDate <span class="ot">&lt;-</span> <span class="fu">yyyymmdd.lag</span>(z<span class="sc">$</span>ReportDate, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb142-12"><a href="backtest-implementation.html#cb142-12" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">reshape</span>(z, <span class="at">idvar =</span> <span class="st">&quot;HSecurityId&quot;</span>, <span class="at">timevar =</span> <span class="st">&quot;ReportDate&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;wide&quot;</span>, <span class="at">drop =</span> <span class="st">&quot;SecurityName&quot;</span>)</span>
+<span id="cb142-13"><a href="backtest-implementation.html#cb142-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(z) <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(z<span class="sc">$</span>HSecurityId)</span>
+<span id="cb142-14"><a href="backtest-implementation.html#cb142-14" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> z[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb142-15"><a href="backtest-implementation.html#cb142-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb142-16"><a href="backtest-implementation.html#cb142-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The function <code>fetch.ftp.QuantFactor()</code> was created to automatically fetch the desired stock factor data for a designated period of time, via the users EPFR ftp connection.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="backtest-implementation.html#cb143-1" aria-hidden="true" tabindex="-1"></a>fetch.ftp.QuantFactor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, n, <span class="at">w =</span> <span class="st">&quot;&quot;</span>, h, <span class="at">u =</span> <span class="st">&quot;Aggregate&quot;</span>) {</span>
+<span id="cb143-2"><a href="backtest-implementation.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb143-3"><a href="backtest-implementation.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Name        : ftp.1y.QuantFactor</span></span>
+<span id="cb143-4"><a href="backtest-implementation.html#cb143-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Author  : OB</span></span>
+<span id="cb143-5"><a href="backtest-implementation.html#cb143-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Date        : 5/24/23</span></span>
+<span id="cb143-6"><a href="backtest-implementation.html#cb143-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args        : x = either a single variable or a vector of variable names</span></span>
+<span id="cb143-7"><a href="backtest-implementation.html#cb143-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     : y = the YYYYMM or YYYYMMDD for which you want data</span></span>
+<span id="cb143-8"><a href="backtest-implementation.html#cb143-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     : n = number of daily/monthly trailing periods</span></span>
+<span id="cb143-9"><a href="backtest-implementation.html#cb143-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   : w = T/custom path depending on if you want full ftp file names</span></span>
+<span id="cb143-10"><a href="backtest-implementation.html#cb143-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     : h = classif file</span></span>
+<span id="cb143-11"><a href="backtest-implementation.html#cb143-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   : u = the name of a filter (Active, Aggregate, ETF, Mutual, Passive)</span></span>
+<span id="cb143-12"><a href="backtest-implementation.html#cb143-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Output  : fetches &lt;x&gt; for the trailing &lt;n&gt; periods ending at &lt;y&gt;</span></span>
+<span id="cb143-13"><a href="backtest-implementation.html#cb143-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb143-14"><a href="backtest-implementation.html#cb143-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-15"><a href="backtest-implementation.html#cb143-15" aria-hidden="true" tabindex="-1"></a>  daily <span class="ot">&lt;-</span> <span class="fu">nchar</span>(y) <span class="sc">==</span> <span class="dv">8</span></span>
+<span id="cb143-16"><a href="backtest-implementation.html#cb143-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb143-17"><a href="backtest-implementation.html#cb143-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-18"><a href="backtest-implementation.html#cb143-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># PARAMETERS - NEED TO SORT THIS PART OUT BETTER FOR BACKTEST!!!</span></span>
+<span id="cb143-19"><a href="backtest-implementation.html#cb143-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (daily) {</span>
+<span id="cb143-20"><a href="backtest-implementation.html#cb143-20" aria-hidden="true" tabindex="-1"></a>    yyyy <span class="ot">&lt;-</span> <span class="fu">yyyymmdd.to.yyyymm</span>(y)</span>
+<span id="cb143-21"><a href="backtest-implementation.html#cb143-21" aria-hidden="true" tabindex="-1"></a>    mm <span class="ot">&lt;-</span> <span class="fu">txt.right</span>(y, <span class="dv">2</span>)</span>
+<span id="cb143-22"><a href="backtest-implementation.html#cb143-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb143-23"><a href="backtest-implementation.html#cb143-23" aria-hidden="true" tabindex="-1"></a>    yyyy <span class="ot">&lt;-</span> <span class="fu">yyyymm.to.yyyy</span>(y)</span>
+<span id="cb143-24"><a href="backtest-implementation.html#cb143-24" aria-hidden="true" tabindex="-1"></a>    mm <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">txt.right</span>(y, <span class="dv">2</span>))</span>
+<span id="cb143-25"><a href="backtest-implementation.html#cb143-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb143-26"><a href="backtest-implementation.html#cb143-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-27"><a href="backtest-implementation.html#cb143-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb143-28"><a href="backtest-implementation.html#cb143-28" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="fu">ftp.QuantFactor.name</span>(x, w, u)</span>
+<span id="cb143-29"><a href="backtest-implementation.html#cb143-29" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, yyyy, <span class="st">&quot;.txt&quot;</span>) </span>
+<span id="cb143-30"><a href="backtest-implementation.html#cb143-30" aria-hidden="true" tabindex="-1"></a>    lCol <span class="ot">&lt;-</span> <span class="fu">paste</span>(x, y, <span class="at">sep =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb143-31"><a href="backtest-implementation.html#cb143-31" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">qa.mat.read</span>(z, <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">temp</span><span class="sc">\\</span><span class="st">crap&quot;</span>, <span class="at">v =</span> T)</span>
+<span id="cb143-32"><a href="backtest-implementation.html#cb143-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb143-33"><a href="backtest-implementation.html#cb143-33" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">ftp.QuantFactor.format</span>(z)</span>
+<span id="cb143-34"><a href="backtest-implementation.html#cb143-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb143-35"><a href="backtest-implementation.html#cb143-35" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(z)[<span class="dv">2</span>]</span>
+<span id="cb143-36"><a href="backtest-implementation.html#cb143-36" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> m[<span class="fu">dimnames</span>(z)[[<span class="dv">2</span>]] <span class="sc">==</span> lCol]</span>
+<span id="cb143-37"><a href="backtest-implementation.html#cb143-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb143-38"><a href="backtest-implementation.html#cb143-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (m <span class="sc">&lt;</span> n) {</span>
+<span id="cb143-39"><a href="backtest-implementation.html#cb143-39" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (daily) yyyy <span class="ot">&lt;-</span> <span class="fu">yyyymm.lag</span>(yyyy, <span class="dv">1</span>) <span class="cf">else</span> yyyy <span class="ot">&lt;-</span> yyyy <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb143-40"><a href="backtest-implementation.html#cb143-40" aria-hidden="true" tabindex="-1"></a>       df <span class="ot">&lt;-</span> <span class="fu">paste0</span>(w, yyyy, <span class="st">&quot;.txt&quot;</span>) </span>
+<span id="cb143-41"><a href="backtest-implementation.html#cb143-41" aria-hidden="true" tabindex="-1"></a>       df <span class="ot">&lt;-</span> <span class="fu">qa.mat.read</span>(df, <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">temp</span><span class="sc">\\</span><span class="st">crap&quot;</span>, <span class="at">v =</span> T)</span>
+<span id="cb143-42"><a href="backtest-implementation.html#cb143-42" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb143-43"><a href="backtest-implementation.html#cb143-43" aria-hidden="true" tabindex="-1"></a>       df <span class="ot">&lt;-</span> <span class="fu">ftp.QuantFactor.format</span>(df)</span>
+<span id="cb143-44"><a href="backtest-implementation.html#cb143-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb143-45"><a href="backtest-implementation.html#cb143-45" aria-hidden="true" tabindex="-1"></a>       z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(df, z)</span>
+<span id="cb143-46"><a href="backtest-implementation.html#cb143-46" aria-hidden="true" tabindex="-1"></a>       m <span class="ot">&lt;-</span> m <span class="sc">+</span> <span class="fu">dim</span>(df)[<span class="dv">2</span>]</span>
+<span id="cb143-47"><a href="backtest-implementation.html#cb143-47" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb143-48"><a href="backtest-implementation.html#cb143-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb143-49"><a href="backtest-implementation.html#cb143-49" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> z[, <span class="fu">seq</span>(m <span class="sc">-</span> n <span class="sc">+</span> <span class="dv">1</span>, m)]</span>
+<span id="cb143-50"><a href="backtest-implementation.html#cb143-50" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb143-51"><a href="backtest-implementation.html#cb143-51" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-52"><a href="backtest-implementation.html#cb143-52" aria-hidden="true" tabindex="-1"></a>  <span class="do">## need to filter classif file</span></span>
+<span id="cb143-53"><a href="backtest-implementation.html#cb143-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-54"><a href="backtest-implementation.html#cb143-54" aria-hidden="true" tabindex="-1"></a>  z</span>
+<span id="cb143-55"><a href="backtest-implementation.html#cb143-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-56"><a href="backtest-implementation.html#cb143-56" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div id="compounding-flows-5" class="section level4 hasAnchor" number="14.0.0.2">
-<h4><span class="header-section-number">14.0.0.2</span> Compounding Flows<a href="backtest-implementation.html#compounding-flows-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="import-epfr-stock-factor-data" class="section level3 hasAnchor" number="14.0.1">
+<h3><span class="header-section-number">14.0.1</span> Import EPFR Stock Factor data<a href="backtest-implementation.html#import-epfr-stock-factor-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For efficiency while importing EPFR stock factor data, we will create the function below called <code>fetch.fcn()</code>, which combines functions from <code>library('EPFR.r')</code> as well as functions discussed earlier in this section, <code>fetch.ftp.QuantFactor()</code>, <code>ftp.QuantFactor.format()</code>, <code>ftp.QuantFactor.name()</code>. This will seamlessly fetch and format data from the users EPFR ftp connection, for a desired period. This function also performs any necessary compounding or summing of the specified factor over the desired period.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="backtest-implementation.html#cb144-1" aria-hidden="true" tabindex="-1"></a>fetch.fcn <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, n, <span class="at">w =</span> <span class="st">&quot;&quot;</span>, classif) {       </span>
+<span id="cb144-2"><a href="backtest-implementation.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">yyyymm.lag</span>(x, <span class="dv">1</span>)</span>
+<span id="cb144-3"><a href="backtest-implementation.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">yyyymmdd.ex.yyyymm</span>(z) <span class="do">## dont need daily?</span></span>
+<span id="cb144-4"><a href="backtest-implementation.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">fetch.ftp.QuantFactor</span>(y, z, n, w, classif)</span>
+<span id="cb144-5"><a href="backtest-implementation.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb144-6"><a href="backtest-implementation.html#cb144-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>(y <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;fundct&quot;</span>, <span class="st">&quot;Herfindahl&quot;</span>, <span class="st">&quot;FloAlpha&quot;</span>))){</span>
+<span id="cb144-7"><a href="backtest-implementation.html#cb144-7" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">compound.sf</span>(z, <span class="fu">ifelse</span>(y <span class="sc">==</span> <span class="st">&quot;FloMo&quot;</span>, F, T))</span>
+<span id="cb144-8"><a href="backtest-implementation.html#cb144-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb144-9"><a href="backtest-implementation.html#cb144-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb144-10"><a href="backtest-implementation.html#cb144-10" aria-hidden="true" tabindex="-1"></a>  z</span>
+<span id="cb144-11"><a href="backtest-implementation.html#cb144-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<!-- The function `fetch.fcn()` requires inputs being the beging  -->
+<!-- ```{r} -->
+<!-- w <- "/EPFR/Informa Financial Intelligence/1043507_Web_admin" -->
+<!-- x <- "202012" -->
+<!-- y <- "FloMo" -->
+<!-- n <- 15 -->
+<!-- h <- NA #TBD -->
+<!-- z <- fetch.fcn(x, y, n, w, h) -->
+<!-- ``` -->
 </div>
-<div id="ranking-stocks" class="section level4 hasAnchor" number="14.0.0.3">
-<h4><span class="header-section-number">14.0.0.3</span> Ranking stocks<a href="backtest-implementation.html#ranking-stocks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="import-returns-data" class="section level3 hasAnchor" number="14.0.2">
+<h3><span class="header-section-number">14.0.2</span> Import Returns data<a href="backtest-implementation.html#import-returns-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There should be a single return file for each calendar year the user is backtesting this strategy. The columns in the file should consist of the return data over a single month for each security included in the universe. EPFR is not able to provide this data, so users must find this data though their own third-party resources.</p>
+<p>For the purpose of creating backtest results in this notebook, we have used an internal file containing historical daily stock returns, stored locally in the folder EPFR/returns.</p>
+<p>Below shows a snippet of what this file contains:</p>
+<p><code>EPFR/StockRets/Sp500_2020.csv</code></p>
+<table class=" lightable-paper lightable-hover table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.6
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.7
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.8
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.9
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.10
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.11
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: #b54ed6 !important;">
+Ret.12
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: #2c1f6e !important;">
+707
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+3.552117
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+-4.001982
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+7.655203
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+9.93397
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+1.124214
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+1.953064
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+7.119536
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+5.170271
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+-6.411665
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+15.57041
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+3.994235
+</td>
+<td style="text-align:right;font-weight: bold;color: #2c1f6e !important;">
+12.11838
+</td>
+</tr>
+</tbody>
+</table>
+<div id="ranking-stocks" class="section level4 hasAnchor" number="14.0.2.1">
+<h4><span class="header-section-number">14.0.2.1</span> Ranking stocks<a href="backtest-implementation.html#ranking-stocks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
-<div id="model-8" class="section level4 hasAnchor" number="14.0.0.4">
-<h4><span class="header-section-number">14.0.0.4</span> Model<a href="backtest-implementation.html#model-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="model-8" class="section level4 hasAnchor" number="14.0.2.2">
+<h4><span class="header-section-number">14.0.2.2</span> Model<a href="backtest-implementation.html#model-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <hr />
 </div>
-<div id="factor-performance" class="section level4 hasAnchor" number="14.0.0.5">
-<h4><span class="header-section-number">14.0.0.5</span> Factor Performance<a href="backtest-implementation.html#factor-performance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="factor-performance" class="section level4 hasAnchor" number="14.0.2.3">
+<h4><span class="header-section-number">14.0.2.3</span> Factor Performance<a href="backtest-implementation.html#factor-performance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
-<div id="performance-consistency" class="section level4 hasAnchor" number="14.0.0.6">
-<h4><span class="header-section-number">14.0.0.6</span> Performance Consistency<a href="backtest-implementation.html#performance-consistency" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="performance-consistency" class="section level4 hasAnchor" number="14.0.2.4">
+<h4><span class="header-section-number">14.0.2.4</span> Performance Consistency<a href="backtest-implementation.html#performance-consistency" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 
+</div>
 </div>
 </div>
 
